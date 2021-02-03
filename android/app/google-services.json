@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "364903247850",
+    "project_id": "ice-fishing-derby",
+    "storage_bucket": "ice-fishing-derby.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364903247850:android:fd75c223c902c0b10e8c93",
+        "android_client_info": {
+          "package_name": "com.simplecomputers101.icefishingderby"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364903247850-74ootil3nhh88g2putomjlldhrodf5kf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-xyoKafX_C_kb-K9ggSxpni4Q_Hn-7kA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364903247850-74ootil3nhh88g2putomjlldhrodf5kf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

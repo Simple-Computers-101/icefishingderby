@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>364903247850-ikrp7k2ue4do2j94pq5te5m8f0qskpnu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.364903247850-ikrp7k2ue4do2j94pq5te5m8f0qskpnu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB1Q7V8YAUbE8ah9KwrDMSjRd9ZTSO5WIc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>364903247850</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.simplecomputers101.com</string>
+	<key>PROJECT_ID</key>
+	<string>ice-fishing-derby</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ice-fishing-derby.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:364903247850:ios:d9c4b878ceac70120e8c93</string>
+</dict>
+</plist>
