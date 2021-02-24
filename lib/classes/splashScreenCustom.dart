@@ -1,4 +1,4 @@
-library advanced_splashscreen;
+
 
 import 'dart:async';
 
