@@ -11,6 +11,7 @@ dependencies:
     auto_route: ^0.6.9
     awesome_loader: ^0.0.3
     flutter_custom_clippers: ^1.1.1
+    flutter_screenutil: ^1.0.2
     google_fonts: ^1.1.2
     get_it: ^4.0.4
     font_awesome_flutter: ^8.5.0
@@ -19,6 +20,7 @@ dependencies:
     stacked_services: ^0.5.4+2
     responsive_builder: ^0.2.0+2
     equatable: ^1.2.4
+    sign_button: ^1.0.2
 dev_dependencies:
     flutter_test:
         sdk: flutter
