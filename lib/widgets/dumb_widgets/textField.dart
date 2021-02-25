@@ -61,7 +61,7 @@ class TextFields extends StatelessWidget {
                 child: TextFormField(
                   // inputFormatters: [maskTextInputFormatter],
                   // controller: textControl,
-                  
+                
                   onChanged: onChanged,
                   keyboardType: input,
                   
@@ -78,10 +78,11 @@ class TextFields extends StatelessWidget {
                   },
                   obscureText: secureText,
                   decoration: InputDecoration(
+                    prefixIcon: icon,
                       suffixIcon: show,
                       focusColor: focusColor,
                        
-                      icon: icon,
+                     
                       hintText: hintText,
                       hintStyle: t10appColor,
                       labelText: helpText,
