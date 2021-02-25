@@ -19,6 +19,11 @@ dependencies:
     stacked_services: ^0.5.4+2
     responsive_builder: ^0.2.0+2
     equatable: ^1.2.4
+    firebase_auth: ^0.20.1
+    google_sign_in: ^4.5.1
+    sign_in_with_apple: ^2.5.2
+    crypto: ^2.1.5
+
 dev_dependencies:
     flutter_test:
         sdk: flutter
