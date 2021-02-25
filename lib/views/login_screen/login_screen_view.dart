@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/button_list.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
-import 'package:icefishingderby/widgets/dumb_widgets/app_button.dart';
-import 'package:icefishingderby/widgets/dumb_widgets/field.dart';
+
 import 'package:icefishingderby/widgets/dumb_widgets/textField.dart';
 import 'package:sign_button/sign_button.dart';
 import 'package:stacked/stacked.dart';
@@ -18,6 +16,8 @@ class LoginScreenView extends StatefulWidget {
 
 class _LoginScreenViewState extends State<LoginScreenView> {
   var _passwordVisible = true;
+  var email;
+  var password;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +30,9 @@ class _LoginScreenViewState extends State<LoginScreenView> {
             decoration: BoxDecoration(
               gradient: new LinearGradient(
                 colors: [
-                   Color(0xff2389da),
+                  Color(0xff2389da),
                   Color(0xff1ca3ec),
                   Color(0xff0f5e9c),
-                 
                 ],
               ),
             ),
@@ -41,7 +40,6 @@ class _LoginScreenViewState extends State<LoginScreenView> {
               padding: const EdgeInsets.all(8.0),
               child: ListView(
                 children: [
-
                   SizedBox(
                     height: 20,
                   ),
@@ -54,6 +52,9 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                     height: 45,
                   ),
                   TextFields(
+                    onChanged: (em) {
+                      email = em;
+                    },
                     icon: Tab(
                       child: Icon(
                         Icons.email_rounded,
@@ -90,6 +91,9 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                       ),
                     ),
                     hintText: "Password",
+                    onChanged: (pa) {
+                      password = pa;
+                    },
                     secureText: _passwordVisible,
                     borderColor: appColor,
                     focusColor: Colors.white,
@@ -106,19 +110,19 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                       height: 50,
                       decoration: BoxDecoration(
                           boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                color: Colors.black45,
-                                blurRadius: 8,
-                                offset: Offset(4, 4),
-                              ),
-                            ],
-                          
-                        
+                            BoxShadow(
+                              color: Colors.black45,
+                              blurRadius: 8,
+                              offset: Offset(4, 4),
+                            ),
+                          ],
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(25),
                           border: Border.all(color: Colors.blueAccent)),
                       child: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            //Login Using Email
+                          },
                           child: Center(
                             child: Text(
                               "     Login     ",
@@ -145,11 +149,15 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                     children: [
                       SignInButton.mini(
                         buttonType: ButtonType.google,
-                        onPressed: () {},
+                        onPressed: () {
+                          //Google SignIn
+                        },
                       ),
                       SignInButton.mini(
                         buttonType: ButtonType.apple,
-                        onPressed: () {},
+                        onPressed: () {
+                          //Apple SignIn
+                        },
                       ),
                     ],
                   ),
