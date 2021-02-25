@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:tareekh/Constants/fonts.dart';
-import 'package:tareekh/Constants/size.dart';
+import 'package:icefishingderby/constants/fonts.dart';
+import 'package:icefishingderby/constants/size.dart';
+
 
 class HomeHeader extends StatelessWidget {
   final String title;

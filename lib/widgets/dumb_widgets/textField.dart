@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:icefishingderby/constants/fonts.dart';
 
-import '../Constants/fonts.dart';
 
 class TextFields extends StatelessWidget {
   const TextFields(
@@ -61,6 +61,7 @@ class TextFields extends StatelessWidget {
                 child: TextFormField(
                   // inputFormatters: [maskTextInputFormatter],
                   // controller: textControl,
+                  
                   onChanged: onChanged,
                   keyboardType: input,
                   
