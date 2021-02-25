@@ -15,19 +15,22 @@ class AppButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       child: Container(
-        height: ScreenUtil().setHeight(40),
-        width: ScreenUtil().setWidth(250),
+        height: ScreenUtil().setHeight(44),
+        width: ScreenUtil().setWidth(240),
         decoration: BoxDecoration(
+
+
             color: Colors.white,
             borderRadius: BorderRadius.horizontal(
-                left: Radius.circular(20.0), right: Radius.circular(20.0))),
+
+                left: Radius.circular(12.0), right: Radius.circular(12.0))),
         child: Padding(
           padding: const EdgeInsets.only(left: 15.0, right: 15),
           child: Center(
             child: Text(
               text,
               textAlign: TextAlign.center,
-              style: GoogleFonts.ptSans(fontWeight: FontWeight.bold),
+              style: GoogleFonts.andika(fontWeight: FontWeight.bold, fontSize: 18),
             ),
           ),
         ),

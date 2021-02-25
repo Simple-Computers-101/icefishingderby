@@ -61,6 +61,7 @@ class TextFields extends StatelessWidget {
                 child: TextFormField(
                   // inputFormatters: [maskTextInputFormatter],
                   // controller: textControl,
+                  
                   onChanged: onChanged,
                   keyboardType: input,
                   
