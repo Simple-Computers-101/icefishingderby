@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
+import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart';
 
 import 'package:icefishingderby/widgets/dumb_widgets/textField.dart';
 import 'package:sign_button/sign_button.dart';
@@ -131,11 +132,39 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                           )),
                     )),
                   ),
-                  SizedBox(
-                    height: 20,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignUpScreenView()),
+                          );
+                        },
+                        child: Text('Dont have an account? Tap here',
+                            style: GoogleFonts.abel(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18)),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: Text(
+                        'OR',
+                        style: GoogleFonts.abel(
+                            color: appColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ),
+                    ),
                   ),
                   Center(
-                    child: Text('Or create account using social media',
+                    child: Text('Create account using social media',
                         style: GoogleFonts.abel(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,

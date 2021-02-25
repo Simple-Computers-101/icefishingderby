@@ -50,8 +50,8 @@ TextStyle t4black = GoogleFonts.montserrat( textStyle: TextStyle(
 ));
 
 TextStyle t5 = GoogleFonts.montserrat( textStyle: TextStyle(
-  color : Colors.black,
-  fontSize: SizeConfig.blockSizeHorizontal * 3.8,
+  color : Colors.white,
+  fontSize: 16  ,
   fontWeight: FontWeight.w300
 ));
 TextStyle t7 = GoogleFonts.montserrat( textStyle: TextStyle(

@@ -24,14 +24,14 @@ class HomeHeader extends StatelessWidget {
           clipper: OvalBottomBorderClipper(),
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.blueAccent,
+                color: Colors.white,
                 borderRadius: BorderRadiusDirectional.circular(40)),
             height: SizeConfig.blockSizeVertical * 8,
             width: SizeConfig.screenWidth,
             child: Center(
               child: Text(
                 title,
-                style: t1,
+                style: t10appColor,
               ),
             ),
           ),
@@ -60,14 +60,14 @@ class HomeHeader2 extends StatelessWidget {
           clipper: OvalBottomBorderClipper(),
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.blueAccent,
+                color: Colors.white,
                 borderRadius: BorderRadiusDirectional.circular(5)),
             height: SizeConfig.blockSizeVertical * 8,
             width: SizeConfig.screenWidth,
             child: Center(
               child: Text(
                 title,
-                style: t1,
+                style: t10appColor,
               ),
             ),
           ),
