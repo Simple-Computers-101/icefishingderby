@@ -1,5 +1,5 @@
 {
-    "last_updated": "Wed, 24 Feb 2021 14:53:18 GMT",
+    "last_updated": "Fri, 26 Feb 2021 13:00:50 GMT",
     "routes": [
         {
             "file_path": "views/splash_screen/splash_screen_view.dart",
@@ -15,6 +15,16 @@
             "file_path": "views/sign_up_screen/sign_up_screen_view.dart",
             "route_name": "sign_up_screenViewRoute",
             "view_name": "SignUpScreenView"
+        },
+        {
+            "file_path": "views/home_screen/home_screen_view.dart",
+            "route_name": "home_screenViewRoute",
+            "view_name": "HomeScreenView"
+        },
+        {
+            "file_path": "views/bottom_bar/bottom_bar_view.dart",
+            "route_name": "bottom_barViewRoute",
+            "view_name": "BottomBarView"
         }
     ]
 }

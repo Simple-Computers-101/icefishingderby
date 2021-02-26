@@ -70,7 +70,7 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
                     context: null,
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   TextFields(
                     onChanged: (em) {
@@ -89,7 +89,7 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
                     context: null,
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 15,
                   ),
                   TextFields(
                     show: IconButton(
@@ -127,8 +127,8 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
                     padding: const EdgeInsets.all(8.0),
                     child: Center(
                         child: Container(
-                      width: 180,
-                      height: 50,
+                      width: 240,
+                      height: 40,
                       decoration: BoxDecoration(
                           boxShadow: <BoxShadow>[
                             BoxShadow(
