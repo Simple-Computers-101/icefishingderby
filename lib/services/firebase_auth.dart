@@ -1,9 +1,14 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:crypto/crypto.dart';
 
 class AuthService {
+  static bool appleSignInAvailable = false;
+
   Future<UserCredential> registerUser(email, password) {
     var _auth = FirebaseAuth.instance;
 
@@ -14,13 +19,17 @@ class AuthService {
 
   Future<UserCredential> emailAuth(email, password) async {
     var _auth = FirebaseAuth.instance;
+
     var _user = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
+    _user.user.sendEmailVerification();
     return _user;
   }
 
   Future<UserCredential> googleAuth() async {
     final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
+
+    if (googleUser == null) return null;
 
     final GoogleSignInAuthentication googleAuth =
         await googleUser.authentication;

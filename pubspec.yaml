@@ -21,9 +21,11 @@ dependencies:
     stacked_services: ^0.5.4+2
     responsive_builder: ^0.2.0+2
     equatable: ^1.2.4
+    firebase_core:
     firebase_auth: ^0.20.1
     google_sign_in: ^4.5.1
     sign_in_with_apple: ^2.5.2
+    provider:
     crypto: ^2.1.5
     sign_button: ^1.0.2
     

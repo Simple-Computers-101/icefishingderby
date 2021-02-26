@@ -1,8 +1,12 @@
+import 'dart:io';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
+import 'package:icefishingderby/services/firebase_auth.dart';
 
 import 'package:icefishingderby/widgets/dumb_widgets/textField.dart';
 import 'package:sign_button/sign_button.dart';
@@ -16,8 +20,8 @@ class LoginScreenView extends StatefulWidget {
 
 class _LoginScreenViewState extends State<LoginScreenView> {
   var _passwordVisible = true;
-  var email;
-  var password;
+  // var email;
+  // var password;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +57,9 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                   ),
                   TextFields(
                     onChanged: (em) {
-                      email = em;
+                      setState(() {
+                        viewModel.email = em;
+                      });
                     },
                     icon: Tab(
                       child: Icon(
@@ -92,7 +98,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                     ),
                     hintText: "Password",
                     onChanged: (pa) {
-                      password = pa;
+                      viewModel.password = pa;
                     },
                     secureText: _passwordVisible,
                     borderColor: appColor,
@@ -120,8 +126,15 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                           borderRadius: BorderRadius.circular(25),
                           border: Border.all(color: Colors.blueAccent)),
                       child: GestureDetector(
-                          onTap: () {
+                          onTap: () async {
                             //Login Using Email
+                            UserCredential user =
+                                await viewModel.provideEmailSign();
+                            if (user != null)
+                              print("email sign in: ${user.user.email}");
+                            else
+                              print(
+                                  "Email Sign in: No such user ${viewModel.email}");
                           },
                           child: Center(
                             child: Text(
@@ -149,16 +162,24 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                     children: [
                       SignInButton.mini(
                         buttonType: ButtonType.google,
-                        onPressed: () {
+                        onPressed: () async {
                           //Google SignIn
+                          UserCredential user =
+                              await viewModel.provideGoogleSign();
+                          if (user == null)
+                            print("Null google user.");
+                          else
+                            print("email sign in: ${user.user.email}");
                         },
                       ),
-                      SignInButton.mini(
-                        buttonType: ButtonType.apple,
-                        onPressed: () {
-                          //Apple SignIn
-                        },
-                      ),
+                      if (AuthService.appleSignInAvailable && Platform.isIOS)
+                        SignInButton.mini(
+                          buttonType: ButtonType.apple,
+                          onPressed: () async {
+                            //Apple SignIn
+                            await viewModel.provideAppleSign();
+                          },
+                        ),
                     ],
                   ),
                 ],
