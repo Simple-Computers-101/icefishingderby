@@ -20,7 +20,7 @@ class HomeScreenView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                flex: 3,
+                flex: 4,
                 child: Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(image: AssetImage("assets/fishderby.jpg"),fit: BoxFit.cover),
@@ -28,7 +28,7 @@ class HomeScreenView extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 3,
+                flex: 4,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -79,6 +79,10 @@ class HomeScreenView extends StatelessWidget {
                                         text: "FishDerby",
                                       ),
                                       Detail(
+                                        title: "Status",
+                                        text: "Ongoing",
+                                      ),
+                                      Detail(
                                         title: "Timing",
                                         text: "9 am - 6 pm",
                                       ),
@@ -112,7 +116,7 @@ class HomeScreenView extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 4,
+                flex: 5,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
