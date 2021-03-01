@@ -6,11 +6,12 @@ class Field extends StatelessWidget {
     this.hinttext,
     this.onchanged,
     this.type,
-    this.registerFormKey,
+    this.registerFormKey, this.icon,
   }) : super(key: key);
 
   final hinttext;
   final type;
+  final icon;
   final onchanged;
   final registerFormKey;
 
@@ -45,6 +46,7 @@ class Field extends StatelessWidget {
                 ),
                 cursorColor: Color(0xFF4FBE9F),
                 decoration: new InputDecoration(
+                  prefix: icon,
                   border: InputBorder.none,
                   hintText: hinttext,
                   hintStyle: TextStyle(color: Colors.grey),
