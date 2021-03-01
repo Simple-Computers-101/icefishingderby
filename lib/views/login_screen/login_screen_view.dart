@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
+import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
 import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart';
 
 import 'package:icefishingderby/widgets/dumb_widgets/textField.dart';
@@ -102,14 +103,14 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                   ),
                   GestureDetector(
                     child: Padding(
-                      padding: const EdgeInsets.only(right: 28.0),
+                      padding: const EdgeInsets.only(right: 28.0, top: 5),
                       child: Align(
                         alignment: Alignment.centerRight,
                         child: Text('Forgot Your Password?',
                             style: GoogleFonts.abel(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
-                                fontSize: 13)),
+                                fontSize: 14)),
                       ),
                     ),
                     onTap: () {},
@@ -137,6 +138,13 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                       child: GestureDetector(
                           onTap: () {
                             //Login Using Email
+
+
+                             Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomeScreenView()),
+                          );
                           },
                           child: Center(
                             child: Text(
@@ -157,7 +165,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                                 builder: (context) => SignUpScreenView()),
                           );
                         },
-                        child: Text('Dont have an account? Tap here',
+                        child: Text('Dont have an account? Sign Up',
                             style: GoogleFonts.abel(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,

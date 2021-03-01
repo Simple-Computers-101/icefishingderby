@@ -31,9 +31,17 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
           (BuildContext context, SignUpScreenViewModel viewModel, Widget _) {
         return SafeArea(
           child: Scaffold(
-            backgroundColor: appColor,
-            body: Padding(
-              padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+            
+            body: Container(
+               decoration: BoxDecoration(
+            gradient: new LinearGradient(
+              colors: [
+                Color(0xff2389da),
+                Color(0xff1ca3ec),
+                Color(0xff0f5e9c),
+              ],
+            ),
+            ),
               child: ListView(
                 children: [
                   SizedBox(
@@ -128,7 +136,7 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
                     child: Center(
                         child: Container(
                       width: 240,
-                      height: 40,
+                      height: 45,
                       decoration: BoxDecoration(
                           boxShadow: <BoxShadow>[
                             BoxShadow(
@@ -142,7 +150,7 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
                           border: Border.all(color: Colors.blueAccent)),
                       child: GestureDetector(
                           onTap: () {
-                            //Login Using Email
+                            //Register Using Email
                           },
                           child: Center(
                             child: Text(
