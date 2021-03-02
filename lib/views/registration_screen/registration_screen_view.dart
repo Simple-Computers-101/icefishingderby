@@ -59,14 +59,51 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Center(
-                      child: Text(
-                        "Registration Form",
-                        style: GoogleFonts.josefinSans(
-                            color: Colors.white,
-                            fontSize: ScreenUtil().setSp(30),
-                            fontWeight: FontWeight.bold),
-                      ),
+                    Stack(
+                      children: [
+                        Padding(
+                           padding: const EdgeInsets.only(left:30.0,right:39),
+                           child: Container(
+                             color: Colors.white,
+                             child: Center(
+                               child: Padding(
+                                 padding: const EdgeInsets.all(8.0),
+                                 child: Text(
+                                   "Registration Form", textAlign: TextAlign.center,
+                                   style: GoogleFonts.josefinSans(
+                                       color: appColor,
+                                       fontSize: ScreenUtil().setSp(30),
+                                       fontWeight: FontWeight.bold),
+                                 ),
+                               ),
+                             ),
+                           ),
+                         ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xff2389da),
+                                borderRadius: BorderRadius.only(topRight: Radius.circular(50),bottomRight: Radius.circular(50))
+                              ),
+                              height: ScreenUtil().setHeight(47),
+                              width: ScreenUtil().setWidth(70),
+                            ),
+                           
+                            Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xff2389da),
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(50),bottomLeft: Radius.circular(50))
+                              ),
+                              
+                              height: ScreenUtil().setHeight(47),
+                              width: ScreenUtil().setWidth(70),
+                            ),
+                          ],
+                        ),
+                         
+                      ],
                     ),
                     // Padding(
                     //   padding: const EdgeInsets.only(top: 20.0),
@@ -338,8 +375,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                             'Sunday',
                                             'Both'
                                           ].map((String value) {
-                                            return new DropdownMenuItem<
-                                                String>(
+                                            return new DropdownMenuItem<String>(
                                               value: value,
                                               child: new Text(value),
                                             );
