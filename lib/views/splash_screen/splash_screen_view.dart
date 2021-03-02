@@ -5,6 +5,7 @@ import 'package:icefishingderby/classes/SplashScreenCustom.dart';
 import 'package:icefishingderby/views/bottom_bar/bottom_bar_view.dart';
 import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
 import 'package:icefishingderby/views/login_screen/login_screen_view.dart';
+import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart';
 import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart';
 import 'package:stacked/stacked.dart';
 import 'splash_screen_view_model.dart';
@@ -19,6 +20,7 @@ class SplashScreenView extends StatelessWidget {
             allowFontScaling: true, height: 683, width: 411);
         return Scaffold(
           body: AdvancedSplashScreen(
+<<<<<<< HEAD
             animate: true,
             appIcon: 'assets/derby-logo.png',
             appTitle: '2021',
@@ -32,6 +34,23 @@ class SplashScreenView extends StatelessWidget {
             ],
             child: SignUpScreenView(),
           ),
+=======
+        animate: true,
+        appIcon: 'assets/derby-logo.png',
+        appTitle: '2021',
+        appTitleStyle:
+            GoogleFonts.abel(fontSize: 28, fontWeight: FontWeight.w600),
+        seconds: 3,
+        colorList: [
+          Color(0xff0f5e9c),
+          Color(0xff2389da),
+          Color(0xff1ca3ec),
+        ],
+        child: RegistrationScreenView(),
+
+
+      ),
+>>>>>>> 56446303e143773096b2b20e8b244171a3144f38
         );
       },
       viewModelBuilder: () => SplashScreenViewModel(),

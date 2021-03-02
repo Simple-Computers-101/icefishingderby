@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
 import 'package:icefishingderby/constants/size.dart';
 
@@ -59,14 +60,14 @@ class HomeHeader2 extends StatelessWidget {
           clipper: OvalBottomBorderClipper(),
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.white,
+                color: appColor,
                 borderRadius: BorderRadiusDirectional.circular(5)),
             height: SizeConfig.blockSizeVertical * 8,
             width: SizeConfig.screenWidth,
             child: Center(
               child: Text(
                 title,
-                style: t10appColor,
+                style: t1,
               ),
             ),
           ),

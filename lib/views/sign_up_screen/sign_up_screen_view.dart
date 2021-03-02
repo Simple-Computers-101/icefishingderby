@@ -32,10 +32,24 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
           (BuildContext context, SignUpScreenViewModel viewModel, Widget _) {
         return SafeArea(
           child: Scaffold(
+<<<<<<< HEAD
             key: _key,
             backgroundColor: appColor,
             body: Padding(
               padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+=======
+            
+            body: Container(
+               decoration: BoxDecoration(
+            gradient: new LinearGradient(
+              colors: [
+                Color(0xff2389da),
+                Color(0xff1ca3ec),
+                Color(0xff0f5e9c),
+              ],
+            ),
+            ),
+>>>>>>> 56446303e143773096b2b20e8b244171a3144f38
               child: ListView(
                 children: [
                   SizedBox(
@@ -136,7 +150,7 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
                     child: Center(
                         child: Container(
                       width: 240,
-                      height: 40,
+                      height: 45,
                       decoration: BoxDecoration(
                           boxShadow: <BoxShadow>[
                             BoxShadow(
@@ -149,6 +163,7 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
                           borderRadius: BorderRadius.circular(25),
                           border: Border.all(color: Colors.blueAccent)),
                       child: GestureDetector(
+<<<<<<< HEAD
                           onTap: () async {
                             print(
                                 "${viewModel.email}, ${viewModel.password}, ${viewModel.username}");
@@ -167,6 +182,10 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
                                 content: Text(uc.toString()),
                               ));
                             }
+=======
+                          onTap: () {
+                            //Register Using Email
+>>>>>>> 56446303e143773096b2b20e8b244171a3144f38
                           },
                           child: Center(
                             child: Text(

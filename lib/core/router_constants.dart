@@ -5,3 +5,4 @@ const String loginScreenViewRoute = 'loginScreenViewRoute';
 const String signUpScreenViewRoute = 'signUpScreenViewRoute';
 const String homeScreenViewRoute = 'homeScreenViewRoute';
 const String bottomBarViewRoute = 'bottomBarViewRoute';
+const String registrationScreemViewRoute = 'registrationScreemViewRoute';

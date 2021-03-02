@@ -6,8 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
+<<<<<<< HEAD
 import 'package:icefishingderby/services/firebase_auth.dart';
 import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
+=======
+import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
+import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart';
+>>>>>>> 56446303e143773096b2b20e8b244171a3144f38
 
 import 'package:icefishingderby/widgets/dumb_widgets/textField.dart';
 import 'package:sign_button/sign_button.dart';
@@ -109,6 +114,20 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                     borderColor: appColor,
                     focusColor: Colors.white,
                     context: null,
+                  ),
+                  GestureDetector(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 28.0, top: 5),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Text('Forgot Your Password?',
+                            style: GoogleFonts.abel(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14)),
+                      ),
+                    ),
+                    onTap: () {},
                   ),
                   SizedBox(
                     height: 35,
