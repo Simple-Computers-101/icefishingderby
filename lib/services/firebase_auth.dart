@@ -9,11 +9,12 @@ import 'package:crypto/crypto.dart';
 class AuthService {
   static bool appleSignInAvailable = false;
 
-  Future<UserCredential> registerUser(email, password) {
+  Future<UserCredential> registerUser(email, password) async {
     var _auth = FirebaseAuth.instance;
 
-    var _res =
-        _auth.createUserWithEmailAndPassword(email: email, password: password);
+    var _res = await _auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+
     return _res;
   }
 
@@ -22,7 +23,7 @@ class AuthService {
 
     var _user = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
-    _user.user.sendEmailVerification();
+    if (!_user.user.emailVerified) _user.user.sendEmailVerification();
     return _user;
   }
 

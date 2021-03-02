@@ -7,6 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
 import 'package:icefishingderby/services/firebase_auth.dart';
+import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
 
 import 'package:icefishingderby/widgets/dumb_widgets/textField.dart';
 import 'package:sign_button/sign_button.dart';
@@ -20,6 +21,7 @@ class LoginScreenView extends StatefulWidget {
 
 class _LoginScreenViewState extends State<LoginScreenView> {
   var _passwordVisible = true;
+  final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   // var email;
   // var password;
 
@@ -29,6 +31,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
       builder:
           (BuildContext context, LoginScreenViewModel viewModel, Widget _) {
         return Scaffold(
+          key: _key,
           backgroundColor: Colors.transparent,
           body: Container(
             decoration: BoxDecoration(
@@ -98,7 +101,9 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                     ),
                     hintText: "Password",
                     onChanged: (pa) {
-                      viewModel.password = pa;
+                      setState(() {
+                        viewModel.password = pa;
+                      });
                     },
                     secureText: _passwordVisible,
                     borderColor: appColor,
@@ -128,13 +133,16 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                       child: GestureDetector(
                           onTap: () async {
                             //Login Using Email
-                            UserCredential user =
-                                await viewModel.provideEmailSign();
-                            if (user != null)
-                              print("email sign in: ${user.user.email}");
+                            var user = await viewModel.provideEmailSign();
+                            if (user is UserCredential)
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => HomeScreenView()));
                             else
-                              print(
-                                  "Email Sign in: No such user ${viewModel.email}");
+                              _key.currentState.showSnackBar(SnackBar(
+                                content: Text(user.toString()),
+                              ));
                           },
                           child: Center(
                             child: Text(
@@ -166,10 +174,15 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                           //Google SignIn
                           UserCredential user =
                               await viewModel.provideGoogleSign();
-                          if (user == null)
-                            print("Null google user.");
+                          if (user is UserCredential)
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreenView()));
                           else
-                            print("email sign in: ${user.user.email}");
+                            _key.currentState.showSnackBar(SnackBar(
+                              content: Text(user.toString()),
+                            ));
                         },
                       ),
                       if (AuthService.appleSignInAvailable && Platform.isIOS)
@@ -177,7 +190,13 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                           buttonType: ButtonType.apple,
                           onPressed: () async {
                             //Apple SignIn
-                            await viewModel.provideAppleSign();
+                            var uc = await viewModel.provideAppleSign();
+                            if (uc is UserCredential)
+                              print(uc.user.email);
+                            else
+                              _key.currentState.showSnackBar(SnackBar(
+                                content: Text(uc.toString()),
+                              ));
                           },
                         ),
                     ],

@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/fonts.dart';
 import 'package:icefishingderby/constants/size.dart';
 
-
 class HomeHeader extends StatelessWidget {
   final String title;
 
@@ -24,14 +23,14 @@ class HomeHeader extends StatelessWidget {
           clipper: OvalBottomBorderClipper(),
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.blueAccent,
+                color: Colors.white,
                 borderRadius: BorderRadiusDirectional.circular(40)),
             height: SizeConfig.blockSizeVertical * 8,
             width: SizeConfig.screenWidth,
             child: Center(
               child: Text(
                 title,
-                style: t1,
+                style: t10appColor,
               ),
             ),
           ),
@@ -60,14 +59,14 @@ class HomeHeader2 extends StatelessWidget {
           clipper: OvalBottomBorderClipper(),
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.blueAccent,
+                color: Colors.white,
                 borderRadius: BorderRadiusDirectional.circular(5)),
             height: SizeConfig.blockSizeVertical * 8,
             width: SizeConfig.screenWidth,
             child: Center(
               child: Text(
                 title,
-                style: t1,
+                style: t10appColor,
               ),
             ),
           ),
@@ -76,7 +75,6 @@ class HomeHeader2 extends StatelessWidget {
     );
   }
 }
-
 
 class HomeHeader3 extends StatelessWidget {
   final String title;
@@ -114,17 +112,17 @@ class HomeHeader3 extends StatelessWidget {
   }
 }
 
-
 class HomeMenuCards extends StatelessWidget {
   final String title;
   final IconData icon;
   final Color iconColor;
- final Function onpress;
+  final Function onpress;
   const HomeMenuCards({
     Key key,
     this.title,
     this.icon,
-    this.iconColor, this.onpress,
+    this.iconColor,
+    this.onpress,
   }) : super(key: key);
 
   @override
@@ -132,7 +130,7 @@ class HomeMenuCards extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: onpress,
-              child: Card(
+        child: Card(
           elevation: 3,
           child: Column(
             children: [

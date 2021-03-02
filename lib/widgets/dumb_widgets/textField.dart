@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icefishingderby/constants/fonts.dart';
 
-
 class TextFields extends StatelessWidget {
   const TextFields(
       {Key key,
@@ -15,10 +14,15 @@ class TextFields extends StatelessWidget {
       this.input,
       this.show,
       this.borderColor,
-      this.focusColor, this.onTap1, this.enabled, this.onChanged})
+      this.focusColor,
+      this.onTap1,
+      this.enabled,
+      this.onChanged,
+      this.controller})
       : super(key: key);
 
   final Tab icon;
+  final TextEditingController controller;
   final String hintText;
   final BuildContext context;
   final String helpText;
@@ -30,8 +34,7 @@ class TextFields extends StatelessWidget {
   final Function onTap1;
   final bool enabled;
   final Function onChanged;
-  final TextEditingController  textControl;
-
+  final TextEditingController textControl;
 
   @override
   Widget build(BuildContext context) {
@@ -45,28 +48,27 @@ class TextFields extends StatelessWidget {
             padding: const EdgeInsets.all(4),
             child: Container(
               decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(38)),
-                            boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                color: Colors.black45,
-                                blurRadius: 8,
-                                offset: Offset(4, 4),
-                              ),
-                            ],
-                          ),
-
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(38)),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    color: Colors.black45,
+                    blurRadius: 8,
+                    offset: Offset(4, 4),
+                  ),
+                ],
+              ),
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 6),
                 child: TextFormField(
                   // inputFormatters: [maskTextInputFormatter],
                   // controller: textControl,
-                
+
                   onChanged: onChanged,
                   keyboardType: input,
-                  
+
                   enabled: enabled,
-                  onTap: (){
+                  onTap: () {
                     onTap1;
                   },
                   style: t10appColor,
@@ -76,13 +78,12 @@ class TextFields extends StatelessWidget {
                     else
                       return null;
                   },
+                  controller: controller,
                   obscureText: secureText,
                   decoration: InputDecoration(
-                    prefixIcon: icon,
+                      prefixIcon: icon,
                       suffixIcon: show,
                       focusColor: focusColor,
-                       
-                     
                       hintText: hintText,
                       hintStyle: t10appColor,
                       labelText: helpText,
@@ -90,11 +91,9 @@ class TextFields extends StatelessWidget {
                 ),
               ),
             ),
-          )
-          ),
+          )),
     );
   }
-  
 
   String validateEmail(String value) {
     Pattern pattern =
@@ -119,7 +118,10 @@ class TextFields2 extends StatelessWidget {
       this.input,
       this.show,
       this.borderColor,
-      this.focusColor, this.onTap1, this.enabled, this.onChanged})
+      this.focusColor,
+      this.onTap1,
+      this.enabled,
+      this.onChanged})
       : super(key: key);
 
   final Tab icon;
@@ -134,8 +136,7 @@ class TextFields2 extends StatelessWidget {
   final Function onTap1;
   final bool enabled;
   final Function onChanged;
-  final TextEditingController  textControl;
-
+  final TextEditingController textControl;
 
   @override
   Widget build(BuildContext context) {
@@ -158,9 +159,8 @@ class TextFields2 extends StatelessWidget {
                   controller: textControl,
                   onChanged: onChanged,
                   keyboardType: input,
-                  
                   enabled: enabled,
-                  onTap: (){
+                  onTap: () {
                     onTap1;
                   },
                   style: TextStyle(
@@ -176,7 +176,6 @@ class TextFields2 extends StatelessWidget {
                   decoration: InputDecoration(
                       suffixIcon: show,
                       focusColor: focusColor,
-                       
                       icon: icon,
                       hintText: hintText,
                       hintStyle: TextStyle(fontSize: 17, color: focusColor),
@@ -185,8 +184,7 @@ class TextFields2 extends StatelessWidget {
                 ),
               ),
             ),
-          )
-          ),
+          )),
     );
   }
 }
@@ -194,14 +192,18 @@ class TextFields2 extends StatelessWidget {
 class TextFields3 extends StatelessWidget {
   const TextFields3(
       {Key key,
-   
       @required this.hintText,
       @required this.context,
       this.helpText,
       this.input,
       this.show,
       this.borderColor,
-      this.focusColor, this.onTap1, this.enabled, this.onChanged, this.secureText, this.icon})
+      this.focusColor,
+      this.onTap1,
+      this.enabled,
+      this.onChanged,
+      this.secureText,
+      this.icon})
       : super(key: key);
 
   final Tab icon;
@@ -217,7 +219,6 @@ class TextFields3 extends StatelessWidget {
   final bool enabled;
   final Function onChanged;
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -225,13 +226,10 @@ class TextFields3 extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: TextFormField(
-          
-          
           onChanged: onChanged,
           keyboardType: TextInputType.number,
-          
           enabled: enabled,
-          onTap: (){
+          onTap: () {
             onTap1;
           },
           style: TextStyle(
@@ -247,22 +245,18 @@ class TextFields3 extends StatelessWidget {
           decoration: InputDecoration(
               suffixIcon: show,
               focusColor: focusColor,
-               prefixIcon: Icon( FontAwesomeIcons.notesMedical),
-               hintText: "Quantity",
-               hintStyle: TextStyle(fontSize: 17, color: focusColor),
+              prefixIcon: Icon(FontAwesomeIcons.notesMedical),
+              hintText: "Quantity",
+              hintStyle: TextStyle(fontSize: 17, color: focusColor),
               // labelText: helpText,
-               enabled: true,
-               alignLabelWithHint: true,
-               labelText: hintText,
-               labelStyle:TextStyle(fontSize: 17, color: focusColor),
-              
+              enabled: true,
+              alignLabelWithHint: true,
+              labelText: hintText,
+              labelStyle: TextStyle(fontSize: 17, color: focusColor),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                gapPadding: 4
-              )),
+                  borderRadius: BorderRadius.circular(12), gapPadding: 4)),
         ),
       ),
     );
   }
 }
-

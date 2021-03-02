@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:icefishingderby/services/firebase_auth.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
@@ -14,23 +15,33 @@ class LoginScreenViewModel extends BaseViewModel {
   Future provideEmailSign() async {
     if (email != null && password != null) {
       try {
-        return await AuthService().emailAuth(email, password);
-      } on Exception catch (_) {
-        return null;
+        var user = await AuthService().emailAuth(email, password);
+        if (user.user.emailVerified) {
+          return user;
+        } else
+          throw FirebaseAuthException(
+              message: "Email not verified.", code: "092");
+      } on FirebaseAuthException catch (_) {
+        return _.message;
       }
     }
   }
 
   Future provideGoogleSign() async {
-    var uc = await AuthService().googleAuth();
-    return uc;
+    try {
+      var uc = await AuthService().googleAuth();
+      return uc;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
   }
 
   Future provideAppleSign() async {
-    var uc = await AuthService().appleAuth();
-    if (uc != null)
-      print("User exists");
-    else
-      print("User null");
+    try {
+      var uc = await AuthService().appleAuth();
+      return uc;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
   }
 }
