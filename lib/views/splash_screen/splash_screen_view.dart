@@ -29,7 +29,7 @@ class SplashScreenView extends StatelessWidget {
           Color(0xff2389da),
           Color(0xff1ca3ec),
         ],
-        child: SignUpScreenView(),
+        child: RegistrationScreenView(),
 
 
       ),

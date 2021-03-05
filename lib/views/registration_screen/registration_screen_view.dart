@@ -7,6 +7,7 @@ import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
 import 'package:icefishingderby/constants/size.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/app_button.dart';
+import 'package:icefishingderby/widgets/dumb_widgets/header_curved.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/textField.dart';
 import 'package:stacked/stacked.dart';
 import 'registration_screen_view_model.dart';
@@ -29,7 +30,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
 
   String dateOfBirth = DateMonthYear(DateTime.now());
 
-  var caseStatus;
+  var days;
   var age;
 
   TextEditingController controller = TextEditingController();
@@ -123,15 +124,22 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // Padding(
+                            //   padding:
+                            //       const EdgeInsets.only(bottom: 10),
+                            //   child: Text(
+                            //     "Personal Information",
+                            //     style: GoogleFonts.josefinSans(
+                            //         color: Colors.white,
+                            //         fontSize: ScreenUtil().setSp(23),
+                            //         fontWeight: FontWeight.bold),
+                            //   ),
+                            // ),
+
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(bottom: 10),
-                              child: Text(
-                                "Personal Information",
-                                style: GoogleFonts.josefinSans(
-                                    color: Colors.white,
-                                    fontSize: ScreenUtil().setSp(23),
-                                    fontWeight: FontWeight.bold),
+                              padding: const EdgeInsets.all(8.0),
+                              child: HomeHeader2(
+                                title: 'Personal Information',
                               ),
                             ),
                             Material(
@@ -293,15 +301,22 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                 ),
                               ),
                             ),
+                            // Padding(
+                            //   padding:
+                            //       const EdgeInsets.only(top: 20.0, bottom: 10),
+                            //   child: Text(
+                            //     "Event Information",
+                            //     style: GoogleFonts.josefinSans(
+                            //         color: Colors.white,
+                            //         fontSize: ScreenUtil().setSp(20),
+                            //         fontWeight: FontWeight.bold),
+                            //   ),
+                            // ),
+
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 20.0, bottom: 10),
-                              child: Text(
-                                "Event Information",
-                                style: GoogleFonts.josefinSans(
-                                    color: Colors.white,
-                                    fontSize: ScreenUtil().setSp(20),
-                                    fontWeight: FontWeight.bold),
+                              padding: const EdgeInsets.all(8.0),
+                              child: HomeHeader2(
+                                title: 'Event Information',
                               ),
                             ),
                             Material(
@@ -310,7 +325,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                               shadowColor: Colors.white,
                               color: appColor,
                               child: Padding(
-                                 padding: const EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     top: 30.0, left: 10, right: 10, bottom: 30),
                                 child: Column(
                                   children: [
@@ -391,7 +406,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                                   style: t10appColor,
                                                 ),
                                                 style: t10appColor,
-                                                value: caseStatus,
+                                                value: days,
                                                 elevation: 2,
                                                 items: <String>[
                                                   'Saturday',
@@ -406,7 +421,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                                 }).toList(),
                                                 onChanged: (_) {
                                                   setState(() {
-                                                    caseStatus = _;
+                                                    days = _;
                                                   });
                                                 },
                                               ),
@@ -419,12 +434,43 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                 ),
                               ),
                             ),
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: HomeHeader2(
+                                title: 'Registration Fee',
+                              ),
+                            ),
+
+                            Card(
+                              elevation: 2,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+
+                                    Text('Total Cost', style: t10appColor,),
+                                    Text(returnTicketCost(ageGroup: age, days: days).toString() + '\$', style: t10appColor ,)
+                                    
+                                  ],
+                                ),
+                              ),
+                            ),
+
                             Center(
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 20.0),
-                                child: AppButton(
-                                  text: "Register",
-                                  onpressed: () {},
+                                child: FlatButton(
+                                  color: Colors.white,
+                                  onPressed: () {},
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(13),
+                                    child: Text(
+                                      'Register',
+                                      style: t10appColor,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
