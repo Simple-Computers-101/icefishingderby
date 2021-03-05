@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
+import 'package:icefishingderby/views/profile_screen/profile_screen_view.dart';
 import 'package:stacked/stacked.dart';
 import 'bottom_bar_view_model.dart';
 
@@ -17,10 +18,10 @@ class BottomBarView extends StatelessWidget {
           bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             selectedLabelStyle: GoogleFonts.rubik(),
-            selectedItemColor: darktheme,
+            selectedItemColor: Colors.white,
             unselectedIconTheme: IconThemeData(color: Colors.grey),
             elevation: 10,
-            backgroundColor: Colors.white,
+            backgroundColor: Color(0xFF2F55A8),
             onTap: viewModel.setIndex, // new
             currentIndex: viewModel.currentIndex, // new
             items: [
@@ -66,7 +67,7 @@ class BottomBarView extends StatelessWidget {
       case 2:
         return HomeScreenView();
       case 3:
-        return HomeScreenView();
+        return ProfileScreenView();
       default:
         return HomeScreenView();
     }

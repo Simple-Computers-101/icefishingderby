@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/classes/SplashScreenCustom.dart';
 import 'package:icefishingderby/views/bottom_bar/bottom_bar_view.dart';
+import 'package:icefishingderby/views/profile_screen/profile_screen_view.dart';
+import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart';
 
 import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart';
 import 'package:stacked/stacked.dart';
@@ -29,7 +31,7 @@ class SplashScreenView extends StatelessWidget {
           Color(0xff2389da),
           Color(0xff1ca3ec),
         ],
-        child: RegistrationScreenView(),
+        child: BottomBarView(),
 
 
       ),

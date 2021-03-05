@@ -50,8 +50,8 @@ class HomeScreenView extends StatelessWidget {
                                   Expanded(
                                     flex: 3,
                                     child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.baseline,
+                                      // crossAxisAlignment:
+                                      //     CrossAxisAlignment.baseline,
                                       children: [
                                         Text("27",
                                             style: GoogleFonts.josefinSans(
