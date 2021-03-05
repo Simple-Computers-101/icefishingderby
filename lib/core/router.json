@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-{
-    "last_updated": "Wed, 24 Feb 2021 14:53:18 GMT",
-    "routes": [
-        {
-            "file_path": "views/splash_screen/splash_screen_view.dart",
-            "route_name": "splash_screenViewRoute",
-            "view_name": "SplashScreenView"
-        },
-        {
-            "file_path": "views/login_screen/login_screen_view.dart",
-            "route_name": "login_screenViewRoute",
-            "view_name": "LoginScreenView"
-        },
-        {
-            "file_path": "views/sign_up_screen/sign_up_screen_view.dart",
-            "route_name": "sign_up_screenViewRoute",
-            "view_name": "SignUpScreenView"
-        }
-    ]
-=======
 {
     "last_updated": "Fri, 26 Feb 2021 05:50:10 GMT",
     "routes": [
@@ -43,5 +22,4 @@
             "view_name": "RegistrationScreenView"
         }
     ]
->>>>>>> 33df2e7c45d94c2c95f56576ec56aad89d625816
 }
