@@ -32,12 +32,6 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
           (BuildContext context, SignUpScreenViewModel viewModel, Widget _) {
         return SafeArea(
           child: Scaffold(
-<<<<<<< HEAD
-            key: _key,
-            backgroundColor: appColor,
-            body: Padding(
-              padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-=======
             
             body: Container(
                decoration: BoxDecoration(
@@ -49,7 +43,6 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
               ],
             ),
             ),
->>>>>>> 56446303e143773096b2b20e8b244171a3144f38
               child: ListView(
                 children: [
                   SizedBox(
@@ -163,29 +156,8 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
                           borderRadius: BorderRadius.circular(25),
                           border: Border.all(color: Colors.blueAccent)),
                       child: GestureDetector(
-<<<<<<< HEAD
-                          onTap: () async {
-                            print(
-                                "${viewModel.email}, ${viewModel.password}, ${viewModel.username}");
-                            // if (viewModel.email == null &&
-                            //     viewModel.password == null &&
-                            //     viewModel.username == null) return;
-
-                            var uc = await viewModel.provideRegisteration();
-                            if (uc != null && uc is UserCredential) {
-                              _key.currentState.showSnackBar(SnackBar(
-                                content: Text(
-                                    "Please check your email for verfication."),
-                              ));
-                            } else {
-                              _key.currentState.showSnackBar(SnackBar(
-                                content: Text(uc.toString()),
-                              ));
-                            }
-=======
                           onTap: () {
                             //Register Using Email
->>>>>>> 56446303e143773096b2b20e8b244171a3144f38
                           },
                           child: Center(
                             child: Text(

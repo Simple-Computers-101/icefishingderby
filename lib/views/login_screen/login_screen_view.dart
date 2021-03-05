@@ -6,13 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
-<<<<<<< HEAD
 import 'package:icefishingderby/services/firebase_auth.dart';
 import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
-=======
-import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
 import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart';
->>>>>>> 56446303e143773096b2b20e8b244171a3144f38
 
 import 'package:icefishingderby/widgets/dumb_widgets/textField.dart';
 import 'package:sign_button/sign_button.dart';
