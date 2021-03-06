@@ -55,6 +55,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
           body: Padding(
             padding: const EdgeInsets.only(left: 10.0, right: 10),
             child: ListView(
+              
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -443,16 +444,26 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                             ),
 
                             Card(
+                              shadowColor: Colors.black,
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
                               elevation: 2,
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(15),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-
-                                    Text('Total Cost', style: t10appColor,),
-                                    Text(returnTicketCost(ageGroup: age, days: days).toString() + '\$', style: t10appColor ,)
-                                    
+                                    Text(
+                                      'Total Cost',
+                                      style: t10appColor,
+                                    ),
+                                    Text(
+                                      returnTicketCost(
+                                                  ageGroup: age, days: days)
+                                              .toString() +
+                                          '\$',
+                                      style: t10appColor,
+                                    )
                                   ],
                                 ),
                               ),
@@ -462,6 +473,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: FlatButton(
+                                  
                                   color: Colors.white,
                                   onPressed: () {},
                                   child: Padding(

@@ -85,6 +85,7 @@ class TextFields extends StatelessWidget {
                       suffixIcon: show,
                       focusColor: focusColor,
                       hintText: hintText,
+                      
                       hintStyle: t10appColor,
                       labelText: helpText,
                       border: InputBorder.none),

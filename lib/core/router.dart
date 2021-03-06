@@ -8,6 +8,8 @@ import 'package:icefishingderby/views/login_screen/login_screen_view.dart' as vi
 import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart' as view2;
 import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart' as view3;
 
+import 'package:icefishingderby/views/fish_form_screen/fish_form_screen_view.dart' as view7;
+
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -17,8 +19,11 @@ class Router {
         return MaterialPageRoute(builder: (_) => view1.LoginScreenView());
       case signUpScreenViewRoute:
         return MaterialPageRoute(builder: (_) => view2.SignUpScreenView());
-      case registrationScreemViewRoute:
+      case registrationScreenViewRoute:
         return MaterialPageRoute(builder: (_) => view3.RegistrationScreenView());
+      
+      case fishFormScreenViewRoute:
+        return MaterialPageRoute(builder: (_) => view7.FishFormScreenView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

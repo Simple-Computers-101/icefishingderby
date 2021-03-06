@@ -3,6 +3,8 @@
 const String splashScreenViewRoute = 'splashScreenViewRoute';
 const String loginScreenViewRoute = 'loginScreenViewRoute';
 const String signUpScreenViewRoute = 'signUpScreenViewRoute';
-const String homeScreenViewRoute = 'homeScreenViewRoute';
-const String bottomBarViewRoute = 'bottomBarViewRoute';
-const String registrationScreemViewRoute = 'registrationScreemViewRoute';
+const String registrationScreenViewRoute = 'registrationScreenViewRoute';
+const String fishformscreenViewRoute = 'fishformscreenViewRoute';
+const String fishForrmScreenViewRoute = 'fishForrmScreenViewRoute';
+const String fishformscreenViewRoute0 = 'fishformscreenViewRoute0';
+const String fishFormScreenViewRoute = 'fishFormScreenViewRoute';

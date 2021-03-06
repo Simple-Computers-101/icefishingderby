@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/classes/SplashScreenCustom.dart';
 import 'package:icefishingderby/views/bottom_bar/bottom_bar_view.dart';
+import 'package:icefishingderby/views/fish_form_screen/fish_form_screen_view.dart';
 import 'package:icefishingderby/views/profile_screen/profile_screen_view.dart';
 import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart';
 
@@ -22,7 +23,7 @@ class SplashScreenView extends StatelessWidget {
           body: AdvancedSplashScreen(
         animate: true,
         appIcon: 'assets/derby-logo.png',
-        appTitle: '2021',
+        appTitle: DateTime.now().year.toString(),
         appTitleStyle:
             GoogleFonts.abel(fontSize: 28, fontWeight: FontWeight.w600),
         seconds: 3,
@@ -31,7 +32,7 @@ class SplashScreenView extends StatelessWidget {
           Color(0xff2389da),
           Color(0xff1ca3ec),
         ],
-        child: BottomBarView(),
+        child: FishFormScreenView(),
 
 
       ),
