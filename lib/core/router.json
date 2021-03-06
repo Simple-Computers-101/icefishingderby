@@ -26,6 +26,11 @@
             "file_path": "views/fish_form_screen/fish_form_screen_view.dart",
             "route_name": "fish_form_screenViewRoute",
             "view_name": "FishFormScreenView"
+        },
+        {
+            "file_path": "views/view_registration_screen/view_registration_screen_view.dart",
+            "route_name": "view_registration_screenViewRoute",
+            "view_name": "ViewRegistrationScreenView"
         }
     ]
 }

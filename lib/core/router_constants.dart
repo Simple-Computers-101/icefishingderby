@@ -8,3 +8,4 @@ const String fishformscreenViewRoute = 'fishformscreenViewRoute';
 const String fishForrmScreenViewRoute = 'fishForrmScreenViewRoute';
 const String fishformscreenViewRoute0 = 'fishformscreenViewRoute0';
 const String fishFormScreenViewRoute = 'fishFormScreenViewRoute';
+const String viewRegistrationScreenViewRoute = 'viewRegistrationScreenViewRoute';
