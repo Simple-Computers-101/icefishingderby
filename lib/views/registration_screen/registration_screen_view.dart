@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -41,9 +42,9 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
       builder: (BuildContext context, RegistrationScreenViewModel viewModel,
           Widget _) {
         return Scaffold(
-          backgroundColor: Color(0xff2389da),
+          backgroundColor: backgroundcolor,
           appBar: AppBar(
-            backgroundColor: Color(0xff2389da),
+            backgroundColor: backgroundcolor,
             elevation: 0,
             //shadowColor: ,
             // title: Text(
@@ -55,7 +56,6 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
           body: Padding(
             padding: const EdgeInsets.only(left: 10.0, right: 10),
             child: ListView(
-              
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +87,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                           children: [
                             Container(
                               decoration: BoxDecoration(
-                                  color: Color(0xff2389da),
+                                  color: backgroundcolor,
                                   borderRadius: BorderRadius.only(
                                       topRight: Radius.circular(50),
                                       bottomRight: Radius.circular(50))),
@@ -96,7 +96,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                             ),
                             Container(
                               decoration: BoxDecoration(
-                                  color: Color(0xff2389da),
+                                  color: backgroundcolor,
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(50),
                                       bottomLeft: Radius.circular(50))),
@@ -145,9 +145,9 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                             ),
                             Material(
                               borderRadius: BorderRadius.circular(20),
-                              elevation: 4,
+                              elevation: 0,
                               shadowColor: Colors.white,
-                              color: appColor,
+                              color: widgetcolor,
                               child: Padding(
                                 padding: const EdgeInsets.only(
                                     top: 30.0, left: 10, right: 10, bottom: 30),
@@ -203,8 +203,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                             }
                                           : null,
                                       child: Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 10, right: 10, top: 10),
+                                        padding: EdgeInsets.only(top: 10),
                                         child: Container(
                                           decoration: BoxDecoration(
                                             borderRadius:
@@ -322,9 +321,9 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                             ),
                             Material(
                               borderRadius: BorderRadius.circular(20),
-                              elevation: 4,
+                              elevation: 0,
                               shadowColor: Colors.white,
-                              color: appColor,
+                              color: widgetcolor,
                               child: Padding(
                                 padding: const EdgeInsets.only(
                                     top: 30.0, left: 10, right: 10, bottom: 30),
@@ -442,38 +441,93 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                 title: 'Registration Fee',
                               ),
                             ),
-
-                            Card(
-                              shadowColor: Colors.black,
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              elevation: 2,
+                            Material(
+                              borderRadius: BorderRadius.circular(20),
+                              elevation: 0,
+                              shadowColor: Colors.white,
+                              color: widgetcolor,
                               child: Padding(
-                                padding: const EdgeInsets.all(15),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      'Total Cost',
-                                      style: t10appColor,
+                                padding: const EdgeInsets.only(
+                                    top: 30.0, left: 40, right: 40, bottom: 30),
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 10),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
                                     ),
-                                    Text(
-                                      returnTicketCost(
-                                                  ageGroup: age, days: days)
-                                              .toString() +
-                                          '\$',
-                                      style: t10appColor,
-                                    )
-                                  ],
+                                    child: Container(
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(38)),
+                                        boxShadow: <BoxShadow>[
+                                          BoxShadow(
+                                            color: Colors.black45,
+                                            blurRadius: 8,
+                                            offset: Offset(4, 4),
+                                          ),
+                                        ],
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 14),
+                                        child: Center(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: <Widget>[
+                                              Text(
+                                                'Total Cost',
+                                                style: t10appColor,
+                                              ),
+                                              Text(
+                                                returnTicketCost(
+                                                            ageGroup: age,
+                                                            days: days)
+                                                        .toString() +
+                                                    '\$',
+                                                style: t10appColor,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
+                            // Card(
+                            //   shadowColor: Colors.black,
+                            //   clipBehavior: Clip.antiAliasWithSaveLayer,
+                            //   elevation: 2,
+                            //   child: Padding(
+                            //     padding: const EdgeInsets.all(15),
+                            //     child: Row(
+                            //       mainAxisAlignment:
+                            //           MainAxisAlignment.spaceBetween,
+                            //       children: [
+                            //         Text(
+                            //           'Total Cost',
+                            //           style: t10appColor,
+                            //         ),
+                            //         Text(
+                            //           returnTicketCost(
+                            //                       ageGroup: age, days: days)
+                            //                   .toString() +
+                            //               '\$',
+                            //           style: t10appColor,
+                            //         )
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
 
                             Center(
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: FlatButton(
-                                  
                                   color: Colors.white,
                                   onPressed: () {},
                                   child: Padding(
