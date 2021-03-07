@@ -34,7 +34,7 @@ class SplashScreenView extends StatelessWidget {
         colorList: [
           backgroundcolor
         ],
-        child: ProfileScreenView(),
+        child: LoginScreenView(),
 
 
       ),
