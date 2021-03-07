@@ -44,9 +44,9 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
       builder:
           (BuildContext context, FishFormScreenViewModel viewModel, Widget _) {
         return Scaffold(
-          backgroundColor: Color(0xff2393D9),
+          backgroundColor: backgroundcolor,
           appBar: AppBar(
-            backgroundColor: Color(0xff2393D9),
+            backgroundColor: backgroundcolor,
             elevation: 0,
             title: Text(
               'Register Fish',
@@ -101,59 +101,62 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Card(
-                  color: appColor,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'JASON ',
-                              style: t1,
-                            ),
-                            Icon(
-                              FontAwesome5Solid.user_friends,
-                              color: Colors.white,
-                            )
-                          ],
+                  color: widgetcolor,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'JASON ',
+                                style: t1,
+                              ),
+                              Icon(
+                                FontAwesome5Solid.user_friends,
+                                color: Colors.white,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'AS78834JSD324',
-                              style: t1,
-                            ),
-                            Icon(
-                              FontAwesome5Solid.id_card_alt,
-                              color: Colors.white,
-                            )
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'AS78834JSD324',
+                                style: t1,
+                              ),
+                              Icon(
+                                FontAwesome5Solid.id_card_alt,
+                                color: Colors.white,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                                child: Text(
-                              'House 12, Street 75, LA',
-                              style: t1,
-                            )),
-                            Icon(
-                              FontAwesome5Solid.home,
-                              color: Colors.white,
-                            )
-                          ],
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                  child: Text(
+                                'House 12, Street 75, LA',
+                                style: t1,
+                              )),
+                              Icon(
+                                FontAwesome5Solid.home,
+                                color: Colors.white,
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
