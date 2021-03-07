@@ -14,9 +14,9 @@ class ProfileScreenView extends StatelessWidget {
       builder:
           (BuildContext context, ProfileScreenViewModel viewModel, Widget _) {
         return Scaffold(
-          backgroundColor: darktheme,
+          backgroundColor: backgroundcolor,
           appBar: AppBar(
-            backgroundColor: darktheme,
+            backgroundColor: widgetcolor,
             title: Text("Profile", style: GoogleFonts.josefinSans()),
           ),
           body: SingleChildScrollView(
@@ -29,7 +29,7 @@ class ProfileScreenView extends StatelessWidget {
                     height: ScreenUtil().setHeight(10),
                   ),
                   Material(
-                    color: Color(0xFF35415C),
+                    color: widgetcolor,
                     borderRadius: BorderRadius.circular(20),
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
@@ -70,7 +70,7 @@ class ProfileScreenView extends StatelessWidget {
                                       style: GoogleFonts.josefinSans(
                                           fontSize: ScreenUtil().setSp(18),
                                           color: Colors.white,
-                                          fontWeight: FontWeight.bold),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -86,7 +86,7 @@ class ProfileScreenView extends StatelessWidget {
                   ),
                   Material(
                     borderRadius: BorderRadius.circular(20),
-                    color: Color(0xFF83A1E1),
+                    color: widgetcolor,
                     child: Padding(
                       padding: const EdgeInsets.only(
                           top: 15.0, bottom: 15.0, left: 5, right: 5),

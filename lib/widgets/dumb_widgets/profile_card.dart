@@ -21,7 +21,7 @@ class ProfileCard extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: BoxDecoration(
-            color: Color(0xFF35415C), borderRadius: BorderRadius.circular(10)),
+            color: backgroundcolor, borderRadius: BorderRadius.circular(10)),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListTile(
