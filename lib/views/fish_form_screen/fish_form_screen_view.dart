@@ -110,7 +110,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'JASON BORUN',
+                              'JASON ',
                               style: t1,
                             ),
                             Icon(
@@ -188,8 +188,9 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                           value: fish,
                           elevation: 2,
                           items: <String>[
-                            'FISH A',
-                            'FISH B',
+                            'Salmon',
+                            'Brook Trout',
+                            'Togue','Muskie','Cusk','Most Perch','Largest Perch',
                           ].map((String value) {
                             return new DropdownMenuItem<String>(
                               value: value,
@@ -223,36 +224,89 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                   secureText: false,
                   borderColor: appColor,
                   focusColor: Colors.white,
-                  input: TextInputType.multiline,
+                  input: TextInputType.numberWithOptions(),
                   context: null,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10.0),
-                child: TextFields(
-                  onChanged: (na) {
-                    weight = na;
-                  },
-                  icon: Tab(
-                    child: Icon(
-                      FontAwesomeIcons.weightHanging,
-                      color: appColor,
-                    ),
+                  suffix: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('inch'),
                   ),
-                  hintText: "Weight",
-                  secureText: false,
-                  borderColor: appColor,
-                  focusColor: Colors.white,
-                  input: TextInputType.multiline,
-                  context: null,
+
                 ),
               ),
+            
+
+              Row(
+                children: [
+                    Expanded(
+                                      child: TextFields(
+                        onChanged: (na) {
+                          weight = na;
+                        },
+                        icon: Tab(
+                          child: Icon(
+                            FontAwesomeIcons.weightHanging,
+                            color: appColor,
+                          ),
+                        ),
+                        hintText: "Weight",
+                        secureText: false,
+                        borderColor: appColor,
+                        focusColor: Colors.white,
+                        input: TextInputType.numberWithOptions(),
+                        context: null,
+                        suffix: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text('lbs'),
+                        ),
+
+                      ),
+                    ),
+
+
+                Expanded(
+                                  child: TextFields(
+
+                    onChanged: (na) {
+                      weight = na;
+                    },
+                    icon: Tab(
+                      child: Icon(
+                        FontAwesomeIcons.weightHanging,
+                        color: appColor,
+                      ),
+                    ),
+                    hintText: "Weight",
+                    secureText: false,
+                    borderColor: appColor,
+                    focusColor: Colors.white,
+                    input: TextInputType.numberWithOptions(),
+                    context: null,
+                    suffix: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('oz'),
+                    ),
+
+                  ),
+                ),
+                ],
+              ),
+            
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
         child: _image == null
             ? Text('No image selected.', style: t1,)
-            : Image.file(_image),
+            : Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: ScreenUtil().setHeight(250),
+                width: ScreenUtil().setWidth(350),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12)
+                ),
+                
+                child: Image.file(_image)),
+            ),
       ),
               ),
               Padding(

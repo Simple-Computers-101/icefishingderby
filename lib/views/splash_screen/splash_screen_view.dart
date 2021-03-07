@@ -5,6 +5,7 @@ import 'package:icefishingderby/classes/SplashScreenCustom.dart';
 import 'package:icefishingderby/core/router_constants.dart';
 import 'package:icefishingderby/views/bottom_bar/bottom_bar_view.dart';
 import 'package:icefishingderby/views/fish_form_screen/fish_form_screen_view.dart';
+import 'package:icefishingderby/views/login_screen/login_screen_view.dart';
 import 'package:icefishingderby/views/profile_screen/profile_screen_view.dart';
 import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart';
 
