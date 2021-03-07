@@ -32,7 +32,7 @@ class _ViewRegistrationScreenViewState
                 ),
                 child: Center(
                     child: Text(
-                  'Registered Events',
+                  'Events Registrations',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
