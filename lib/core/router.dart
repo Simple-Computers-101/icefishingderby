@@ -7,11 +7,9 @@ import 'package:icefishingderby/views/splash_screen/splash_screen_view.dart' as 
 import 'package:icefishingderby/views/login_screen/login_screen_view.dart' as view1;
 import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart' as view2;
 import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart' as view3;
-import 'package:icefishingderby/views/view_registration_screen/view_registration_screen_view.dart' as view4;
-
-import 'package:icefishingderby/views/fish_form_screen/fish_form_screen_view.dart' as view7;
-
-
+import 'package:icefishingderby/views/fish_form_screen/fish_form_screen_view.dart' as view4;
+import 'package:icefishingderby/views/view_registration_screen/view_registration_screen_view.dart' as view5;
+import 'package:icefishingderby/views/forgot_password/forgot_password_view.dart' as view6;
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -24,11 +22,12 @@ class Router {
         return MaterialPageRoute(builder: (_) => view2.SignUpScreenView());
       case registrationScreenViewRoute:
         return MaterialPageRoute(builder: (_) => view3.RegistrationScreenView());
-      
       case fishFormScreenViewRoute:
-        return MaterialPageRoute(builder: (_) => view7.FishFormScreenView());
+        return MaterialPageRoute(builder: (_) => view4.FishFormScreenView());
       case viewRegistrationScreenViewRoute:
-        return MaterialPageRoute(builder: (_) => view4.ViewRegistrationScreenView());
+        return MaterialPageRoute(builder: (_) => view5.ViewRegistrationScreenView());
+      case forgotPasswordViewRoute:
+        return MaterialPageRoute(builder: (_) => view6.ForgotPasswordView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

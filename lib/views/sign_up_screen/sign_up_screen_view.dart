@@ -33,7 +33,7 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
         return SafeArea(
           child: Scaffold(
             key: _key,
-            backgroundColor: appColor,
+            backgroundColor: backgroundcolor,
             body: Padding(
               padding: const EdgeInsets.only(left: 12.0, right: 12.0),
               child: ListView(

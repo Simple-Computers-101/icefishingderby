@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
 import 'package:icefishingderby/services/firebase_auth.dart';
+import 'package:icefishingderby/views/forgot_password/forgot_password_view.dart';
 import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
 import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart';
 
@@ -37,10 +39,11 @@ class _LoginScreenViewState extends State<LoginScreenView> {
           body: Container(
             decoration: BoxDecoration(
               gradient: new LinearGradient(
+                tileMode: TileMode.mirror,
                 colors: [
-                  Color(0xff2389da),
-                  Color(0xff1ca3ec),
-                  Color(0xff0f5e9c),
+                  widgetcolor,
+                  backgroundcolor,
+                  widgetcolor,
                 ],
               ),
             ),
@@ -123,7 +126,12 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                                 fontSize: 14)),
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgotPasswordView()));
+                    },
                   ),
                   SizedBox(
                     height: 35,
@@ -216,6 +224,26 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                         ),
                     ],
                   ),
+                  SizedBox(
+                    height: ScreenUtil().setHeight(10),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Center(
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignUpScreenView()));
+                        },
+                        child: Text(
+                          'Sign Up',
+                          style: t1,
+                        ),
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
