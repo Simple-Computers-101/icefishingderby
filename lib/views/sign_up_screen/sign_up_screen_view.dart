@@ -21,9 +21,7 @@ class SignUpScreenView extends StatefulWidget {
 
 class _SignUpScreenViewState extends State<SignUpScreenView> {
   var _passwordVisible = true;
-  var email;
-  var password;
-  var name;
+ 
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {

@@ -75,6 +75,7 @@ class _ViewRegistrationScreenViewState
 }
 
 class RegisteredEvent extends StatelessWidget {
+
   const RegisteredEvent({
     Key key,
   }) : super(key: key);
@@ -149,7 +150,9 @@ class RegisteredEvent extends StatelessWidget {
                     height: ScreenUtil().setHeight(60),
                     width: ScreenUtil().setWidth(60),
                     child: FloatingActionButton(
-                      onPressed: () {},
+                      onPressed: () {
+
+                      },
                       child: Icon(Icons.qr_code),
                       backgroundColor: widgetcolor,
                     ),

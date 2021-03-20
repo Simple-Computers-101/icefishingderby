@@ -1,5 +1,5 @@
 {
-    "last_updated": "Sat, 13 Mar 2021 13:44:33 GMT",
+    "last_updated": "Sun, 14 Mar 2021 15:52:47 GMT",
     "routes": [
         {
             "file_path": "views/splash_screen/splash_screen_view.dart",
@@ -35,6 +35,11 @@
             "file_path": "views/forgot_password/forgot_password_view.dart",
             "route_name": "forgot_passwordViewRoute",
             "view_name": "ForgotPasswordView"
+        },
+        {
+            "file_path": "views/show_qr_code/show_qr_code_view.dart",
+            "route_name": "show_qr_codeViewRoute",
+            "view_name": "ShowQrCodeView"
         }
     ]
 }

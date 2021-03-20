@@ -10,6 +10,7 @@ import 'package:icefishingderby/views/registration_screen/registration_screen_vi
 import 'package:icefishingderby/views/fish_form_screen/fish_form_screen_view.dart' as view4;
 import 'package:icefishingderby/views/view_registration_screen/view_registration_screen_view.dart' as view5;
 import 'package:icefishingderby/views/forgot_password/forgot_password_view.dart' as view6;
+import 'package:icefishingderby/views/show_qr_code/show_qr_code_view.dart' as view7;
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -28,6 +29,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => view5.ViewRegistrationScreenView());
       case forgotPasswordViewRoute:
         return MaterialPageRoute(builder: (_) => view6.ForgotPasswordView());
+      case showQrCodeViewRoute:
+        return MaterialPageRoute(builder: (_) => view7.ShowQrCodeView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

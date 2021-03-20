@@ -41,9 +41,8 @@ class _LoginScreenViewState extends State<LoginScreenView> {
               gradient: new LinearGradient(
                 tileMode: TileMode.mirror,
                 colors: [
-                  widgetcolor,
                   backgroundcolor,
-                  widgetcolor,
+                  backgroundcolor,
                 ],
               ),
             ),
