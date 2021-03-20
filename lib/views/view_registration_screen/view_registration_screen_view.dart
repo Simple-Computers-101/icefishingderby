@@ -31,7 +31,7 @@ class _ViewRegistrationScreenViewState
                 child: Center(
                     child: Text(
                   'Events Registrations',
-                  style: GoogleFonts.josefinSans(
+                  style: GoogleFonts.montserrat(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: ScreenUtil().setSp(25),
