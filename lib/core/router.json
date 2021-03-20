@@ -46,6 +46,9 @@
             "route_name": "product_descriptionViewRoute",
             "view_name": "ProductDescriptionView"
             
+            "file_path": "views/show_qr_code/show_qr_code_view.dart",
+            "route_name": "show_qr_codeViewRoute",
+            "view_name": "ShowQrCodeView"
         }
     ]
 }

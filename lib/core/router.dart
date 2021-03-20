@@ -13,6 +13,7 @@ import 'package:icefishingderby/views/forgot_password/forgot_password_view.dart'
 import 'package:icefishingderby/views/buy_products/buy_products_view.dart' as view7;
 import 'package:icefishingderby/views/product_description/product_description_view.dart' as view8;
 import 'package:icefishingderby/views/show_qr_code/show_qr_code_view.dart' as view9;
+import 'package:icefishingderby/views/show_qr_code/show_qr_code_view.dart' as view9;
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -35,6 +36,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => view7.BuyProductsView());
       case productDescriptionViewRoute:
         return MaterialPageRoute(builder: (_) => view8.ProductDescriptionView());
+      case showQrCodeViewRoute:
+        return MaterialPageRoute(builder: (_) => view9.ShowQrCodeView());
       case showQrCodeViewRoute:
         return MaterialPageRoute(builder: (_) => view9.ShowQrCodeView());
       default:
