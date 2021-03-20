@@ -60,9 +60,6 @@ class _ViewRegistrationScreenViewState
                   ),
                   RegisteredEvent(),
                   RegisteredEvent(),
-                  RegisteredEvent(),
-                  RegisteredEvent(),
-                  RegisteredEvent(),
                 ],
               ),
             ),
@@ -75,7 +72,6 @@ class _ViewRegistrationScreenViewState
 }
 
 class RegisteredEvent extends StatelessWidget {
-
   const RegisteredEvent({
     Key key,
   }) : super(key: key);
@@ -83,7 +79,7 @@ class RegisteredEvent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top:8.0,bottom: 8.0),
+      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
       child: Container(
         height: ScreenUtil().setHeight(110),
         decoration: BoxDecoration(
@@ -149,12 +145,15 @@ class RegisteredEvent extends StatelessWidget {
                   child: Container(
                     height: ScreenUtil().setHeight(60),
                     width: ScreenUtil().setWidth(60),
-                    child: FloatingActionButton(
-                      onPressed: () {
-
-                      },
-                      child: Icon(Icons.qr_code),
-                      backgroundColor: widgetcolor,
+                    child: MaterialButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(100.0)),
+                      onPressed: () {},
+                      child: Icon(
+                        Icons.qr_code,
+                        color: Colors.white,
+                      ),
+                      color: widgetcolor,
                     ),
                   ),
                 ),

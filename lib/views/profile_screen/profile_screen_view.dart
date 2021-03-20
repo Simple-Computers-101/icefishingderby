@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
+import 'package:icefishingderby/views/view_fish_rank_screen/view_fish_rank_screen_view.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/profile_card.dart';
 import 'package:stacked/stacked.dart';
 import 'profile_screen_view_model.dart';
@@ -68,8 +69,8 @@ class ProfileScreenView extends StatelessWidget {
                                     Text(
                                       "Fishermen",
                                       style: GoogleFonts.josefinSans(
-                                          fontSize: ScreenUtil().setSp(18),
-                                          color: Colors.white,
+                                        fontSize: ScreenUtil().setSp(18),
+                                        color: Colors.white,
                                       ),
                                     ),
                                   ],
@@ -100,9 +101,21 @@ class ProfileScreenView extends StatelessWidget {
                         ),
                         ProfileCard(
                           icon: Icons.file_copy_outlined,
-                          title: "My Registrations",
+                          title: "My Fish",
                           subtitle:
-                              "View your current and past registrations.\n",
+                              "View your current and past fish registrations.\n",
+                          onpressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ViewFishRankScreenView()));
+                          },
+                        ),
+                        ProfileCard(
+                          icon: FlutterIcons.trophy_ent,
+                          title: "My Prizes",
+                          subtitle: "View the prizes you won.\n",
                           onpressed: () {},
                         ),
                         ProfileCard(

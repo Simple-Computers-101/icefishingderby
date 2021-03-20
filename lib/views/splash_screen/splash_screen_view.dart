@@ -3,22 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/classes/SplashScreenCustom.dart';
 import 'package:icefishingderby/constants/colors.dart';
-import 'package:icefishingderby/views/buy_products/buy_products_view.dart';
-import 'package:icefishingderby/views/forgot_password/forgot_password_view.dart';
-import 'package:icefishingderby/views/login_screen/login_screen_view.dart';
-import 'package:icefishingderby/views/product_description/product_description_view.dart';
-
-import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart';
-import 'package:icefishingderby/views/view_registration_screen/view_registration_screen_view.dart';
-
-
-import 'package:icefishingderby/views/fish_form_screen/fish_form_screen_view.dart';
-
-
-
-
-
+import 'package:icefishingderby/views/my_fish_screen/my_fish_screen_view.dart';
 import 'package:stacked/stacked.dart';
+import '../view_registration_screen/view_registration_screen_view.dart';
 import 'splash_screen_view_model.dart';
 
 class SplashScreenView extends StatelessWidget {
@@ -42,7 +29,7 @@ class SplashScreenView extends StatelessWidget {
                   backgroundcolor,
                   widgetcolor,
         ],
-        child: ProductDescriptionView(),
+        child: MyFishScreenView(),
 
 
       ),

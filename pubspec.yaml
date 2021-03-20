@@ -42,6 +42,7 @@ flutter:
     assets:
         - assets/
         - assets/logos/
+        - assets/fish/
         
 
 
