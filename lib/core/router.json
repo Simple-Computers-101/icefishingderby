@@ -45,6 +45,7 @@
             "file_path": "views/product_description/product_description_view.dart",
             "route_name": "product_descriptionViewRoute",
             "view_name": "ProductDescriptionView"
+            
         }
     ]
 }

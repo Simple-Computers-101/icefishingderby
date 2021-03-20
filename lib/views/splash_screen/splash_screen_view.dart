@@ -11,6 +11,11 @@ import 'package:icefishingderby/views/product_description/product_description_vi
 import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart';
 import 'package:icefishingderby/views/view_registration_screen/view_registration_screen_view.dart';
 
+import 'package:icefishingderby/views/fish_form_screen/fish_form_screen_view.dart';
+
+
+
+
 
 import 'package:stacked/stacked.dart';
 import 'splash_screen_view_model.dart';
@@ -29,7 +34,7 @@ class SplashScreenView extends StatelessWidget {
         appIcon: 'assets/derby-logo.png',
         appTitle: DateTime.now().year.toString(),
         appTitleStyle:
-            GoogleFonts.abel(fontSize: 28, fontWeight: FontWeight.w600),
+            GoogleFonts.abel(color:Colors.white,fontSize: 28, fontWeight: FontWeight.w600),
         seconds: 3,
         colorList: [
           widgetcolor,
