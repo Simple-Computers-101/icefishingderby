@@ -20,13 +20,13 @@ class Detail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(title + ": ",
-              style: GoogleFonts.montserrat(
+              style: GoogleFonts.josefinSans(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
                   fontSize: (size==null)?ScreenUtil().setSp(15):ScreenUtil().setSp(size))),
           Flexible(
             child: Text(text,
-                style: GoogleFonts.montserrat(
+                style: GoogleFonts.josefinSans(
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                     fontSize: (size==null)?ScreenUtil().setSp(15):ScreenUtil().setSp(size))),

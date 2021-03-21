@@ -41,19 +41,19 @@ class ViewFishRankScreenView extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Detail(title: "Rank", text: "24", size: 18),
+                                  Detail(title: "Rank", text: "24", size: 20),
                                   Detail(
                                       title: "Catch Time",
                                       text: "10:30 am",
-                                      size: 12),
+                                      size: 14),
                                   Detail(
                                       title: "Fish Weight",
                                       text: "50 Kg",
-                                      size: 12),
+                                      size: 14),
                                   Detail(
                                       title: "Fish Length",
                                       text: "1.5 meters",
-                                      size: 12),
+                                      size: 14),
                                 ],
                               ),
                             ),
