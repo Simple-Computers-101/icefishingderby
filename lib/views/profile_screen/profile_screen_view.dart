@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
+import 'package:icefishingderby/views/credit_card_screen/credit_card_screen_view.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/profile_card.dart';
 import 'package:stacked/stacked.dart';
 import 'profile_screen_view_model.dart';
@@ -106,11 +107,15 @@ class ProfileScreenView extends StatelessWidget {
                           onpressed: () {},
                         ),
                         ProfileCard(
-                          icon: Icons.credit_card,
-                          title: "Payment Information",
-                          subtitle: "Manage Payment Cards.\n",
-                          onpressed: () {},
-                        ),
+                            icon: Icons.credit_card,
+                            title: "Payment Information",
+                            subtitle: "Manage Payment Cards.\n",
+                            onpressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return CreditCardView();
+                              }));
+                            }),
                         ProfileCard(
                           icon: FlutterIcons.setting_ant,
                           title: "Settings",
