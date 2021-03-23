@@ -2,11 +2,10 @@ import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:icefishingderby/core/logger.dart';
 
-class ShowQrCodeViewModel extends BaseViewModel {
+class AllPrizesScreenViewModel extends BaseViewModel {
   Logger log;
-  String registrationId = 'RandomValue0641';
 
-  ShowQrCodeViewModel() {
+  AllPrizesScreenViewModel() {
     this.log = getLogger(this.runtimeType.toString());
   }
 }
