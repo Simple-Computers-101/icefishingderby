@@ -16,7 +16,7 @@ class ShowQrCodeView extends StatelessWidget {
           body: Center(
             child: QrImage(
               gapless: false,
-              data: "1sadas123asds",
+              data: viewModel.registrationId,
               version: QrVersions.auto,
               size: 200.0,
             ),
