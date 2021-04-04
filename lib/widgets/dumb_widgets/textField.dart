@@ -17,6 +17,7 @@ class TextFields extends StatelessWidget {
       this.focusColor,
       this.onTap1,
       this.enabled,
+      this.suffix,
       this.onChanged,
       this.controller})
       : super(key: key);
@@ -35,11 +36,12 @@ class TextFields extends StatelessWidget {
   final bool enabled;
   final Function onChanged;
   final TextEditingController textControl;
+  final Widget suffix;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.only(end: 20, start: 20),
+      padding: EdgeInsetsDirectional.only(end: 10, start: 10),
       child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
@@ -83,8 +85,10 @@ class TextFields extends StatelessWidget {
                   decoration: InputDecoration(
                       prefixIcon: icon,
                       suffixIcon: show,
+                      suffix: suffix,
                       focusColor: focusColor,
                       hintText: hintText,
+                      
                       hintStyle: t10appColor,
                       labelText: helpText,
                       border: InputBorder.none),

@@ -60,7 +60,7 @@ class HomeHeader2 extends StatelessWidget {
           clipper: OvalBottomBorderClipper(),
           child: Container(
             decoration: BoxDecoration(
-                color: appColor,
+                color: widgetcolor,
                 borderRadius: BorderRadiusDirectional.circular(5)),
             height: SizeConfig.blockSizeVertical * 8,
             width: SizeConfig.screenWidth,

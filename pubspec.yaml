@@ -31,6 +31,9 @@ dependencies:
     sign_in_with_apple: ^2.5.2
     crypto: ^2.1.5
     flutter_credit_card: ^0.1.4
+    flutter_barcode_scanner: ^1.0.2
+    image_picker: 
+    qr_flutter: ^3.2.0
 
 dev_dependencies:
     flutter_test:
@@ -40,6 +43,8 @@ flutter:
     assets:
         - assets/
         - assets/logos/
+        - assets/fish/
+        - assets/icons/
         
 
 

@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/services/firebase_auth.dart';
 import 'package:icefishingderby/views/splash_screen/splash_screen_view.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+          scaffoldBackgroundColor: backgroundcolor,
+          appBarTheme: AppBarTheme(backgroundColor: widgetcolor)),
       debugShowCheckedModeBanner: false,
       navigatorKey: locator<NavigationService>().navigatorKey,
       onGenerateRoute: router.Router.generateRoute,

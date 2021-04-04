@@ -15,156 +15,146 @@ class HomeScreenView extends StatelessWidget {
         return Scaffold(
           // appBar: AppBar(
           //   title: Text("Home"),
-          //   backgroundColor: darktheme,
-          body: Container(
-            decoration: BoxDecoration(
-              gradient: new LinearGradient(
-                colors: [
-                  Color(0xff2389da),
-                  Color(0xff1ca3ec),
-                  Color(0xff0f5e9c),
-                ],
-              ),
-            ),
-            child: ListView(
-              children: [
-                Expanded(
-                  flex: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        HomeHeader2(
-                          title: 'Events',
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Material(
-                            borderRadius: BorderRadius.circular(20),
-                            color: darktheme,
-                            child: Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    flex: 3,
-                                    child: Row(
-                                      // crossAxisAlignment:
-                                      //     CrossAxisAlignment.baseline,
-                                      children: [
-                                        Text("27",
-                                            style: GoogleFonts.josefinSans(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: 80)),
-                                        Text("Dec",
-                                            style: GoogleFonts.josefinSans(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: 20)),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 5,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Detail(
-                                          title: "Event",
-                                          text: "FishDerby",
-                                        ),
-                                        Detail(
-                                          title: "Status",
-                                          text: "Ongoing",
-                                        ),
-                                        Detail(
-                                          title: "Timing",
-                                          text: "9 am - 6 pm",
-                                        ),
-                                        Detail(
-                                          title: "Location",
-                                          text: "Cape Hatteras, North Carolina",
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Align(
-                            alignment: Alignment.centerRight,
-                            child: GestureDetector(
-                              child: Text(
-                                "See Past Events",
-                                style: GoogleFonts.josefinSans(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                    color: Colors.white),
-                              ),
-                              onTap: () {},
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 5,
+            backgroundColor: backgroundcolor,
+          body: ListView(
+            children: [
+              Expanded(
+                flex: 4,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      HomeHeader2(
+                        title: 'Events',
+                      ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: HomeHeader2(
-                          title: 'Exciting Prizes',
+                        child: Material(
+                          borderRadius: BorderRadius.circular(20),
+                          color: widgetcolor,
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              children: [
+                                Expanded(
+
+                                  flex: 3,
+                                  child: Row(
+                                    // crossAxisAlignment:
+                                    //     CrossAxisAlignment.baseline,
+                                    children: [
+                                      Text("27",
+                                          style: GoogleFonts.josefinSans(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 80)),
+                                      Text("Dec",
+                                          style: GoogleFonts.josefinSans(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 20)),
+                                    ],
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 5,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      Detail(
+                                        title: "Event",
+                                        text: "FishDerby",
+                                      ),
+                                      Detail(
+                                        title: "Status",
+                                        text: "Ongoing",
+                                      ),
+                                      Detail(
+                                        title: "Timing",
+                                        text: "9 am - 6 pm",
+                                      ),
+                                      Detail(
+                                        title: "Location",
+                                        text: "Cape Hatteras, North Carolina",
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
-                        child: CarouselSlider(
-                          options: CarouselOptions(
-                            autoPlay: true,
-                            aspectRatio: 2.4,
-                            enlargeCenterPage: true,
+                        padding: const EdgeInsets.all(8.0),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: GestureDetector(
+                            child: Text(
+                              "See Past Events",
+                              style: GoogleFonts.josefinSans(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 15,
+                                  color: Colors.white),
+                            ),
+                            onTap: () {},
                           ),
-                          items: viewModel.imgList
-                              .map((item) => Center(
-                                      child: Container(
-                                    child: Material(
-                                      color: darktheme,
-                                      borderRadius: BorderRadius.circular(15),
-                                      shadowColor: Colors.black38,
-                                      elevation: 9.0,
-                                      clipBehavior: Clip.antiAlias,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: PageView(
-                                          children: <Widget>[
-                                            Image.asset(
-                                              "assets/" + item,
-                                              fit: BoxFit.contain,
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  )))
-                              .toList(),
                         ),
                       ),
                     ],
                   ),
-                )
-              ],
-            ),
+                ),
+              ),
+              Expanded(
+                flex: 5,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: HomeHeader2(
+                        title: 'Exciting Prizes',
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                      child: CarouselSlider(
+                        options: CarouselOptions(
+                          autoPlay: true,
+                          aspectRatio: 2.4,
+                          enlargeCenterPage: true,
+                        ),
+                        items: viewModel.imgList
+                            .map((item) => Center(
+                                    child: Container(
+                                  child: Material(
+                                    color: widgetcolor,
+                                    borderRadius: BorderRadius.circular(15),
+                                    shadowColor: Colors.black38,
+                                    elevation: 9.0,
+                                    clipBehavior: Clip.antiAlias,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: PageView(
+                                        children: <Widget>[
+                                          Image.asset(
+                                            "assets/" + item,
+                                            fit: BoxFit.contain,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )))
+                            .toList(),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
         );
       },

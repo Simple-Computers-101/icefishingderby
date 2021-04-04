@@ -21,9 +21,7 @@ class SignUpScreenView extends StatefulWidget {
 
 class _SignUpScreenViewState extends State<SignUpScreenView> {
   var _passwordVisible = true;
-  var email;
-  var password;
-  var name;
+ 
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,7 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
         return SafeArea(
           child: Scaffold(
             key: _key,
-            backgroundColor: appColor,
+            backgroundColor: backgroundcolor,
             body: Padding(
               padding: const EdgeInsets.only(left: 12.0, right: 12.0),
               child: ListView(
