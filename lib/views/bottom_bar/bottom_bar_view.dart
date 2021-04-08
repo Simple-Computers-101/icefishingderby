@@ -16,12 +16,15 @@ class BottomBarView extends StatelessWidget {
           backgroundColor: Colors.white,
           body: getViewForIndex(viewModel.currentIndex), // new
           bottomNavigationBar: BottomNavigationBar(
+            
+          
             type: BottomNavigationBarType.fixed,
             selectedLabelStyle: GoogleFonts.rubik(),
             selectedItemColor: Colors.white,
+            
             unselectedIconTheme: IconThemeData(color: Colors.grey),
             elevation: 10,
-            backgroundColor: Color(0xFF2F55A8),
+            backgroundColor: widgetcolor,
             onTap: viewModel.setIndex, // new
             currentIndex: viewModel.currentIndex, // new
             items: [
@@ -33,7 +36,7 @@ class BottomBarView extends StatelessWidget {
                   label: ""),
               BottomNavigationBarItem(
                   icon: Icon(
-                    Icons.developer_board_sharp,
+                    Icons.leaderboard,
                     size: 25,
                   ),
                   label: ""),

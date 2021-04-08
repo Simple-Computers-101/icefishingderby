@@ -107,16 +107,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                         ),
                       ],
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 20.0),
-                    //   child: Text(
-                    //     "Personal Information",
-                    //     style: GoogleFonts.josefinSans(
-                    //         color: appColor,
-                    //         fontSize: ScreenUtil().setSp(20),
-                    //         fontWeight: FontWeight.bold),
-                    //   ),
-                    // ),
+                   
                     Padding(
                       padding: const EdgeInsets.only(top: 15.0, bottom: 15),
                       child: Padding(
@@ -125,17 +116,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Padding(
-                            //   padding:
-                            //       const EdgeInsets.only(bottom: 10),
-                            //   child: Text(
-                            //     "Personal Information",
-                            //     style: GoogleFonts.josefinSans(
-                            //         color: Colors.white,
-                            //         fontSize: ScreenUtil().setSp(23),
-                            //         fontWeight: FontWeight.bold),
-                            //   ),
-                            // ),
+                          
 
                             Padding(
                               padding: const EdgeInsets.all(8.0),

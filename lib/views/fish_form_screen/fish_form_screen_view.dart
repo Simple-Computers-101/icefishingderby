@@ -38,6 +38,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<FishFormScreenViewModel>.reactive(
@@ -56,12 +57,8 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
           ),
           body: ListView(
             children: [
-              CircleAvatar(
-                backgroundColor: Colors.white,
-                child: Text(
-                  '1',
-                ),
-              ),
+              
+            
               HomeHeader2(
                 title: 'Find User Registration',
               ),
@@ -69,6 +66,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                 onPressed: () async {
                   uid = await FlutterBarcodeScanner.scanBarcode(
                       "#ff6666", "Cancel", true, ScanMode.QR);
+
                 },
                 icon: Icon(
                   FontAwesome5Solid.qrcode,
@@ -83,6 +81,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
+                  
                   child: Text(
                     'OR',
                     style: t1,
@@ -160,15 +159,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Text(
-                    '2',
-                  ),
-                ),
-              ),
+             
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: HomeHeader2(
