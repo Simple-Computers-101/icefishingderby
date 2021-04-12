@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -23,7 +25,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
   String fish;
   String length;
   String weight;
-    File _image;
+  File _image;
   final picker = ImagePicker();
 
   Future getImage() async {
@@ -37,7 +39,6 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
       }
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +58,6 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
           ),
           body: ListView(
             children: [
-              
-            
               HomeHeader2(
                 title: 'Find User Registration',
               ),
@@ -66,7 +65,6 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                 onPressed: () async {
                   uid = await FlutterBarcodeScanner.scanBarcode(
                       "#ff6666", "Cancel", true, ScanMode.QR);
-
                 },
                 icon: Icon(
                   FontAwesome5Solid.qrcode,
@@ -81,7 +79,6 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-                  
                   child: Text(
                     'OR',
                     style: t1,
@@ -96,70 +93,90 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                 context: null,
                 secureText: false,
                 borderColor: Colors.white,
+                onChanged: (val) {
+                  uid = val;
+                },
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Card(
-                  color: widgetcolor,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'JASON ',
-                                style: t1,
+              StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('users')
+                      .doc()
+                      .collection('registration')
+                      .where("uid", isEqualTo: uid)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    DocumentSnapshot data = snapshot.data.docs[0];
+                    return (snapshot.connectionState == ConnectionState.waiting)
+                        ? Center(
+                            child: CircularProgressIndicator(
+                            backgroundColor: widgetcolor,
+                          ))
+                        : Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Card(
+                              color: widgetcolor,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            data['name'],
+                                            style: t1,
+                                          ),
+                                          Icon(
+                                            FontAwesome5Solid.user_friends,
+                                            color: Colors.white,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            data['uid'],
+                                            style: t1,
+                                          ),
+                                          Icon(
+                                            FontAwesome5Solid.id_card_alt,
+                                            color: Colors.white,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Flexible(
+                                              child: Text(
+                                            data['address'],
+                                            style: t1,
+                                          )),
+                                          Icon(
+                                            FontAwesome5Solid.home,
+                                            color: Colors.white,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              Icon(
-                                FontAwesome5Solid.user_friends,
-                                color: Colors.white,
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'AS78834JSD324',
-                                style: t1,
-                              ),
-                              Icon(
-                                FontAwesome5Solid.id_card_alt,
-                                color: Colors.white,
-                              )
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                  child: Text(
-                                'House 12, Street 75, LA',
-                                style: t1,
-                              )),
-                              Icon(
-                                FontAwesome5Solid.home,
-                                color: Colors.white,
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-             
+                            ),
+                          );
+                  }),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: HomeHeader2(
@@ -184,7 +201,11 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                           items: <String>[
                             'Salmon',
                             'Brook Trout',
-                            'Togue','Muskie','Cusk','Most Perch','Largest Perch',
+                            'Togue',
+                            'Muskie',
+                            'Cusk',
+                            'Most Perch',
+                            'Largest Perch',
                           ].map((String value) {
                             return new DropdownMenuItem<String>(
                               value: value,
@@ -224,84 +245,76 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                     padding: const EdgeInsets.all(8.0),
                     child: Text('inch'),
                   ),
-
                 ),
               ),
-            
-
               Row(
                 children: [
-                    Expanded(
-                                      child: TextFields(
-                        onChanged: (na) {
-                          weight = na;
-                        },
-                        icon: Tab(
-                          child: Icon(
-                            FontAwesomeIcons.weightHanging,
-                            color: appColor,
-                          ),
+                  Expanded(
+                    child: TextFields(
+                      onChanged: (na) {
+                        weight = na;
+                      },
+                      icon: Tab(
+                        child: Icon(
+                          FontAwesomeIcons.weightHanging,
+                          color: appColor,
                         ),
-                        hintText: "Lbs",
-                        secureText: false,
-                        borderColor: appColor,
-                        focusColor: Colors.white,
-                        input: TextInputType.numberWithOptions(),
-                        context: null,
-                        suffix: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text('lbs'),
-                        ),
-
+                      ),
+                      hintText: "Lbs",
+                      secureText: false,
+                      borderColor: appColor,
+                      focusColor: Colors.white,
+                      input: TextInputType.numberWithOptions(),
+                      context: null,
+                      suffix: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('lbs'),
                       ),
                     ),
-
-
-                Expanded(
-                                  child: TextFields(
-
-                    onChanged: (na) {
-                      weight = na;
-                    },
-                    icon: Tab(
-                      child: Icon(
-                        FontAwesomeIcons.weightHanging,
-                        color: appColor,
-                      ),
-                    ),
-                    hintText: "Oz",
-                    secureText: false,
-                    borderColor: appColor,
-                    focusColor: Colors.white,
-                    input: TextInputType.numberWithOptions(),
-                    context: null,
-                    suffix: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text('oz'),
-                    ),
-
                   ),
-                ),
+                  Expanded(
+                    child: TextFields(
+                      onChanged: (na) {
+                        weight = na;
+                      },
+                      icon: Tab(
+                        child: Icon(
+                          FontAwesomeIcons.weightHanging,
+                          color: appColor,
+                        ),
+                      ),
+                      hintText: "Oz",
+                      secureText: false,
+                      borderColor: appColor,
+                      focusColor: Colors.white,
+                      input: TextInputType.numberWithOptions(),
+                      context: null,
+                      suffix: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('oz'),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-        child: _image == null
-            ? Text('No image selected.', style: t1,)
-            : Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: ScreenUtil().setHeight(250),
-                width: ScreenUtil().setWidth(350),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12)
+                  child: _image == null
+                      ? Text(
+                          'No image selected.',
+                          style: t1,
+                        )
+                      : Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                              height: ScreenUtil().setHeight(250),
+                              width: ScreenUtil().setWidth(350),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Image.file(_image)),
+                        ),
                 ),
-                
-                child: Image.file(_image)),
-            ),
-      ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -322,7 +335,9 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                 color: Colors.greenAccent,
                 child: FlatButton(
                     color: Colors.white,
-                    onPressed: null,
+                    onPressed: () {
+                      viewModel.register(_image, uid, fish, length, weight);
+                    },
                     child: Text(
                       'SUBMIT',
                       style: t10appColor,

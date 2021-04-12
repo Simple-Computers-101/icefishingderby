@@ -13,7 +13,7 @@ import 'core/router.dart' as router;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  AuthService.appleSignInAvailable = await apple.SignInWithApple.isAvailable();
+ //AuthService.appleSignInAvailable = await apple.SignInWithApple.isAvailable();
   await LocatorInjector.setUpLocator();
   runApp(MyApp());
 }

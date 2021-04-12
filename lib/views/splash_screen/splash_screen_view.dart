@@ -13,6 +13,7 @@ import 'package:icefishingderby/views/login_screen/login_screen_view.dart';
 import 'package:icefishingderby/views/my_fish_screen/my_fish_screen_view.dart';
 import 'package:icefishingderby/views/prize_details/prize_details_view.dart';
 import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart';
+import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart';
 import 'package:icefishingderby/views/view_fish_rank_screen/view_fish_rank_screen_view.dart';
 import 'package:stacked/stacked.dart';
 import '../view_registration_screen/view_registration_screen_view.dart';
@@ -39,7 +40,7 @@ class SplashScreenView extends StatelessWidget {
                   backgroundcolor,
                   widgetcolor,
         ],
-        child: BottomBarView(),
+        child: SignUpScreenView(),
 
 
       ),
