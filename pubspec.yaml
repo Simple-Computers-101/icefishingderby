@@ -27,9 +27,9 @@ dependencies:
     injectable: ^1.0.7
     carousel_slider: ^3.0.0
     firebase_core:
-    firebase_auth: ^1.0.3
-    cloud_firestore:
-    firebase_storage: ^8.0.3
+    firebase_auth:
+    
+    firebase_storage: 
     google_sign_in: ^4.5.1
     sign_in_with_apple: ^2.5.2
     crypto:
@@ -37,8 +37,9 @@ dependencies:
     flutter_barcode_scanner:
     image_picker: ^0.7.4
     qr_flutter: ^3.2.0
-    stripe_sdk: ^4.0.2
-    cloud_firestore: 
+    stripe_sdk:
+    cloud_firestore:
+      
 
 dev_dependencies:
     flutter_test:
