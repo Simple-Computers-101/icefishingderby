@@ -35,6 +35,8 @@ dependencies:
     flutter_barcode_scanner: ^1.0.2
     image_picker: 
     qr_flutter: ^3.2.0
+    stripe_sdk: ^4.0.2
+    cloud_firestore: 
 
 dev_dependencies:
     flutter_test:

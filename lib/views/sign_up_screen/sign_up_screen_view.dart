@@ -1,17 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
 import 'package:icefishingderby/views/login_screen/login_screen_view.dart';
-import 'package:icefishingderby/widgets/dumb_widgets/app_button.dart';
-import 'package:icefishingderby/widgets/dumb_widgets/field.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/header_curved.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/textField.dart';
-import 'package:sign_button/sign_button.dart';
 import 'package:stacked/stacked.dart';
-import 'package:stacked_services/stacked_services.dart';
 import 'sign_up_screen_view_model.dart';
 
 class SignUpScreenView extends StatefulWidget {
@@ -21,7 +15,7 @@ class SignUpScreenView extends StatefulWidget {
 
 class _SignUpScreenViewState extends State<SignUpScreenView> {
   var _passwordVisible = true;
- 
+
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
@@ -147,8 +141,14 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
                           borderRadius: BorderRadius.circular(25),
                           border: Border.all(color: Colors.blueAccent)),
                       child: GestureDetector(
-                          onTap: () {
-                            //Register Using Email
+                          onTap: () async {
+                            await viewModel.provideRegisteration();
+
+                            _key.currentState.showSnackBar(SnackBar(
+                              content: Text("Registration Sucessful"),
+                            ));
+
+                            viewModel.navigateToLoginScreen();
                           },
                           child: Center(
                             child: Text(

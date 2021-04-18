@@ -1,14 +1,33 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:icefishingderby/classes/time_date.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:icefishingderby/core/logger.dart';
 
 class RegistrationScreenViewModel extends BaseViewModel {
   Logger log;
+  var user = FirebaseAuth.instance.currentUser;
+  String name;
+  String email;
+  String address;
+  String contactNumber;
+  String ageGroup;
+  String registrationDays;
+  String feeToBeCharged;
+  String dateOfBirth = DateMonthYear(DateTime.now());
+
 
   RegistrationScreenViewModel() {
     this.log = getLogger(this.runtimeType.toString());
   }
+
+  eventRegistration(){
+
+  }
+  
 }
+
+
 
 double returnTicketCost({String ageGroup, String days}) {
   if (days == 'Saturday' || days == 'Sunday') {

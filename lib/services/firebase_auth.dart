@@ -2,27 +2,29 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:crypto/crypto.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class AuthService {
   static bool appleSignInAvailable = false;
-
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  var _auth = FirebaseAuth.instance;
   Future<UserCredential> registerUser(email, password) async {
-    var _auth = FirebaseAuth.instance;
-
     var _res = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
+
+      await  insertUserCollection();
 
     return _res;
   }
 
   Future<UserCredential> emailAuth(email, password) async {
-    var _auth = FirebaseAuth.instance;
-
     var _user = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
+        
     if (!_user.user.emailVerified) _user.user.sendEmailVerification();
     return _user;
   }
@@ -39,7 +41,7 @@ class AuthService {
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
-
+    insertUserCollection();
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
@@ -60,6 +62,8 @@ class AuthService {
       rawNonce: rawNonce,
     );
 
+    insertUserCollection();
+
     return await FirebaseAuth.instance.signInWithCredential(oauthCredential);
   }
 
@@ -76,6 +80,33 @@ class AuthService {
     final digest = sha256.convert(bytes);
     return digest.toString();
   }
+
+  insertUserCollection() async {
+
+   
+    if  (await checkIfDocExists(_auth.currentUser.uid) == false){
+
+     FirebaseFirestore.instance.collection('users').doc(_auth.currentUser.uid).set({
+          'uid': _auth.currentUser.uid,
+          'type': 'customer',
+        })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+    }
+
+  }
+
+  Future<bool> checkIfDocExists(String docId) async {
+  try {
+    // Get reference to Firestore collection
+    var collectionRef = FirebaseFirestore.instance.collection('users');
+
+    var doc = await collectionRef.doc(docId).get();
+    return doc.exists;
+  } catch (e) {
+    throw e;
+  }
+}
 }
 
 main(List<String> args) {

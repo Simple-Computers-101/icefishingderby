@@ -25,8 +25,7 @@ class LoginScreenView extends StatefulWidget {
 class _LoginScreenViewState extends State<LoginScreenView> {
   var _passwordVisible = true;
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
-  // var email;
-  // var password;
+  
 
   @override
   Widget build(BuildContext context) {

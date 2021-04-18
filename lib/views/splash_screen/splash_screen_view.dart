@@ -39,7 +39,7 @@ class SplashScreenView extends StatelessWidget {
                   backgroundcolor,
                   widgetcolor,
         ],
-        child: BottomBarView(),
+        child: LoginScreenView(),
 
 
       ),
