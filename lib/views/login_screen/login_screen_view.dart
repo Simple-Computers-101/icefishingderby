@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
 import 'package:icefishingderby/services/firebase_auth.dart';
+import 'package:icefishingderby/views/bottom_bar/bottom_bar_view.dart';
 import 'package:icefishingderby/views/forgot_password/forgot_password_view.dart';
 import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
 import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart';
@@ -159,7 +160,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomeScreenView()));
+                                      builder: (context) => BottomBarView(type:false)));
                             else
                               _key.currentState.showSnackBar(SnackBar(
                                 content: Text(user.toString()),

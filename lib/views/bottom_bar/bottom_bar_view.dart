@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
+import 'package:icefishingderby/views/fish_form_screen/fish_form_screen_view.dart';
 import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
 import 'package:icefishingderby/views/profile_screen/profile_screen_view.dart';
+import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart';
 import 'package:stacked/stacked.dart';
 import 'bottom_bar_view_model.dart';
 
 class BottomBarView extends StatelessWidget {
+  BottomBarView({this.type});
+  final type;
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<BottomBarViewModel>.reactive(
@@ -16,12 +20,10 @@ class BottomBarView extends StatelessWidget {
           backgroundColor: Colors.white,
           body: getViewForIndex(viewModel.currentIndex), // new
           bottomNavigationBar: BottomNavigationBar(
-            
-          
             type: BottomNavigationBarType.fixed,
             selectedLabelStyle: GoogleFonts.rubik(),
             selectedItemColor: Colors.white,
-            
+
             unselectedIconTheme: IconThemeData(color: Colors.grey),
             elevation: 10,
             backgroundColor: widgetcolor,
@@ -31,6 +33,12 @@ class BottomBarView extends StatelessWidget {
               BottomNavigationBarItem(
                   icon: Icon(
                     FlutterIcons.home_ant,
+                    size: 25,
+                  ),
+                  label: ""),
+              BottomNavigationBarItem(
+                  icon: Icon(
+                    FlutterIcons.file_document_box_multiple_outline_mco,
                     size: 25,
                   ),
                   label: ""),
@@ -66,10 +74,12 @@ class BottomBarView extends StatelessWidget {
       case 0:
         return HomeScreenView();
       case 1:
-        return HomeScreenView();
+        return RegistrationScreenView();
       case 2:
         return HomeScreenView();
       case 3:
+        return FishFormScreenView();
+      case 4:
         return ProfileScreenView();
       default:
         return HomeScreenView();

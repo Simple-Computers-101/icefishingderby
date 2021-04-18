@@ -43,7 +43,6 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
           appBar: AppBar(
             backgroundColor: backgroundcolor,
             elevation: 0,
-         
           ),
           body: Padding(
             padding: const EdgeInsets.only(left: 10.0, right: 10),
@@ -99,7 +98,6 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                         ),
                       ],
                     ),
-                   
                     Padding(
                       padding: const EdgeInsets.only(top: 15.0, bottom: 15),
                       child: Padding(
@@ -108,8 +106,6 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                          
-
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: HomeHeader2(
@@ -201,7 +197,6 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                                   horizontal: 14),
                                               child: Center(
                                                 child: Row(
-                                               
                                                   children: <Widget>[
                                                     Padding(
                                                       padding:
@@ -213,7 +208,6 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                                         size: 30,
                                                       ),
                                                     ),
-                                                  
                                                     Text(
                                                       dateOfBirth,
                                                       style: t10appColor,
@@ -230,7 +224,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                       padding: const EdgeInsets.only(top: 10.0),
                                       child: TextFields(
                                         onChanged: (na) {
-                                          viewModel.address= na;
+                                          viewModel.address = na;
                                         },
                                         icon: Tab(
                                           child: Icon(
@@ -270,8 +264,6 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                 ),
                               ),
                             ),
-                        
-
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: HomeHeader2(
@@ -365,7 +357,8 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                                   style: t10appColor,
                                                 ),
                                                 style: t10appColor,
-                                                value: viewModel.registrationDays,
+                                                value:
+                                                    viewModel.registrationDays,
                                                 elevation: 2,
                                                 items: <String>[
                                                   'Saturday',
@@ -380,7 +373,8 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                                 }).toList(),
                                                 onChanged: (_) {
                                                   setState(() {
-                                                    viewModel.registrationDays = _;
+                                                    viewModel.registrationDays =
+                                                        _;
                                                   });
                                                 },
                                               ),
@@ -393,7 +387,6 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                 ),
                               ),
                             ),
-
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: HomeHeader2(
@@ -457,14 +450,23 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                 ),
                               ),
                             ),
-                           
-
                             Center(
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 20.0),
                                 child: FlatButton(
                                   color: Colors.white,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    viewModel.eventRegistration(
+                                        viewModel.name,
+                                        viewModel.email,
+                                        viewModel.address,
+                                        viewModel.dateOfBirth,
+                                        viewModel.contactNumber,
+                                        viewModel.ageGroup,
+                                        returnTicketCost(
+                                                ageGroup: age, days: days)
+                                            .toString());
+                                  },
                                   child: Padding(
                                     padding: const EdgeInsets.all(13),
                                     child: Text(
@@ -479,7 +481,6 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                         ),
                       ),
                     ),
-                    
                   ],
                 ),
               ],

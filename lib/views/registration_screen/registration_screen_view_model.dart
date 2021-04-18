@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:icefishingderby/classes/time_date.dart';
 import 'package:logger/logger.dart';
@@ -21,7 +22,23 @@ class RegistrationScreenViewModel extends BaseViewModel {
     this.log = getLogger(this.runtimeType.toString());
   }
 
-  eventRegistration(){
+  Future eventRegistration(String name, String email,String address,String dOB,String contact,String ageGroup,String fee)
+  {
+    DocumentReference documentReference = FirebaseFirestore.instance.collection('eventRegistration').doc();
+         FirebaseFirestore.instance.collection('eventRegistration').doc(documentReference.id).set({
+          'name':name ,
+          'email':email,
+          'address':address,
+          'dob':dOB,
+          'contact':contact,
+          'ageGroup':ageGroup,
+          'fee':fee,
+          'uid':documentReference.id,
+          "account":user.uid,
+        })
+        .then((value) => print("user Registered"))
+        .catchError((error) => print("Failed to add user: $error"));
+
 
   }
   

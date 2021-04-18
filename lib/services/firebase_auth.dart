@@ -87,7 +87,7 @@ class AuthService {
     if  (await checkIfDocExists(_auth.currentUser.uid) == false){
 
      FirebaseFirestore.instance.collection('users').doc(_auth.currentUser.uid).set({
-          'uid': _auth.currentUser.uid,
+          'uid': _auth.currentUser,
           'type': 'customer',
         })
         .then((value) => print("User Added"))
