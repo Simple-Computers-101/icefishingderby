@@ -33,6 +33,8 @@ class FishFormScreenViewModel extends BaseViewModel {
         });
   }
 
+  
+
   FishFormScreenViewModel() {
     this.log = getLogger(this.runtimeType.toString());
   }

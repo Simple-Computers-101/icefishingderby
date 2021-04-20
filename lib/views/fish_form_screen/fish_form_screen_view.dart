@@ -15,6 +15,8 @@ import 'package:stacked/stacked.dart';
 import 'fish_form_screen_view_model.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 
+import 'dart:async';
+
 class FishFormScreenView extends StatefulWidget {
   @override
   _FishFormScreenViewState createState() => _FishFormScreenViewState();

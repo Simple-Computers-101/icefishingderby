@@ -28,14 +28,14 @@ dependencies:
     carousel_slider: ^3.0.0
     firebase_core:
     firebase_auth:
-    
+    path_provider:
     firebase_storage: 
     google_sign_in: ^4.5.1
     sign_in_with_apple: ^2.5.2
     crypto:
     flutter_credit_card: ^0.1.4
     flutter_barcode_scanner:
-    image_picker: ^0.7.4
+    image_picker:
     qr_flutter: ^3.2.0
     stripe_sdk:
     cloud_firestore:
