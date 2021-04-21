@@ -16,18 +16,17 @@ class FishFormScreenViewModel extends BaseViewModel {
         .child('FishRegistered')
         .child("/" + uid)
         .child("/" + uid)
-        .putFile(image)
-        .whenComplete(() => {
-              downloadUrl = putCmd.ref.getDownloadURL(),
-            });
-
-    FirebaseFirestore.instance.collection('FishRegistration').doc().set({
+        .putFile(image);
+    var downloadUrl = await putCmd.ref.getDownloadURL();
+    DocumentReference documentReference = FirebaseFirestore.instance.collection('eventRegistration').doc();
+    FirebaseFirestore.instance.collection('FishRegistration').doc(documentReference.id).set({
       "DateTime": DateTime.now().toString(),
       "image": downloadUrl,
       "type": type,
       "length": length,
       "weight": weight,
       "uid": uid,
+      "docId":documentReference.id
     }).then((value) => {
           //navigate
         });
