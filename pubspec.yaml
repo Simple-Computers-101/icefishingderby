@@ -41,6 +41,8 @@ dependencies:
   #for Android and iOS
   stripe_payment: ^1.0.7
   cloud_firestore:
+  stripe_sdk: 
+  
 
 dev_dependencies:
   flutter_test:

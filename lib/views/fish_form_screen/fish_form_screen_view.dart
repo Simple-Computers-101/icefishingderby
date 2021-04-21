@@ -29,6 +29,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
   String weight;
   File _image;
   final picker = ImagePicker();
+  final db = FirebaseFirestore.instance;
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.camera);
@@ -65,8 +66,19 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
               ),
               FlatButton.icon(
                 onPressed: () async {
-                  uid = await FlutterBarcodeScanner.scanBarcode(
-                      "#ff6666", "Cancel", true, ScanMode.QR);
+
+                    
+                      
+                   await FlutterBarcodeScanner.scanBarcode(
+                      "#ff6666", "Cancel", true, ScanMode.QR).then((value) => () async {
+
+                              var doc =  await db.collection('eventRegistration').doc(value).get();
+                          print(doc.data()['name']);
+
+                          setState(() {
+                            uid = doc.data()['name'];
+                          });
+                      });
                 },
                 icon: Icon(
                   FontAwesome5Solid.qrcode,
@@ -107,7 +119,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                     stream: FirebaseFirestore.instance
                         .collection('eventRegistration')
                         .where('name', isEqualTo: uid)
-                        .snapshots(),
+                        .snapshots() ,
                     builder: (context, snapshot) {
                       return (snapshot.connectionState ==
                               ConnectionState.waiting)

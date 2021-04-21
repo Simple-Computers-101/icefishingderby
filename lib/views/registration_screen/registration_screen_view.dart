@@ -209,7 +209,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                                       ),
                                                     ),
                                                     Text(
-                                                      dateOfBirth,
+                                                      viewModel.dateOfBirth,
                                                       style: t10appColor,
                                                     )
                                                   ],
