@@ -33,8 +33,8 @@ class RegistrationScreenViewModel extends BaseViewModel {
           'contact':contact,
           'ageGroup':ageGroup,
           'fee':fee,
-          'uid':documentReference.id,
-          "account":user.uid,
+          'docId':documentReference.id,
+          "uid":user.uid,
         })
         .then((value) => print("user Registered"))
         .catchError((error) => print("Failed to add user: $error"));

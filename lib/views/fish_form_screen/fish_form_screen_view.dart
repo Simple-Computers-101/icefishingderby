@@ -23,7 +23,7 @@ class FishFormScreenView extends StatefulWidget {
 }
 
 class _FishFormScreenViewState extends State<FishFormScreenView> {
-  String uid;
+  String uid = "";
   String fish;
   String length;
   String weight;
@@ -101,87 +101,100 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                   });
                 },
               ),
-              StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance
-                      .collection('eventRegistration')
-                      .where('uid', isEqualTo: uid)
-                      .snapshots(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return Center(
-                          child: CircularProgressIndicator(
-                        backgroundColor: widgetcolor,
-                      ));
-                    } 
-                    else {
-                      DocumentSnapshot data = snapshot.data.docs[0];
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Card(
-                          color: widgetcolor,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Padding(
+              Container(
+                height: ScreenUtil().setHeight(150),
+                child: StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('eventRegistration')
+                        .where('name', isEqualTo: uid)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      return (snapshot.connectionState ==
+                              ConnectionState.waiting)
+                          ? Center(
+                              child: CircularProgressIndicator(
+                              backgroundColor: widgetcolor,
+                            ))
+                          : ListView.builder(
+                              itemCount: snapshot.data.docs.length,
+                              itemBuilder: (context, index) {
+                                DocumentSnapshot data =
+                                    snapshot.data.docs[index];
+
+                                uid = data['uid'];
+
+                                return Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        data['name'],
-                                        style: t1,
+                                  child: Card(
+                                    color: widgetcolor,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  data['name'],
+                                                  style: t1,
+                                                ),
+                                                Icon(
+                                                  FontAwesome5Solid
+                                                      .user_friends,
+                                                  color: Colors.white,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                  data['uid'],
+                                                  style: t1,
+                                                ),
+                                                Icon(
+                                                  FontAwesome5Solid.id_card_alt,
+                                                  color: Colors.white,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Flexible(
+                                                    child: Text(
+                                                  data['address'],
+                                                  style: t1,
+                                                )),
+                                                Icon(
+                                                  FontAwesome5Solid.home,
+                                                  color: Colors.white,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                      Icon(
-                                        FontAwesome5Solid.user_friends,
-                                        color: Colors.white,
-                                      )
-                                    ],
+                                    ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        data['uid'],
-                                        style: t1,
-                                      ),
-                                      Icon(
-                                        FontAwesome5Solid.id_card_alt,
-                                        color: Colors.white,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Flexible(
-                                          child: Text(
-                                        data['address'],
-                                        style: t1,
-                                      )),
-                                      Icon(
-                                        FontAwesome5Solid.home,
-                                        color: Colors.white,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                  }),
+                                );
+                              });
+                    }),
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: HomeHeader2(
