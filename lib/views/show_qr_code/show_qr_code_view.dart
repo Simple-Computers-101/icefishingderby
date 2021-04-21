@@ -15,6 +15,7 @@ class ShowQrCodeView extends StatelessWidget {
           ),
           body: Center(
             child: QrImage(
+              foregroundColor: Colors.white,
               gapless: false,
               data: viewModel.registrationId,
               version: QrVersions.auto,

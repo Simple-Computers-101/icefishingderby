@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icefishingderby/services/stripe_payment.dart';
 import 'package:icefishingderby/views/credit_card_screen/credit_card_screen_model.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/field.dart';
 import 'package:stacked/stacked.dart';
@@ -22,8 +23,10 @@ class _CreditCardViewState extends State<CreditCardView> {
 
   var _cardNumber = "5500400055649650";
   var _expiryDate = "9/26";
-  var _cardHolderName = "ZEESHAN ALI HAMDANI";
+  var _cardHolderName = "CARD HOLDER A";
   var _cvvCode = "123";
+
+  GlobalKey<ScaffoldState> _scaffKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +34,7 @@ class _CreditCardViewState extends State<CreditCardView> {
       viewModelBuilder: () => CreditCardViewModel(),
       builder: (context, model, widget) {
         return Scaffold(
+          key: _scaffKey,
           backgroundColor: ccColor,
           body: SafeArea(
               child: Padding(
@@ -56,22 +60,43 @@ class _CreditCardViewState extends State<CreditCardView> {
                           ),
                         ],
                       ),
-                      FlatButton(
-                        child: Icon(!_showMode ? Icons.list : Icons.add),
-                        onPressed: _toggleMode,
-                        color: Colors.white,
-                        shape: CircleBorder(),
+                      Row(
+                        children: [
+                          FlatButton(
+                            child: Icon(!_showMode ? Icons.list : Icons.add),
+                            onPressed: _toggleMode,
+                            color: Colors.white,
+                            shape: CircleBorder(),
+                          ),
+                        ],
                       )
                     ],
                   ),
                 ),
-                if (!_showMode) _addNewCard() else _showCreditCards()
+                if (!_showMode) _addNewCard() else _showCreditCards(),
+                TextButton(
+                  onPressed: () {
+                    _addNewCard1(context);
+                  },
+                  child: Text('Pay with new Card'),
+                )
               ],
             ),
           )),
         );
       },
     );
+  }
+
+  _addNewCard1(context) async {
+    //TODO:Make Payment amount dynamic
+    var res =
+        await StripeService.payWithNewCard(amount: '150', currency: 'USD');
+
+    _scaffKey.currentState.showSnackBar(SnackBar(
+      content: Text(res.message),
+      //duration: Duration(milliseconds: ),
+    ));
   }
 
   Expanded _showCreditCards() {
@@ -122,13 +147,15 @@ class _CreditCardViewState extends State<CreditCardView> {
         flex: 5,
         child: ListView(
           children: [
-            CreditCardWidget(
-              cardNumber: _cardNumber,
-              expiryDate: _expiryDate,
-              cardHolderName: _cardHolderName,
-              cvvCode: _cvvCode,
-              showBackView: false,
-              cardBgColor: ccColor,
+            GestureDetector(
+              child: CreditCardWidget(
+                cardNumber: _cardNumber,
+                expiryDate: _expiryDate,
+                cardHolderName: _cardHolderName,
+                cvvCode: _cvvCode,
+                showBackView: false,
+                cardBgColor: ccColor,
+              ),
             ),
             Divider(
               height: 35,
@@ -196,6 +223,20 @@ class _CreditCardViewState extends State<CreditCardView> {
                         ),
                       ),
                     ],
+                  ),
+                  Container(
+                    //margin: EdgeInsets.only(top: 20),
+
+                    alignment: Alignment.centerRight,
+
+                    child: FlatButton(
+                      textColor: Colors.white,
+                      onPressed: () {},
+                      child: Text('Save'),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                          side: BorderSide(color: Colors.white)),
+                    ),
                   )
                 ],
               ),
