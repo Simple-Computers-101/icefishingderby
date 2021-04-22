@@ -33,6 +33,7 @@ class RegistrationScreenViewModel extends BaseViewModel {
           'contact':contact,
           'ageGroup':ageGroup,
           'fee':fee,
+          'eventID':'',
           'docId':documentReference.id,
           "uid":user.uid,
         })
