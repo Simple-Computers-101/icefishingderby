@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
@@ -50,19 +51,41 @@ class _ViewRegistrationScreenViewState
           ),
           body: Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: ScreenUtil().setHeight(10),
-                  ),
-                  RegisteredEvent(),
-                  RegisteredEvent(),
-                ],
-              ),
-            ),
+            child: StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('eventRegistration')
+                        .where('uid', isEqualTo: viewModel.auth.currentUser.uid)
+                        .snapshots() ,
+                    builder: (context, snapshot) {
+
+                      print(viewModel.auth.currentUser.uid);
+                      
+                      return (snapshot.connectionState ==
+                              ConnectionState.waiting)
+                          ? Center(
+                              child: CircularProgressIndicator(
+                              backgroundColor: widgetcolor,
+                            ))
+                          : ListView.builder(
+                              itemCount: snapshot.data.docs.length,
+                              itemBuilder: (context, index) {
+                                 DocumentSnapshot data =
+                                    snapshot.data.docs[index];
+
+                                return RegisteredEvent(
+                                     id: data['uid'],
+                                    viewModel: viewModel,
+                                    email: data['email'],
+                                    name: data['name'],
+                                    address: data['address'],
+                                    dob: data['dob'],
+                                    docId: data['docId'],
+                                   
+
+                                    
+                                );
+                              });
+                    }),
           ),
         );
       },
@@ -72,8 +95,16 @@ class _ViewRegistrationScreenViewState
 }
 
 class RegisteredEvent extends StatelessWidget {
+
+  final String id;
+  final String name;
+  final String email;
+  final String address;
+  final String dob;
+  final String docId;
+  final ViewRegistrationScreenViewModel viewModel;
   const RegisteredEvent({
-    Key key,
+    Key key, this.id, this.name, this.email, this.address, this.viewModel, this.dob, this.docId,
   }) : super(key: key);
 
   @override
@@ -114,27 +145,27 @@ class RegisteredEvent extends StatelessWidget {
                         children: [
                           Detail(
                             title: "ID",
-                            text: "DWZURyE6XJa49pDS6gtv4PkwHOn1",
+                            text: docId,
                             size: 12,
                           ),
                           Detail(
                             title: "Name",
-                            text: "Avril Lavigne",
+                            text: name,
                             size: 12,
                           ),
                           Detail(
-                            title: "Type",
-                            text: "Sat-Sun",
+                            title: "Email",
+                            text: email,
                             size: 12,
                           ),
                           Detail(
-                            title: "Start Date",
-                            text: "12-08-2021",
+                            title: "Address",
+                            text: address,
                             size: 12,
                           ),
                           Detail(
-                            title: "End Date",
-                            text: "13-08-2021",
+                            title: "Date of Birth",
+                            text: dob,
                             size: 12,
                           ),
                         ]),
@@ -148,7 +179,10 @@ class RegisteredEvent extends StatelessWidget {
                     child: MaterialButton(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(100.0)),
-                      onPressed: () {},
+                      onPressed: () {
+                         // viewModel.navigateToQrScreen(registrationId: docId);
+                         viewModel.openDialogWithQR(registrationId: docId, context: context);
+                      },
                       child: Icon(
                         Icons.qr_code,
                         color: Colors.white,
