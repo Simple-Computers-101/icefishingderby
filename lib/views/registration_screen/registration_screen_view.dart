@@ -41,6 +41,7 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
         return Scaffold(
           backgroundColor: backgroundcolor,
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: backgroundcolor,
             elevation: 0,
           ),

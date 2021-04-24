@@ -23,10 +23,6 @@ class FishFormScreenView extends StatefulWidget {
 }
 
 class _FishFormScreenViewState extends State<FishFormScreenView> {
-  String uid = "";
-  String fish;
-  String length;
-  String weight;
   File _image;
   final picker = ImagePicker();
   final db = FirebaseFirestore.instance;
@@ -66,19 +62,19 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
               ),
               FlatButton.icon(
                 onPressed: () async {
+                  await FlutterBarcodeScanner.scanBarcode(
+                          "#ff6666", "Cancel", true, ScanMode.QR)
+                      .then((value) => () async {
+                            var doc = await db
+                                .collection('eventRegistration')
+                                .doc(value)
+                                .get();
+                            print(doc.data()['name']);
 
-                    
-                      
-                   await FlutterBarcodeScanner.scanBarcode(
-                      "#ff6666", "Cancel", true, ScanMode.QR).then((value) => () async {
-
-                              var doc =  await db.collection('eventRegistration').doc(value).get();
-                          print(doc.data()['name']);
-
-                          setState(() {
-                            uid = doc.data()['name'];
+                            setState(() {
+                              viewModel.uid = doc.data()['name'];
+                            });
                           });
-                      });
                 },
                 icon: Icon(
                   FontAwesome5Solid.qrcode,
@@ -109,7 +105,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                 borderColor: Colors.white,
                 onChanged: (val) {
                   setState(() {
-                    uid = val;
+                    viewModel.uid = val;
                   });
                 },
               ),
@@ -118,8 +114,8 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                 child: StreamBuilder<QuerySnapshot>(
                     stream: FirebaseFirestore.instance
                         .collection('eventRegistration')
-                        .where('name', isEqualTo: uid)
-                        .snapshots() ,
+                        .where('name', isEqualTo: viewModel.uid)
+                        .snapshots(),
                     builder: (context, snapshot) {
                       return (snapshot.connectionState ==
                               ConnectionState.waiting)
@@ -133,7 +129,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                                 DocumentSnapshot data =
                                     snapshot.data.docs[index];
 
-                                uid = data['uid'];
+                                viewModel.uid = data['uid'];
 
                                 return Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -226,7 +222,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                             style: t10appColor,
                           ),
                           style: t10appColor,
-                          value: fish,
+                          value: viewModel.fish,
                           elevation: 2,
                           items: <String>[
                             'Salmon',
@@ -244,7 +240,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                           }).toList(),
                           onChanged: (_) {
                             setState(() {
-                              fish = _;
+                              viewModel.fish = _;
                             });
                           },
                         ),
@@ -257,7 +253,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                 padding: const EdgeInsets.only(top: 10.0),
                 child: TextFields(
                   onChanged: (na) {
-                    length = na;
+                    viewModel.length = na;
                   },
                   icon: Tab(
                     child: Icon(
@@ -282,7 +278,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                   Expanded(
                     child: TextFields(
                       onChanged: (na) {
-                        weight = na;
+                        viewModel.weight = na;
                       },
                       icon: Tab(
                         child: Icon(
@@ -305,7 +301,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                   Expanded(
                     child: TextFields(
                       onChanged: (na) {
-                        weight = na;
+                        viewModel.weight = na;
                       },
                       icon: Tab(
                         child: Icon(
@@ -366,7 +362,8 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                 child: FlatButton(
                     color: Colors.white,
                     onPressed: () {
-                      viewModel.register(_image, uid, fish, length, weight);
+                      viewModel.register(_image, viewModel.uid, viewModel.fish,
+                          viewModel.length, viewModel.weight);
                     },
                     child: Text(
                       'SUBMIT',

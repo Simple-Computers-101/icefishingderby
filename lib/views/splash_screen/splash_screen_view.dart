@@ -41,7 +41,7 @@ class SplashScreenView extends StatelessWidget {
               backgroundcolor,
               widgetcolor,
             ],
-            child: ViewRegistrationScreenView(),
+            child: MyFishScreenView(),
           ),
         );
       },

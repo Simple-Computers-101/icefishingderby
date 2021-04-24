@@ -29,15 +29,14 @@ class MyFishScreenView extends StatelessWidget {
               children: viewModel.fish.keys.map((f) {
                 return TextButton(
                   child: Container(
-                   
                     child: Material(
                       borderRadius: BorderRadius.circular(20),
                       color: widgetcolor,
                       child: Container(
-                         decoration: BoxDecoration(
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                            image: AssetImage("assets/bubble.png"))),
+                        //  decoration: BoxDecoration(
+                        // image: DecorationImage(
+                        //   fit: BoxFit.cover,
+                        //     image: AssetImage("assets/bubble.png"))),
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -66,32 +65,42 @@ class MyFishScreenView extends StatelessWidget {
                                             fontSize: ScreenUtil().setSp(11)),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(4.0),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            "Registered: ",
-                                            style: GoogleFonts.montserrat(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: ScreenUtil().setSp(14)),
-                                          ),
-                                          Text(
-                                            "2",
-                                            style: GoogleFonts.montserrat(
-                                                color: Colors.white,
-                                                fontSize: ScreenUtil().setSp(14)),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.all(4.0),
+                                    //   child: Row(
+                                    //     children: [
+                                    //       Text(
+                                    //         "Registered: ",
+                                    //         style: GoogleFonts.montserrat(
+                                    //             color: Colors.white,
+                                    //             fontWeight: FontWeight.bold,
+                                    //             fontSize:
+                                    //                 ScreenUtil().setSp(14)),
+                                    //       ),
+                                    //       Text(
+                                    //         "2",
+                                    //         style: GoogleFonts.montserrat(
+                                    //             color: Colors.white,
+                                    //             fontSize:
+                                    //                 ScreenUtil().setSp(14)),
+                                    //       ),
+                                    //     ],
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ),
                               Expanded(
-                                child: Image.asset(
-                                    "assets/fish/" + viewModel.fish[f][1]),
+                                child: Container(
+                                  height: ScreenUtil().setHeight(140),
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image:
+                                              AssetImage("assets/bubble.png"))),
+                                  child: Image.asset(
+                                      "assets/fish/" + viewModel.fish[f][1]),
+                                ),
                               )
                             ],
                           ),
@@ -100,10 +109,11 @@ class MyFishScreenView extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ViewFishRankScreenView()));
+                   viewModel.navigateToFishScreen(f);
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => ViewFishRankScreenView()));
                   },
                 );
               }).toList(),

@@ -1,10 +1,13 @@
+import 'package:icefishingderby/core/locator.dart';
+import 'package:icefishingderby/views/view_fish_rank_screen/view_fish_rank_screen_view.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:icefishingderby/core/logger.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class MyFishScreenViewModel extends BaseViewModel {
   Logger log;
-
+  final _navService = locator<NavigationService>();
   Map<String, List<String>> fish = {
     "Salmon": [
       "Salmon is the common name for several species of ray-finned fish in the family Salmonidae. Other fish in the same family include trout, char, grayling, and whitefish. Salmon are native to tributaries of the North Atlantic and Pacific Ocean",
@@ -31,9 +34,11 @@ class MyFishScreenViewModel extends BaseViewModel {
       "perch.png"
     ],
   };
-  // 'Salmon',
-  // 'Brook Trout',
-  // 'Togue','Muskie','Cusk','Most Perch','Largest Perch',
+
+  navigateToFishScreen(String type) {
+    _navService
+        .navigateToView(ViewFishRankScreenView(), arguments: {"type": type});
+  }
 
   MyFishScreenViewModel() {
     this.log = getLogger(this.runtimeType.toString());

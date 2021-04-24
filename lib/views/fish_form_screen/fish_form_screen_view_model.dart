@@ -7,7 +7,10 @@ import 'package:icefishingderby/core/logger.dart';
 class FishFormScreenViewModel extends BaseViewModel {
   Logger log;
   final _firebaseStorage = FirebaseStorage.instance;
-  
+  String uid = "";
+  String fish;
+  String length;
+  String weight;
   var putCmd;
   var downloadUrl;
 
