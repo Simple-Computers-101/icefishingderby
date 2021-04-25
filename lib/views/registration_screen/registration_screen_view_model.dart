@@ -25,7 +25,6 @@ class RegistrationScreenViewModel extends BaseViewModel {
   Future eventRegistration(String name, String email,String address,String dOB,String contact,String ageGroup,String fee)
   async {
        var doc =  await FirebaseFirestore.instance.collection('events').where('status',isEqualTo: 'Ongoing').get();
-                          print(doc.docs[0]['eventID']);
     DocumentReference documentReference = FirebaseFirestore.instance.collection('eventRegistration').doc();
          FirebaseFirestore.instance.collection('eventRegistration').doc(documentReference.id).set({
           'name':name ,
@@ -35,7 +34,7 @@ class RegistrationScreenViewModel extends BaseViewModel {
           'contact':contact,
           'ageGroup':ageGroup,
           'fee':fee,
-          'eventID':doc.docs[0]['eventID'],
+          'eventId':doc.docs[0]['eventId'],
           'docId':documentReference.id,
           "uid":user.uid,
         })

@@ -7,14 +7,6 @@ import 'package:icefishingderby/core/logger.dart';
 class ViewFishRankScreenViewModel extends BaseViewModel {
   Logger log;
 
-  Future getFish(String type) {
-    var user = FirebaseFirestore.instance
-        .collection('fishRegistration')
-        .where('uid', isEqualTo: FirebaseAuth.instance.currentUser.uid)
-        .get();
-        
-    
-  }
 
   ViewFishRankScreenViewModel() {
     this.log = getLogger(this.runtimeType.toString());

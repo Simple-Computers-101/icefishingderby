@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:icefishingderby/core/locator.dart';
 import 'package:icefishingderby/views/view_fish_rank_screen/view_fish_rank_screen_view.dart';
 import 'package:logger/logger.dart';
@@ -34,6 +35,8 @@ class MyFishScreenViewModel extends BaseViewModel {
       "perch.png"
     ],
   };
+
+
 
   navigateToFishScreen(String type) {
     _navService
