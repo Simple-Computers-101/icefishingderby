@@ -180,7 +180,7 @@ class RegisteredEvent extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(100.0)),
                       onPressed: () {
-                         // viewModel.navigateToQrScreen(registrationId: docId);
+                         
                          viewModel.openDialogWithQR(registrationId: docId, context: context);
                       },
                       child: Icon(

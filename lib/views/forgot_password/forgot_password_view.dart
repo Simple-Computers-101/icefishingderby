@@ -55,43 +55,12 @@ class _ForgotPasswordViewState extends State<ForgotPasswordView> {
                 SizedBox(
                   height: 5,
                 ),
-                TextFields(
-                  show: IconButton(
-                    icon: Icon(
-                      _passwordVisible
-                          ? Icons.visibility
-                          : Icons.visibility_off,
-                      color: Theme.of(context).primaryColorDark,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _passwordVisible = !_passwordVisible;
-                      });
-                    },
-                  ),
-                  icon: Tab(
-                    child: Icon(
-                      Icons.lock,
-                      color: appColor,
-                    ),
-                  ),
-                  hintText: "Password",
-                  onChanged: (pa) {
-                    setState(() {
-                      viewModel.password = pa;
-                    });
-                  },
-                  secureText: _passwordVisible,
-                  borderColor: appColor,
-                  focusColor: Colors.white,
-                  context: null,
-                ),
-                Padding(
+                                Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextButton(
-                      onPressed: () {
+                      onPressed: () async {
 
-                          //Forgot Password Service
+                         await viewModel.sendResetEmail();
 
                       },
                       child: Text(
