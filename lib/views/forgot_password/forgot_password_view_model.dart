@@ -14,14 +14,16 @@ class ForgotPasswordViewModel extends BaseViewModel {
   var _auth = FirebaseAuth.instance;
   final _snackbarService = locator<SnackbarService>();
 
+  
+
   sendResetEmail()   {
     
-     _auth.sendPasswordResetEmail(email: email).then( (_){
+     _auth.sendPasswordResetEmail(email: email).then((_){
         _snackbarService.showSnackbar(
         message: "Please check email to reset your password", duration: Duration(seconds: 5), title: "Reset Email Sent" );
      }).catchError((error){
         _snackbarService.showSnackbar(
-        message: error.toString(), duration: Duration(seconds: 5), title: "Error" );
+        message: error.message.toString(), duration: Duration(seconds: 5), title: "Error" );
      });
         
     
