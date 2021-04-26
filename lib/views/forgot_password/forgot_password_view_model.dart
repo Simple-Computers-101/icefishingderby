@@ -10,16 +10,27 @@ import 'package:stacked_services/stacked_services.dart';
 class ForgotPasswordViewModel extends BaseViewModel {
   Logger log;
   String email;
-  
+
   var _auth = FirebaseAuth.instance;
-    final _snackbarService = locator<SnackbarService>();
+  final _snackbarService = locator<SnackbarService>();
 
-
-  sendResetEmail(){
-    _auth.sendPasswordResetEmail(email: email);
-    _snackbarService.showSnackbar(message: "Please check email to reset your password");
+  sendResetEmail()   {
+    
+     _auth.sendPasswordResetEmail(email: email).then( (_){
+        _snackbarService.showSnackbar(
+        message: "Please check email to reset your password", duration: Duration(seconds: 5), title: "Reset Email Sent" );
+     }).catchError((error){
+        _snackbarService.showSnackbar(
+        message: error.toString(), duration: Duration(seconds: 5), title: "Error" );
+     });
+        
+    
+    
+   
+      
+    
+    
   }
-  
 
   ForgotPasswordViewModel() {
     this.log = getLogger(this.runtimeType.toString());
