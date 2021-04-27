@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:icefishingderby/constants/regexp.dart';
 import 'package:icefishingderby/services/stripe_payment.dart';
 import 'package:icefishingderby/views/credit_card_screen/credit_card_screen_model.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/field.dart';
 import 'package:stacked/stacked.dart';
+import 'package:stripe_payment/stripe_payment.dart';
 import '../../constants/colors.dart';
 
 class CreditCardView extends StatefulWidget {
@@ -26,13 +28,16 @@ class _CreditCardViewState extends State<CreditCardView> {
   var _cardHolderName = "CARD HOLDER A";
   var _cvvCode = "123";
 
+  CreditCardViewModel _model;
+
   GlobalKey<ScaffoldState> _scaffKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<CreditCardViewModel>.reactive(
       viewModelBuilder: () => CreditCardViewModel(),
-      builder: (context, model, widget) {
+      builder: (context, CreditCardViewModel model, widget) {
+        _model = model;
         return Scaffold(
           key: _scaffKey,
           backgroundColor: ccColor,
@@ -73,7 +78,15 @@ class _CreditCardViewState extends State<CreditCardView> {
                     ],
                   ),
                 ),
-                if (!_showMode) _addNewCard() else _showCreditCards(),
+                if (!_showMode)
+                  _addNewCard(model)
+                else
+                  Expanded(
+                    flex: 5,
+                    child: model.fetchingCards
+                        ? Center(child: CircularProgressIndicator())
+                        : _showCreditCards(model.fetchedCards['cards'], model),
+                  ),
                 TextButton(
                   onPressed: () {
                     _addNewCard1(context);
@@ -99,31 +112,53 @@ class _CreditCardViewState extends State<CreditCardView> {
     ));
   }
 
-  Expanded _showCreditCards() {
-    return Expanded(
-      flex: 5,
-      child: ListView(
-        children: [
-          for (int i = 0; i < 5; i++) _buildCreditCardsButton(i),
-        ],
-      ),
+  Widget _showCreditCards(cards, model) {
+    if (cards == null)
+      return Container(
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.error, size: 250, color: Color(0xff161622)),
+              Text("No Credit Cards.",
+                  style: GoogleFonts.montserrat(color: Colors.white)),
+            ],
+          ));
+    return ListView(
+      children: [
+        for (int i = 0; i < cards.length; i++)
+          _buildCreditCardsButton(cards[i], i, model),
+      ],
     );
   }
 
-  _buildCreditCardsButton(int index) {
+  _buildCreditCardsButton(Map card, index, model) {
     var cc = CreditCardWidget(
-      cardNumber: "5500400055649650",
-      expiryDate: "9/26",
-      cardHolderName: "ZEESHAN ALI HAMDANI",
-      cvvCode: "123",
+      cardNumber: card['card_number'],
+      expiryDate: card['expiry'],
+      cardHolderName: card['holder_name'],
+      cvvCode: card['cvv'],
       showBackView: false,
       height: 150,
     );
+    var exp = cc.expiryDate.split('/');
 
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
-      color: Color(0xff363855),
-      child: ListTile(
+    return FlatButton(
+      onPressed: () {
+        model.confirmPayment(
+          CreditCard(
+              cvc: cc.cvvCode,
+              number: cc.cardNumber,
+              name: cc.cardHolderName,
+              expMonth: int.parse(exp[0]),
+              expYear: int.parse(exp[1])),
+        );
+        //Send Card to Stripe.
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 8.0),
+        color: Color(0xff363855),
+        child: ListTile(
           leading: Text(
             (index + 1).toString(),
             style: GoogleFonts.aBeeZee(color: Colors.white),
@@ -132,19 +167,34 @@ class _CreditCardViewState extends State<CreditCardView> {
             cc.cardNumber,
             style: GoogleFonts.alata(color: Colors.white),
           ),
+          // subtitle: Text(cc.cardType.toString()),
           trailing: Image.asset(
-            CardTypeIconAsset[
-                index % 2 == 0 ? CardType.mastercard : CardType.visa],
+            CardTypeIconAsset[getCardType(cc.cardNumber)],
             height: 20,
             package: 'flutter_credit_card',
-          )),
+          ),
+        ),
+      ),
     );
   }
 
-  _addNewCard() {
+  getCardType(String cardNum) {
+    if (cardNum.startsWith('4'))
+      return CardType.visa;
+    else if (cardNum.startsWith('5'))
+      return CardType.mastercard;
+    else if (cardNum.startsWith('6'))
+      return CardType.discover;
+    else
+      return CardType.otherBrand;
+  }
+
+  _addNewCard(model) {
     var _formKey = GlobalKey<FormState>();
     return Expanded(
-        flex: 5,
+      flex: 5,
+      child: Form(
+        key: _formKey,
         child: ListView(
           children: [
             GestureDetector(
@@ -173,24 +223,34 @@ class _CreditCardViewState extends State<CreditCardView> {
               child: Column(
                 children: [
                   CCTextField(
+                    validator: (String val) {
+                      return !holder_pattern.hasMatch(val)
+                          ? "Invalid Holder Name"
+                          : null;
+                    },
                     icon: Icon(
                       MaterialIcons.person,
                       color: Colors.blueGrey,
                     ),
                     hintText: "Card Holder Name",
-                    onChanged: (val) {
+                    onSaved: (val) {
                       setState(() {
                         _cardHolderName = val;
                       });
                     },
                   ),
                   CCTextField(
+                    validator: (val) {
+                      return !card_Exp.hasMatch(val)
+                          ? "Invalid Card Number"
+                          : null;
+                    },
                     icon: Icon(
                       Icons.credit_card,
                       color: Colors.blueGrey,
                     ),
                     hintText: "Credit Card Number",
-                    onChanged: (val) {
+                    onSaved: (val) {
                       setState(() {
                         _cardNumber = val;
                       });
@@ -205,7 +265,12 @@ class _CreditCardViewState extends State<CreditCardView> {
                             color: Colors.blueGrey,
                           ),
                           hintText: "Expiry Date",
-                          onChanged: (val) {
+                          validator: (val) {
+                            return !expiry_date.hasMatch(val)
+                                ? "Invalid Expiration Date"
+                                : null;
+                          },
+                          onSaved: (val) {
                             setState(() {
                               _expiryDate = val;
                             });
@@ -215,7 +280,7 @@ class _CreditCardViewState extends State<CreditCardView> {
                       Expanded(
                         child: CCTextField(
                           hintText: "CVV",
-                          onChanged: (val) {
+                          onSaved: (val) {
                             setState(() {
                               _cvvCode = val;
                             });
@@ -231,7 +296,22 @@ class _CreditCardViewState extends State<CreditCardView> {
 
                     child: FlatButton(
                       textColor: Colors.white,
-                      onPressed: () {},
+                      onPressed: () async {
+                        var isValid = _formKey.currentState.validate();
+                        if (isValid) {
+                          _formKey.currentState.save();
+                          model
+                              .saveCardToFirebase(_cardHolderName, _cardNumber,
+                                  _cvvCode, _expiryDate)
+                              .then((value) {
+                            _scaffKey.currentState.showSnackBar(
+                                SnackBar(content: Text('Success')));
+                          }, onError: (error) {
+                            _scaffKey.currentState.showSnackBar(
+                                SnackBar(content: Text(error.toString())));
+                          });
+                        }
+                      },
                       child: Text('Save'),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
@@ -245,7 +325,9 @@ class _CreditCardViewState extends State<CreditCardView> {
             // Field(),
             // Field(),
           ],
-        ));
+        ),
+      ),
+    );
   }
 
   void _toggleMode() {
@@ -256,12 +338,13 @@ class _CreditCardViewState extends State<CreditCardView> {
 }
 
 class CCTextField extends StatelessWidget {
-  final hintText, onChanged, icon;
+  final hintText, onSaved, icon, validator;
   const CCTextField({
     Key key,
     this.hintText,
-    this.onChanged,
+    this.onSaved,
     this.icon,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -269,9 +352,10 @@ class CCTextField extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(4),
       height: 50,
-      child: TextField(
+      child: TextFormField(
         style: TextStyle(color: Colors.white),
-        onChanged: onChanged,
+        onSaved: onSaved,
+        validator: validator,
         decoration: InputDecoration(
             hintText: hintText,
             hintStyle: TextStyle(color: Colors.white),

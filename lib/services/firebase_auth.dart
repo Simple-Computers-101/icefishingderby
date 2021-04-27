@@ -11,6 +11,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class AuthService {
+  static Future<User> get currUID async => FirebaseAuth.instance.currentUser;
+
+  static String get testUid => '5VArbfpanyYWLdrN2daMNcbSAX93';
+
   static bool appleSignInAvailable = false;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   var _auth = FirebaseAuth.instance;
@@ -21,7 +25,7 @@ class AuthService {
     var _res = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
 
-      await  insertUserCollection();
+    await insertUserCollection();
 
     return _res;
   }
@@ -29,7 +33,7 @@ class AuthService {
   Future<UserCredential> emailAuth(email, password) async {
     var _user = await _auth.signInWithEmailAndPassword(
         email: email, password: password);
-        
+
     if (!_user.user.emailVerified) _user.user.sendEmailVerification();
     return _user;
   }
@@ -98,20 +102,19 @@ class AuthService {
         .then((value) => _snackbarService.showSnackbar(message: "You are now logged in", title: "Login Successful"))
         .catchError((error) => _snackbarService.showSnackbar(message: error.message.toString(), title: "Error"));
     }
-
   }
 
   Future<bool> checkIfDocExists(String docId) async {
-  try {
-    // Get reference to Firestore collection
-    var collectionRef = FirebaseFirestore.instance.collection('users');
+    try {
+      // Get reference to Firestore collection
+      var collectionRef = FirebaseFirestore.instance.collection('users');
 
-    var doc = await collectionRef.doc(docId).get();
-    return doc.exists;
-  } catch (e) {
-    throw e;
+      var doc = await collectionRef.doc(docId).get();
+      return doc.exists;
+    } catch (e) {
+      throw e;
+    }
   }
-}
 }
 
 main(List<String> args) {
