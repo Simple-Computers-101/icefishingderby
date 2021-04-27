@@ -141,14 +141,10 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
                           borderRadius: BorderRadius.circular(25),
                           border: Border.all(color: Colors.blueAccent)),
                       child: GestureDetector(
-                          onTap: () async {
-                            await viewModel.provideRegisteration();
+                          onTap: () {
+                            viewModel.provideRegisteration();
 
-                            _key.currentState.showSnackBar(SnackBar(
-                              content: Text("Registration Sucessful"),
-                            ));
-
-                            viewModel.navigateToLoginScreen();
+                            
                           },
                           child: Center(
                             child: Text(
