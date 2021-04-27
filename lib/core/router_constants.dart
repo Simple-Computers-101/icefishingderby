@@ -12,3 +12,4 @@ const String productDescriptionViewRoute = 'productDescriptionViewRoute';
 const String showQrCodeViewRoute = 'showQrCodeViewRoute';
 const String myFishScreenViewRoute = 'myFishScreenViewRoute';
 const String viewFishRankScreenViewRoute = 'viewFishRankScreenViewRoute';
+const String testMultiFutureViewRoute = 'testMultiFutureViewRoute';

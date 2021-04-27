@@ -14,6 +14,7 @@ import 'package:icefishingderby/views/prize_details/prize_details_view.dart';
 import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart';
 import 'package:icefishingderby/views/show_qr_code/show_qr_code_view.dart';
 import 'package:icefishingderby/views/sign_up_screen/sign_up_screen_view.dart';
+import 'package:icefishingderby/views/test_multi_future/test_multi_future_view.dart';
 import 'package:icefishingderby/views/view_fish_rank_screen/view_fish_rank_screen_view.dart';
 import 'package:icefishingderby/views/view_registration_screen/view_registration_screen_view.dart';
 import 'package:stacked/stacked.dart';
@@ -41,7 +42,7 @@ class SplashScreenView extends StatelessWidget {
               backgroundcolor,
               widgetcolor,
             ],
-            child: MyFishScreenView(),
+            child: CreditCardView(),
           ),
         );
       },
