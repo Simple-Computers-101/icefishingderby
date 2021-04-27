@@ -19,7 +19,8 @@ class SignUpScreenViewModel extends BaseViewModel {
   Future provideRegisteration() async {
     try {
       var reg = await AuthService().registerUser(email, password).then((_) async {
-       await _.user.updateProfile(displayName: username);
+        
+        await _.user.updateProfile(displayName: username);
         await _.user.sendEmailVerification().then((_) {
           _snackbarService.showSnackbar(
               message: "Please check verification email", title: "Email Sent");
@@ -39,7 +40,7 @@ class SignUpScreenViewModel extends BaseViewModel {
 
       return reg;
     } on FirebaseAuthException catch (e) {
-      // _snackbarService.showSnackbar(message: e.message.toString(), title: "Error",  );
+      _snackbarService.showSnackbar(message: e.message.toString(), title: "Error",  );
       return e.message;
     }
   }

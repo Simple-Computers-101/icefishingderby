@@ -20,7 +20,7 @@ class ForgotPasswordViewModel extends BaseViewModel {
     
      _auth.sendPasswordResetEmail(email: email).then((_){
         _snackbarService.showSnackbar(
-        message: "Please check email to reset your password", duration: Duration(seconds: 5), title: "Reset Email Sent" );
+        message: "Please check email to reset your password", duration: Duration(seconds: 5), title: "Reset Email Sent");
      }).catchError((error){
         _snackbarService.showSnackbar(
         message: error.message.toString(), duration: Duration(seconds: 5), title: "Error" );

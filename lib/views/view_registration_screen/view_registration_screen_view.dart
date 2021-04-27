@@ -52,40 +52,34 @@ class _ViewRegistrationScreenViewState
           body: Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance
-                        .collection('eventRegistration')
-                        .where('uid', isEqualTo: viewModel.auth.currentUser.uid)
-                        .snapshots() ,
-                    builder: (context, snapshot) {
+                stream: FirebaseFirestore.instance
+                    .collection('eventRegistration')
+                    .where('uid', isEqualTo: viewModel.auth.currentUser.uid)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  print(viewModel.auth.currentUser.uid);
 
-                      print(viewModel.auth.currentUser.uid);
-                      
-                      return (snapshot.connectionState ==
-                              ConnectionState.waiting)
-                          ? Center(
-                              child: CircularProgressIndicator(
-                              backgroundColor: widgetcolor,
-                            ))
-                          : ListView.builder(
-                              itemCount: snapshot.data.docs.length,
-                              itemBuilder: (context, index) {
-                                 DocumentSnapshot data =
-                                    snapshot.data.docs[index];
+                  return (snapshot.connectionState == ConnectionState.waiting)
+                      ? Center(
+                          child: CircularProgressIndicator(
+                          backgroundColor: widgetcolor,
+                        ))
+                      : ListView.builder(
+                          itemCount: snapshot.data.docs.length,
+                          itemBuilder: (context, index) {
+                            DocumentSnapshot data = snapshot.data.docs[index];
 
-                                return RegisteredEvent(
-                                     id: data['uid'],
-                                    viewModel: viewModel,
-                                    email: data['email'],
-                                    name: data['name'],
-                                    address: data['address'],
-                                    dob: data['dob'],
-                                    docId: data['docId'],
-                                   
-
-                                    
-                                );
-                              });
-                    }),
+                            return RegisteredEvent(
+                              id: data['uid'],
+                              viewModel: viewModel,
+                              email: data['email'],
+                              name: data['name'],
+                              address: data['address'],
+                              dob: data['dob'],
+                              docId: data['docId'],
+                            );
+                          });
+                }),
           ),
         );
       },
@@ -95,7 +89,6 @@ class _ViewRegistrationScreenViewState
 }
 
 class RegisteredEvent extends StatelessWidget {
-
   final String id;
   final String name;
   final String email;
@@ -104,7 +97,14 @@ class RegisteredEvent extends StatelessWidget {
   final String docId;
   final ViewRegistrationScreenViewModel viewModel;
   const RegisteredEvent({
-    Key key, this.id, this.name, this.email, this.address, this.viewModel, this.dob, this.docId,
+    Key key,
+    this.id,
+    this.name,
+    this.email,
+    this.address,
+    this.viewModel,
+    this.dob,
+    this.docId,
   }) : super(key: key);
 
   @override
@@ -180,8 +180,8 @@ class RegisteredEvent extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(100.0)),
                       onPressed: () {
-                         
-                         viewModel.openDialogWithQR(registrationId: docId, context: context);
+                        viewModel.openDialogWithQR(
+                            registrationId: docId, context: context);
                       },
                       child: Icon(
                         Icons.qr_code,

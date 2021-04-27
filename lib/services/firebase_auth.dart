@@ -4,14 +4,19 @@ import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:icefishingderby/core/locator.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:crypto/crypto.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class AuthService {
   static bool appleSignInAvailable = false;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   var _auth = FirebaseAuth.instance;
+  final _snackbarService = locator<SnackbarService>();
+
+
   Future<UserCredential> registerUser(email, password) async {
     var _res = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
@@ -61,10 +66,10 @@ class AuthService {
       idToken: appleCredential.identityToken,
       rawNonce: rawNonce,
     );
-
+  var val = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
     insertUserCollection();
 
-    return await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+    return val;
   }
 
   String generateNonce([int length = 32]) {
@@ -87,11 +92,11 @@ class AuthService {
     if  (await checkIfDocExists(_auth.currentUser.uid) == false){
 
      FirebaseFirestore.instance.collection('users').doc(_auth.currentUser.uid).set({
-          'uid': _auth.currentUser,
+          'uid': _auth.currentUser.uid,
           'type': 'customer',
         })
-        .then((value) => print("User Added"))
-        .catchError((error) => print("Failed to add user: $error"));
+        .then((value) => _snackbarService.showSnackbar(message: "You are now logged in", title: "Login Successful"))
+        .catchError((error) => _snackbarService.showSnackbar(message: error.message.toString(), title: "Error"));
     }
 
   }
