@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/core/locator.dart';
+import 'package:icefishingderby/views/my_fish_screen/my_fish_screen_view.dart';
 import 'package:icefishingderby/views/show_qr_code/show_qr_code_view.dart';
 import 'package:logger/logger.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -13,9 +14,14 @@ import 'package:stacked_services/stacked_services.dart';
 class ViewRegistrationScreenViewModel extends BaseViewModel {
   Logger log;
   var auth = FirebaseAuth.instance;
+  final _navService = locator<NavigationService>();
 
   ViewRegistrationScreenViewModel() {
     this.log = getLogger(this.runtimeType.toString());
+  }
+
+  navigateToFishScreen(String docId) {
+    _navService.navigateToView(MyFishScreenView(), arguments: {"docId": docId});
   }
 
   openDialogWithQR({String registrationId, context}) {

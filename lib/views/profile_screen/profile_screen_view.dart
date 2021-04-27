@@ -102,15 +102,11 @@ class ProfileScreenView extends StatelessWidget {
                         ),
                         ProfileCard(
                           icon: Icons.file_copy_outlined,
-                          title: "My Fish",
+                          title: "My Event Registrations",
                           subtitle:
-                              "View your current and past fish registrations.\n",
+                              "View your current and past event registrations.\n",
                           onpressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        ViewFishRankScreenView()));
+                            viewModel.navigateToMyRegistrationScreen();
                           },
                         ),
                         ProfileCard(
@@ -183,5 +179,3 @@ class ProfileScreenView extends StatelessWidget {
     );
   }
 }
-
-

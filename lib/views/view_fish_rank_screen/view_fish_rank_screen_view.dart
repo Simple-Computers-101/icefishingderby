@@ -34,8 +34,7 @@ class ViewFishRankScreenView extends StatelessWidget {
                         .collection('fishRegistration')
                         .doc(data['type'])
                         .collection(data['type'])
-                        .where('uid',
-                            isEqualTo: FirebaseAuth.instance.currentUser.uid)
+                        .where('uid', isEqualTo: data['docId'])
                         .snapshots(),
                     builder: (context, snapshot) {
                       return (snapshot.connectionState ==
@@ -58,10 +57,12 @@ class ViewFishRankScreenView extends StatelessWidget {
                                         children: [
                                           Expanded(
                                             child: Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: Column(
                                                 mainAxisAlignment:
-                                                    MainAxisAlignment.spaceAround,
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
@@ -69,13 +70,17 @@ class ViewFishRankScreenView extends StatelessWidget {
                                                       title: "Rank",
                                                       text: "24",
                                                       size: 20),
-                                                      Detail(
+                                                  Detail(
                                                       title: "Catch Date",
-                                                      text: e['DateTime'].toString().substring(0,10),
+                                                      text: e['DateTime']
+                                                          .toString()
+                                                          .substring(0, 10),
                                                       size: 14),
                                                   Detail(
                                                       title: "Catch Time",
-                                                      text: e['DateTime'].toString().substring(11,19),
+                                                      text: e['DateTime']
+                                                          .toString()
+                                                          .substring(11, 19),
                                                       size: 14),
                                                   Detail(
                                                       title: "Fish Weight",
@@ -83,8 +88,8 @@ class ViewFishRankScreenView extends StatelessWidget {
                                                       size: 14),
                                                   Detail(
                                                       title: "Fish Length",
-                                                      text:
-                                                          e['length'] + " inches",
+                                                      text: e['length'] +
+                                                          " inches",
                                                       size: 14),
                                                 ],
                                               ),

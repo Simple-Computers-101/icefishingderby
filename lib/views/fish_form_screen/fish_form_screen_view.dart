@@ -129,7 +129,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                                 DocumentSnapshot data =
                                     snapshot.data.docs[index];
 
-                                viewModel.uid = data['uid'];
+                                viewModel.uid = data['docId'];
 
                                 return Padding(
                                   padding: const EdgeInsets.all(8.0),
@@ -166,7 +166,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  data['uid'],
+                                                  data['docId'],
                                                   style: t1,
                                                 ),
                                                 Icon(
@@ -362,8 +362,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                 child: FlatButton(
                     color: Colors.white,
                     onPressed: () {
-                      viewModel.register(_image, viewModel.uid, viewModel.fish,
-                          viewModel.length, viewModel.weight);
+                      viewModel.register(_image);
                     },
                     child: Text(
                       'SUBMIT',

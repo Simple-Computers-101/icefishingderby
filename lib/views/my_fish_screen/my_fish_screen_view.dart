@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:icefishingderby/views/view_fish_rank_screen/view_fish_rank_screen_view.dart';
 import 'package:stacked/stacked.dart';
-import '../../constants/colors.dart';
 import '../../constants/colors.dart';
 import 'my_fish_screen_view_model.dart';
 
 class MyFishScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Map<String, String> data = ModalRoute.of(context).settings.arguments;
     return ViewModelBuilder<MyFishScreenViewModel>.reactive(
       builder:
           (BuildContext context, MyFishScreenViewModel viewModel, Widget _) {
@@ -18,7 +17,7 @@ class MyFishScreenView extends StatelessWidget {
           appBar: AppBar(
             backgroundColor: backgroundcolor,
             title: Text(
-              "My Fish",
+              "Select Fish",
               style: GoogleFonts.montserrat(),
             ),
           ),
@@ -109,11 +108,7 @@ class MyFishScreenView extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                   viewModel.navigateToFishScreen(f);
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => ViewFishRankScreenView()));
+                    viewModel.navigateToFishScreen(f, data['docId']);
                   },
                 );
               }).toList(),

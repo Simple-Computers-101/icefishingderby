@@ -1,13 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:icefishingderby/classes/time_date.dart';
+import 'package:icefishingderby/core/locator.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:icefishingderby/core/logger.dart';
+import 'package:stacked_services/stacked_services.dart';
 
 class RegistrationScreenViewModel extends BaseViewModel {
   Logger log;
   var user = FirebaseAuth.instance.currentUser;
+  final _snackbarService = locator<SnackbarService>();
   String name;
   String email;
   String address;
@@ -17,36 +20,61 @@ class RegistrationScreenViewModel extends BaseViewModel {
   String feeToBeCharged;
   String dateOfBirth = DateMonthYear(DateTime.now());
 
-
   RegistrationScreenViewModel() {
     this.log = getLogger(this.runtimeType.toString());
   }
 
-  Future eventRegistration(String name, String email,String address,String dOB,String contact,String ageGroup,String fee)
-  async {
-       var doc =  await FirebaseFirestore.instance.collection('events').where('status',isEqualTo: 'Ongoing').get();
-    DocumentReference documentReference = FirebaseFirestore.instance.collection('eventRegistration').doc();
-         FirebaseFirestore.instance.collection('eventRegistration').doc(documentReference.id).set({
-          'name':name ,
-          'email':email,
-          'address':address,
-          'dob':dOB,
-          'contact':contact,
-          'ageGroup':ageGroup,
-          'fee':fee,
-          'eventId':doc.docs[0]['eventId'],
-          'docId':documentReference.id,
-          "uid":user.uid,
-        })
-        .then((value) => print("user Registered"))
-        .catchError((error) => print("Failed to add user: $error"));
-
-
+  Future eventRegistration() async {
+    var doc = await FirebaseFirestore.instance
+        .collection('events')
+        .where('status', isEqualTo: 'Ongoing')
+        .get();
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('eventRegistration').doc();
+    if (doc.docs[0]['eventId'] != null) {
+      if (name != "" &&
+          email != "" &&
+          address != "" &&
+          contactNumber != "" &&
+          ageGroup != "" &&
+          registrationDays != "" &&
+          feeToBeCharged != "" &&
+          dateOfBirth != "") {
+        FirebaseFirestore.instance
+            .collection('eventRegistration')
+            .doc(documentReference.id)
+            .set({
+              'name': name,
+              'email': email,
+              'address': address,
+              'dob': dateOfBirth,
+              'contact': contactNumber,
+              'ageGroup': ageGroup,
+              'fee': feeToBeCharged,
+              'eventId': doc.docs[0]['eventId'],
+              'docId': documentReference.id,
+              "uid": user.uid,
+            })
+            .then((value) => {
+                  _snackbarService.showSnackbar(
+                    message: "Event registered successfully",
+                  ),
+                })
+            .catchError((err) {
+              _snackbarService.showSnackbar(
+                  message: err.message.toString(), title: "Error");
+            });
+      } else {
+        _snackbarService.showSnackbar(
+            message: "Fields can not be empty ", title: "Error");
+      }
+    } else {
+      _snackbarService.showSnackbar(
+          message: "There is no event scheduled at this time",
+          title: "No Event");
+    }
   }
-  
 }
-
-
 
 double returnTicketCost({String ageGroup, String days}) {
   if (days == 'Saturday' || days == 'Sunday') {
@@ -63,6 +91,3 @@ double returnTicketCost({String ageGroup, String days}) {
     }
   }
 }
-
-
-

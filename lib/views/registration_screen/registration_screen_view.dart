@@ -28,9 +28,6 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
 
   String dateOfBirth = DateMonthYear(DateTime.now());
 
-  var days;
-  var age;
-
   TextEditingController controller = TextEditingController();
 
   @override
@@ -436,8 +433,10 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                               ),
                                               Text(
                                                 returnTicketCost(
-                                                            ageGroup: age,
-                                                            days: days)
+                                                            ageGroup: viewModel
+                                                                .ageGroup,
+                                                            days: viewModel
+                                                                .registrationDays)
                                                         .toString() +
                                                     '\$',
                                                 style: t10appColor,
@@ -457,16 +456,12 @@ class _RegistrationScreenViewState extends State<RegistrationScreenView> {
                                 child: FlatButton(
                                   color: Colors.white,
                                   onPressed: () {
-                                    viewModel.eventRegistration(
-                                        viewModel.name,
-                                        viewModel.email,
-                                        viewModel.address,
-                                        viewModel.dateOfBirth,
-                                        viewModel.contactNumber,
-                                        viewModel.ageGroup,
-                                        returnTicketCost(
-                                                ageGroup: age, days: days)
-                                            .toString());
+                                    viewModel.feeToBeCharged = returnTicketCost(
+                                            ageGroup: viewModel.ageGroup,
+                                            days: viewModel.registrationDays)
+                                        .toString();
+
+                                    viewModel.eventRegistration();
                                   },
                                   child: Padding(
                                     padding: const EdgeInsets.all(13),
