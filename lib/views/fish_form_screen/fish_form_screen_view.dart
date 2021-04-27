@@ -69,10 +69,10 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                                 .collection('eventRegistration')
                                 .doc(value)
                                 .get();
-                            print(doc.data()['name']);
+                            print(doc.data()['email']);
 
                             setState(() {
-                              viewModel.uid = doc.data()['name'];
+                              viewModel.uid = doc.data()['email'];
                             });
                           });
                 },
@@ -114,7 +114,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                 child: StreamBuilder<QuerySnapshot>(
                     stream: FirebaseFirestore.instance
                         .collection('eventRegistration')
-                        .where('name', isEqualTo: viewModel.uid)
+                        .where('email', isEqualTo: viewModel.uid)
                         .snapshots(),
                     builder: (context, snapshot) {
                       return (snapshot.connectionState ==

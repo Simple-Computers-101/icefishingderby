@@ -15,7 +15,7 @@ class FishFormScreenViewModel extends BaseViewModel {
   var downloadUrl;
 
   Future register(var image, var uid, var type, var length, var weight) async {
-   
+   var doc =  await FirebaseFirestore.instance.collection('events').where('status',isEqualTo: 'Ongoing').get();
     DocumentReference documentReference = FirebaseFirestore.instance.collection('eventRegistration').doc();
      putCmd = await _firebaseStorage
         .ref()
@@ -31,6 +31,7 @@ class FishFormScreenViewModel extends BaseViewModel {
       "length": length,
       "weight": weight,
       "uid": uid,
+      "eventId":doc.docs[0]['eventId'],
       "docId":documentReference.id
     }).then((value) => {
           //navigate
