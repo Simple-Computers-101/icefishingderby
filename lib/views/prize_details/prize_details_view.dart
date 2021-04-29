@@ -3,7 +3,6 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
-import 'package:sign_button/sign_button.dart';
 import 'package:stacked/stacked.dart';
 import 'prize_details_view_model.dart';
           

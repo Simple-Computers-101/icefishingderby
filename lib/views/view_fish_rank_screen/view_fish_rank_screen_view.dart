@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,7 +33,8 @@ class ViewFishRankScreenView extends StatelessWidget {
                         .collection('fishRegistration')
                         .doc(data['type'])
                         .collection(data['type'])
-                        .where('uid', isEqualTo: data['docId'])
+                        .where('registrationId',
+                            isEqualTo: data['registrationId'])
                         .snapshots(),
                     builder: (context, snapshot) {
                       return (snapshot.connectionState ==

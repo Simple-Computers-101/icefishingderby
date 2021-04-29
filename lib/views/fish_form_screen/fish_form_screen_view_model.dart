@@ -46,7 +46,7 @@ class FishFormScreenViewModel extends BaseViewModel {
               "type": fish,
               "length": length,
               "weight": weight,
-              "uid": uid,
+              "registrationId": uid,
               "eventId": doc.docs[0]['eventId'],
               "docId": documentReference.id
             })

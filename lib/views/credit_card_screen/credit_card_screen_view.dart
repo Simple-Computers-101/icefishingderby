@@ -39,8 +39,12 @@ class _CreditCardViewState extends State<CreditCardView> {
       builder: (context, CreditCardViewModel model, widget) {
         _model = model;
         return Scaffold(
+          backgroundColor: backgroundcolor,
+          appBar: AppBar(
+            backgroundColor: widgetcolor,
+            title: Text("Payment Information", style: GoogleFonts.josefinSans()),
+          ),
           key: _scaffKey,
-          backgroundColor: ccColor,
           body: SafeArea(
               child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -366,7 +370,6 @@ class CCTextField extends StatelessWidget {
     );
   }
 }
-
 
 //  CreditCardForm(
 //                     formKey: _formKey, // Required

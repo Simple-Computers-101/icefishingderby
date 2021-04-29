@@ -108,7 +108,7 @@ class MyFishScreenView extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    viewModel.navigateToFishScreen(f, data['docId']);
+                    viewModel.navigateToFishScreen(f, data['registrationId']);
                   },
                 );
               }).toList(),

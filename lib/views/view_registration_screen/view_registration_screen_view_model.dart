@@ -20,8 +20,8 @@ class ViewRegistrationScreenViewModel extends BaseViewModel {
     this.log = getLogger(this.runtimeType.toString());
   }
 
-  navigateToFishScreen(String docId) {
-    _navService.navigateToView(MyFishScreenView(), arguments: {"docId": docId});
+  navigateToFishScreen(String registrationId) {
+    _navService.navigateToView(MyFishScreenView(), arguments: {"registrationId": registrationId});
   }
 
   openDialogWithQR({String registrationId, context}) {

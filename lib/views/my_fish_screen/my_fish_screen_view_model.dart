@@ -36,9 +36,9 @@ class MyFishScreenViewModel extends BaseViewModel {
     ],
   };
 
-  navigateToFishScreen(String type, String docId) {
+  navigateToFishScreen(String type, String registrationId) {
     _navService.navigateToView(ViewFishRankScreenView(),
-        arguments: {"type": type, "docId": docId});
+        arguments: {"type": type, "registrationId": registrationId});
   }
 
   MyFishScreenViewModel() {

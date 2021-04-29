@@ -68,7 +68,7 @@ class ProfileScreenView extends StatelessWidget {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Text(
-                                      "Fishermen",
+                                      "Fisherman",
                                       style: GoogleFonts.josefinSans(
                                         fontSize: ScreenUtil().setSp(18),
                                         color: Colors.white,
