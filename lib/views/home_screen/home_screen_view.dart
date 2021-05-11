@@ -16,6 +16,7 @@ class HomeScreenView extends StatelessWidget {
       builder: (BuildContext context, HomeScreenViewModel viewModel, Widget _) {
         return Scaffold(
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             title: Text("Fishing Derby", style: t1,),
             backgroundColor: backgroundcolor,),
             backgroundColor: backgroundcolor,
