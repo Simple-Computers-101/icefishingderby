@@ -25,7 +25,6 @@ class Leaderboard1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: ScreenUtil().setHeight(200),
       width: ScreenUtil().setWidth(110),
       decoration: BoxDecoration(
          color: widgetcolor,
@@ -33,7 +32,7 @@ class Leaderboard1 extends StatelessWidget {
       ),
      
       child: Padding(
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.only(left:5.0,right: 5,bottom:10),
         child: Column(
           children: [
             Padding(

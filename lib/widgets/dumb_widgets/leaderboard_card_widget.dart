@@ -22,15 +22,15 @@ class LeaderboardCard extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Row(
           children: [
-            Text(
-              rank,
-              style: GoogleFonts.montserrat(
-                  color: Colors.white,
-                  fontSize: ScreenUtil().setSp(16),
-                  fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              width: ScreenUtil().setWidth(20),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                rank,
+                style: GoogleFonts.montserrat(
+                    color: Colors.white,
+                    fontSize: ScreenUtil().setSp(16),
+                    fontWeight: FontWeight.w600),
+              ),
             ),
             Container(
               width: ScreenUtil().setWidth(320),
@@ -41,13 +41,11 @@ class LeaderboardCard extends StatelessWidget {
                 child: Row(
                   children: [
                     Container(
-                      height: ScreenUtil().setHeight(60),
                       width: ScreenUtil().setWidth(80),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('assets/' + image))),
+                          ),
+                      child: Image.asset('assets/' + image,fit: BoxFit.cover,)
                     ),
                     SizedBox(
                       width: ScreenUtil().setWidth(20),
