@@ -13,6 +13,7 @@ class FishFormScreenViewModel extends BaseViewModel {
   String uid = "";
   String fish;
   String length;
+  String username;
   String weight;
   var putCmd;
   var downloadUrl;
@@ -44,6 +45,7 @@ class FishFormScreenViewModel extends BaseViewModel {
               "DateTime": DateTime.now().toString(),
               "image": downloadUrl,
               "type": fish,
+              "username":username,
               "length": length,
               "weight": weight,
               "registrationId": uid,

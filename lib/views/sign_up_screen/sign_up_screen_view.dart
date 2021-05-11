@@ -22,157 +22,155 @@ class _SignUpScreenViewState extends State<SignUpScreenView> {
     return ViewModelBuilder<SignUpScreenViewModel>.reactive(
       builder:
           (BuildContext context, SignUpScreenViewModel viewModel, Widget _) {
-        return SafeArea(
-          child: Scaffold(
-            key: _key,
-            backgroundColor: backgroundcolor,
-            body: Padding(
-              padding: const EdgeInsets.only(left: 12.0, right: 12.0),
-              child: ListView(
-                children: [
-                  SizedBox(
-                    height: 30,
+        return Scaffold(
+          key: _key,
+          backgroundColor: backgroundcolor,
+          body: Padding(
+            padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+            child: ListView(
+              children: [
+                SizedBox(
+                  height: 30,
+                ),
+                Center(
+                    child: Image.asset(
+                  'assets/derby-logo.png',
+                  height: 100,
+                )),
+                SizedBox(
+                  height: 15,
+                ),
+                HomeHeader(
+                  title: 'Registration',
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                TextFields(
+                  onChanged: (na) {
+                    setState(() {
+                      viewModel.username = na;
+                    });
+                  },
+                  icon: Tab(
+                    child: Icon(
+                      FontAwesomeIcons.userAlt,
+                      color: appColor,
+                    ),
                   ),
-                  Center(
-                      child: Image.asset(
-                    'assets/derby-logo.png',
-                    height: 100,
-                  )),
-                  SizedBox(
-                    height: 15,
+                  hintText: "Name",
+                  secureText: false,
+                  borderColor: appColor,
+                  focusColor: Colors.white,
+                  context: null,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                TextFields(
+                  onChanged: (em) {
+                    setState(() {
+                      viewModel.email = em;
+                    });
+                  },
+                  icon: Tab(
+                    child: Icon(
+                      Icons.email_rounded,
+                      color: appColor,
+                    ),
                   ),
-                  HomeHeader(
-                    title: 'Registration',
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextFields(
-                    onChanged: (na) {
+                  hintText: "Email",
+                  secureText: false,
+                  borderColor: appColor,
+                  focusColor: Colors.white,
+                  context: null,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                TextFields(
+                  show: IconButton(
+                    icon: Icon(
+                      _passwordVisible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                      color: Theme.of(context).primaryColorDark,
+                    ),
+                    onPressed: () {
                       setState(() {
-                        viewModel.username = na;
+                        _passwordVisible = !_passwordVisible;
                       });
                     },
-                    icon: Tab(
-                      child: Icon(
-                        FontAwesomeIcons.userAlt,
-                        color: appColor,
-                      ),
+                  ),
+                  icon: Tab(
+                    child: Icon(
+                      Icons.lock,
+                      color: appColor,
                     ),
-                    hintText: "Name",
-                    secureText: false,
-                    borderColor: appColor,
-                    focusColor: Colors.white,
-                    context: null,
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextFields(
-                    onChanged: (em) {
-                      setState(() {
-                        viewModel.email = em;
-                      });
-                    },
-                    icon: Tab(
-                      child: Icon(
-                        Icons.email_rounded,
-                        color: appColor,
-                      ),
-                    ),
-                    hintText: "Email",
-                    secureText: false,
-                    borderColor: appColor,
-                    focusColor: Colors.white,
-                    context: null,
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  TextFields(
-                    show: IconButton(
-                      icon: Icon(
-                        _passwordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                        color: Theme.of(context).primaryColorDark,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          _passwordVisible = !_passwordVisible;
-                        });
-                      },
-                    ),
-                    icon: Tab(
-                      child: Icon(
-                        Icons.lock,
-                        color: appColor,
-                      ),
-                    ),
-                    hintText: "Password",
-                    onChanged: (pa) {
-                      setState(() {
-                        viewModel.password = pa;
-                      });
-                    },
-                    secureText: _passwordVisible,
-                    borderColor: appColor,
-                    focusColor: Colors.white,
-                    context: null,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                        child: Container(
-                      width: 240,
-                      height: 45,
-                      decoration: BoxDecoration(
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                              color: Colors.black45,
-                              blurRadius: 8,
-                              offset: Offset(4, 4),
-                            ),
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(25),
-                          border: Border.all(color: Colors.blueAccent)),
-                      child: GestureDetector(
-                          onTap: () {
-                            viewModel.provideRegisteration();
-
-                            
-                          },
-                          child: Center(
-                            child: Text(
-                              "     Sign Up     ",
-                              style: t10appColor,
-                            ),
-                          )),
-                    )),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: InkWell(
+                  hintText: "Password",
+                  onChanged: (pa) {
+                    setState(() {
+                      viewModel.password = pa;
+                    });
+                  },
+                  secureText: _passwordVisible,
+                  borderColor: appColor,
+                  focusColor: Colors.white,
+                  context: null,
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                      child: Container(
+                    width: 240,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                            color: Colors.black45,
+                            blurRadius: 8,
+                            offset: Offset(4, 4),
+                          ),
+                        ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(color: Colors.blueAccent)),
+                    child: GestureDetector(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginScreenView()));
+                          viewModel.provideRegisteration();
+
+                          
                         },
-                        child: Text(
-                          'Already have an account? Login',
-                          style: t5,
-                        ),
+                        child: Center(
+                          child: Text(
+                            "     Sign Up     ",
+                            style: t10appColor,
+                          ),
+                        )),
+                  )),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreenView()));
+                      },
+                      child: Text(
+                        'Already have an account? Login',
+                        style: t5,
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ),
         );

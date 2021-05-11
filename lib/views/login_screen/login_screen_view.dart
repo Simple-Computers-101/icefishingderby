@@ -200,7 +200,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomeScreenView()));
+                                    builder: (context) => BottomBarView(type:false)));
                           else
                             _key.currentState.showSnackBar(SnackBar(
                               content: Text(user.toString()),

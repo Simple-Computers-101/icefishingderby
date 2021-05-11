@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/views/fish_form_screen/fish_form_screen_view.dart';
 import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
+import 'package:icefishingderby/views/leaderboard_screen/leaderboard_screen_view.dart';
 import 'package:icefishingderby/views/profile_screen/profile_screen_view.dart';
 import 'package:icefishingderby/views/registration_screen/registration_screen_view.dart';
 import 'package:stacked/stacked.dart';
@@ -76,7 +77,7 @@ class BottomBarView extends StatelessWidget {
       case 1:
         return RegistrationScreenView();
       case 2:
-        return HomeScreenView();
+        return LeaderboardScreenView();
       case 3:
         return FishFormScreenView();
       case 4:

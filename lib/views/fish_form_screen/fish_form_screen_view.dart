@@ -70,7 +70,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                                 .doc(value)
                                 .get();
                             print(doc.data()['email']);
-
+                            viewModel.username = doc.data()['name'];
                             setState(() {
                               viewModel.uid = doc.data()['email'];
                             });
@@ -128,9 +128,8 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                               itemBuilder: (context, index) {
                                 DocumentSnapshot data =
                                     snapshot.data.docs[index];
-
                                 viewModel.uid = data['docId'];
-
+                                 viewModel.username = data['name'];
                                 return Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Card(

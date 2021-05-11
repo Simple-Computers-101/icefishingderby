@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
@@ -61,21 +62,47 @@ class LeaderboardCard extends StatelessWidget {
                               fontSize: ScreenUtil().setSp(14)),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Text(
-                            '${weight} g',
-                            style: GoogleFonts.montserrat(
-                                color: Colors.green,
-                                fontSize: ScreenUtil().setSp(14)),
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Padding(
+                                 padding: const EdgeInsets.only(right:8.0),
+                                child: Icon(
+                                  FlutterIcons.weight_faw5s,
+                                  size: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                '${weight} g',
+                                style: GoogleFonts.montserrat(
+                                    color: Colors.green,
+                                    fontSize: ScreenUtil().setSp(14)),
+                              ),
+                            ],
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(3.0),
-                          child: Text(
-                            '${length} cm',
-                            style: GoogleFonts.montserrat(
-                                color: Colors.red,
-                                fontSize: ScreenUtil().setSp(14)),
+                          padding: const EdgeInsets.only(top: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(right:8.0),
+                                child: Icon(
+                                  FlutterIcons.ruler_ent,
+                                  size: 15,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                '${length} cm',
+                                style: GoogleFonts.montserrat(
+                                    color: Colors.red,
+                                    fontSize: ScreenUtil().setSp(14)),
+                              ),
+                            ],
                           ),
                         ),
                       ],
