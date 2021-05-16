@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/views/credit_card_screen/credit_card_screen_view.dart';
+import 'package:icefishingderby/views/transaction_history/transaction_history_view.dart';
 import 'package:icefishingderby/views/view_fish_rank_screen/view_fish_rank_screen_view.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/profile_card.dart';
 import 'package:stacked/stacked.dart';
@@ -123,6 +124,16 @@ class ProfileScreenView extends StatelessWidget {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
                                 return CreditCardView();
+                              }));
+                            }),
+                        ProfileCard(
+                            icon: FontAwesome.sticky_note,
+                            title: "Payment History",
+                            subtitle: "View Past Payments.\n",
+                            onpressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return TransactionHistoryView();
                               }));
                             }),
                         ProfileCard(

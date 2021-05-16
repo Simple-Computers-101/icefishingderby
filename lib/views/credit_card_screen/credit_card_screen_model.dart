@@ -1,6 +1,8 @@
 import 'dart:core';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:icefishingderby/core/locator.dart';
 import 'package:icefishingderby/core/logger.dart';
 import 'package:icefishingderby/services/firebase_auth.dart';
@@ -53,12 +55,12 @@ class CreditCardViewModel extends MultipleStreamViewModel {
   }
 
   Stream<DocumentSnapshot> getCardFromFirebase() {
-    /* var currUser = await AuthService.currUID;
-    var currUID = currUser.uid;
-    */
+    //  var currUser = await AuthService.currUID;
+    // var currUID = currUser.uid;
+
     return FirebaseFirestore.instance
         .collection('users')
-        .doc(AuthService.testUid)
+        .doc(AuthService.currUID.uid)
         .snapshots();
     /*
     List cards = userDoc.data()['cards'];
@@ -68,18 +70,34 @@ class CreditCardViewModel extends MultipleStreamViewModel {
     */
   }
 
+  deleteCardFromFirebase(card) {}
+  addTransactionHistory(cardNumber, reason, amount) async {
+    await FirebaseFirestore.instance.collection('transactions').add({
+      'card_number': cardNumber,
+      'reason': reason,
+      'amount': amount,
+      'date': DateTime.now(),
+      'uid': AuthService.currUID.uid,
+    });
+  }
+
   confirmPayment(card) async {
+    var amountInDollars = 25;
+    var amountInCents = amountInDollars * 100;
+
     DialogResponse response = await dialogService.showDialog(
         title: 'Confirm Payment?',
         description:
-            "\$120 will be charged on this Card.\n${card.number}\n${card.name}",
+            "\$$amountInDollars will be charged on this Card.\n${card.number}\n${card.name}",
         buttonTitle: "OK",
         cancelTitle: 'Cancel');
     if (response.confirmed)
       StripeService.payViaExistingCard(
-              amount: '120', currency: 'USD', card: card)
+              amount: '$amountInCents', currency: 'USD', card: card)
           .then((value) {
         snackService.showSnackbar(message: value.message);
+        addTransactionHistory(
+            card.number, "Test Transaction Log", "\$$amountInDollars");
       });
 
     //Send Card to Stripe.

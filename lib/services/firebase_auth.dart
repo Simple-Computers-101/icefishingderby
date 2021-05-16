@@ -11,7 +11,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class AuthService {
-  static Future<User> get currUID async => FirebaseAuth.instance.currentUser;
+  static User get currUID => FirebaseAuth.instance.currentUser;
 
   static String get testUid => '5VArbfpanyYWLdrN2daMNcbSAX93';
 
@@ -19,7 +19,6 @@ class AuthService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   var _auth = FirebaseAuth.instance;
   final _snackbarService = locator<SnackbarService>();
-
 
   Future<UserCredential> registerUser(email, password) async {
     var _res = await _auth.createUserWithEmailAndPassword(
@@ -70,7 +69,7 @@ class AuthService {
       idToken: appleCredential.identityToken,
       rawNonce: rawNonce,
     );
-  var val = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+    var val = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
     insertUserCollection();
 
     return val;
@@ -91,16 +90,18 @@ class AuthService {
   }
 
   insertUserCollection() async {
-
-   
-    if  (await checkIfDocExists(_auth.currentUser.uid) == false){
-
-     FirebaseFirestore.instance.collection('users').doc(_auth.currentUser.uid).set({
-          'uid': _auth.currentUser.uid,
-          'type': 'customer',
-        })
-        .then((value) => _snackbarService.showSnackbar(message: "You are now logged in", title: "Login Successful"))
-        .catchError((error) => _snackbarService.showSnackbar(message: error.message.toString(), title: "Error"));
+    if (await checkIfDocExists(_auth.currentUser.uid) == false) {
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(_auth.currentUser.uid)
+          .set({
+            'uid': _auth.currentUser.uid,
+            'type': 'customer',
+          })
+          .then((value) => _snackbarService.showSnackbar(
+              message: "You are now logged in", title: "Login Successful"))
+          .catchError((error) => _snackbarService.showSnackbar(
+              message: error.message.toString(), title: "Error"));
     }
   }
 

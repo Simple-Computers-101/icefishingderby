@@ -15,4 +15,6 @@ class ProfileScreenViewModel extends BaseViewModel {
   navigateToMyRegistrationScreen() {
     _navService.navigateToView(ViewRegistrationScreenView());
   }
+
+  fetchTransactionHistory() {}
 }

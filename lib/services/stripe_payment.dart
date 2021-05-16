@@ -72,6 +72,7 @@ class StripeService {
     } on PlatformException catch (err) {
       return StripeService.getPlatformExceptionErrorResult(err);
     } catch (err) {
+      print(err);
       return new StripeTransactionResponse(
           message: 'Transaction failed: ${err.toString()}', success: false);
     }
@@ -83,14 +84,17 @@ class StripeService {
       Map<String, dynamic> body = {
         'amount': amount,
         'currency': currency,
-        'payment_method_types[]': 'card'
+        'payment_method_types[]': 'card',
+        // 'client_secret': secret
       };
       var response = await http.post(
         Uri.parse(StripeService.paymentApiUrl),
         body: body,
         headers: StripeService.headers,
       );
-      return jsonDecode(response.body);
+      var decode = jsonDecode(response.body);
+      print(decode);
+      return decode;
     } catch (err) {
       print('err charging user: ${err.toString()}');
     }

@@ -26,7 +26,6 @@ class LoginScreenView extends StatefulWidget {
 class _LoginScreenViewState extends State<LoginScreenView> {
   var _passwordVisible = true;
   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
-  
 
   @override
   Widget build(BuildContext context) {
@@ -153,19 +152,7 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                           borderRadius: BorderRadius.circular(25),
                           border: Border.all(color: Colors.blueAccent)),
                       child: GestureDetector(
-                          onTap: () async {
-                            //Login Using Email
-                            var user = await viewModel.provideEmailSign();
-                            if (user is UserCredential)
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => BottomBarView(type:false)));
-                            else
-                              _key.currentState.showSnackBar(SnackBar(
-                                content: Text(user.toString()),
-                              ));
-                          },
+                          onTap: viewModel.provideEmailSign,
                           child: Center(
                             child: Text(
                               "     Login     ",
@@ -192,34 +179,12 @@ class _LoginScreenViewState extends State<LoginScreenView> {
                     children: [
                       SignInButton.mini(
                         buttonType: ButtonType.google,
-                        onPressed: () async {
-                          //Google SignIn
-                          UserCredential user =
-                              await viewModel.provideGoogleSign();
-                          if (user is UserCredential)
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => BottomBarView(type:false)));
-                          else
-                            _key.currentState.showSnackBar(SnackBar(
-                              content: Text(user.toString()),
-                            ));
-                        },
+                        onPressed: viewModel.provideGoogleSign,
                       ),
                       if (AuthService.appleSignInAvailable && Platform.isIOS)
                         SignInButton.mini(
                           buttonType: ButtonType.apple,
-                          onPressed: () async {
-                            //Apple SignIn
-                            var uc = await viewModel.provideAppleSign();
-                            if (uc is UserCredential)
-                              print(uc.user.email);
-                            else
-                              _key.currentState.showSnackBar(SnackBar(
-                                content: Text(uc.toString()),
-                              ));
-                          },
+                          onPressed: viewModel.provideAppleSign,
                         ),
                     ],
                   ),

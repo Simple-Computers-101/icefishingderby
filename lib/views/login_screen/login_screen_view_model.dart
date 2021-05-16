@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:icefishingderby/core/locator.dart';
 import 'package:icefishingderby/services/firebase_auth.dart';
+import 'package:icefishingderby/views/bottom_bar/bottom_bar_view.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:icefishingderby/core/logger.dart';
@@ -13,10 +14,8 @@ class LoginScreenViewModel extends BaseViewModel {
   String email, password;
   String uid;
 
-  
-    final _navService = locator<NavigationService>();
-
-    
+  final _navService = locator<NavigationService>();
+  final _dialogService = locator<DialogService>();
 
   LoginScreenViewModel() {
     this.log = getLogger(this.runtimeType.toString());
@@ -26,12 +25,17 @@ class LoginScreenViewModel extends BaseViewModel {
       try {
         var user = await AuthService().emailAuth(email, password);
         if (user.user.emailVerified) {
-          return user;
+          _navService.navigateToView(BottomBarView(
+            type: false,
+          ));
         } else
-          throw FirebaseAuthException(
-              message: "Email not verified.", code: "092");
+          _dialogService.showDialog(
+              title: "Email not verified",
+              description:
+                  "Please check your email for verification email. And click the link in the email.");
       } on FirebaseAuthException catch (_) {
-        return _.message;
+        _dialogService.showDialog(
+            title: "Something went wrong.", description: _.message);
       }
     }
   }
@@ -40,17 +44,27 @@ class LoginScreenViewModel extends BaseViewModel {
     try {
       var uc = await AuthService().googleAuth();
       uid = uc.user.uid;
-    // _navService.navigateTo();
-      return uc;
+      // _navService.navigateTo();
+      print(uid);
+      _navService.navigateToView(BottomBarView(
+        type: false,
+      ));
     } on FirebaseAuthException catch (e) {
-      return e.message;
+      _dialogService.showDialog(
+        title: "Error",
+        description: e.message,
+        barrierDismissible: false,
+      );
     }
   }
 
   Future provideAppleSign() async {
     try {
       var uc = await AuthService().appleAuth();
-      return uc;
+      print(uc.user.uid);
+      _navService.navigateToView(BottomBarView(
+        type: false,
+      ));
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
