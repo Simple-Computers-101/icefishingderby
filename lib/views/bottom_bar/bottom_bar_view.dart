@@ -36,83 +36,77 @@ class _BottomBarViewState extends State<BottomBarView> {
                   .doc(_auth.currentUser.uid)
                   .snapshots(),
               builder: (context, snapshot) {
-
-                
-
-                if (snapshot.connectionState == ConnectionState.waiting){
-                  return Container(height: 0, width: 0,);
-                }
-                else 
-                {
-                 if ((snapshot.data['type'] == 'customer')){
-                   isCustomer = true;
-                 }
-                 else {
-                   isCustomer = false;
-                 }
-                print(isCustomer);
-                return getViewForIndex(viewModel.currentIndex, isCustomer);
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Container(
+                    height: 0,
+                    width: 0,
+                  );
+                } else {
+                  if ((snapshot.data['type'] == 'customer')) {
+                    isCustomer = true;
+                  } else {
+                    isCustomer = false;
+                  }
+                  
+                  return getViewForIndex(viewModel.currentIndex, isCustomer);
                 }
               }), // new
           bottomNavigationBar: StreamBuilder<DocumentSnapshot>(
-            stream: FirebaseFirestore.instance
+              stream: FirebaseFirestore.instance
                   .collection('users')
                   .doc(_auth.currentUser.uid)
                   .snapshots(),
-            builder: (context, snapshot) {
-                 if ((snapshot.data['type'] == 'customer')){
-                   isCustomer = true;
-                 }
-                 else {
-                   isCustomer = false;
-                 }
-              return BottomNavigationBar(
-                type: BottomNavigationBarType.fixed,
-                selectedLabelStyle: GoogleFonts.rubik(),
-                selectedItemColor: Colors.white,
+              builder: (context, snapshot) {
+                if ((snapshot.data['type'] == 'customer')) {
+                  isCustomer = true;
+                } else {
+                  isCustomer = false;
+                }
+                return BottomNavigationBar(
+                  type: BottomNavigationBarType.fixed,
+                  selectedLabelStyle: GoogleFonts.rubik(),
+                  selectedItemColor: Colors.white,
 
-                unselectedIconTheme: IconThemeData(color: Colors.grey),
-                elevation: 10,
-                backgroundColor: widgetcolor,
-                onTap: viewModel.setIndex, // new
-                currentIndex: viewModel.currentIndex, // new
-                items: [
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        FlutterIcons.home_ant,
-                        size: 25,
-                      ),
-                      label: ""),
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        FlutterIcons.file_document_box_multiple_outline_mco,
-                        size: 25,
-                      ),
-                      label: ""),
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.leaderboard,
-                        size: 25,
-                      ),
-                      label: ""),
-                      if (isCustomer == false) 
-                  BottomNavigationBarItem(
-                      icon: Icon(
-                        FlutterIcons.fish_mco,
-                        size: 25,
-                      ),
-                      label: "") ,
-                 
+                  unselectedIconTheme: IconThemeData(color: Colors.grey),
+                  elevation: 10,
+                  backgroundColor: widgetcolor,
+                  onTap: viewModel.setIndex, // new
+                  currentIndex: viewModel.currentIndex, // new
+                  items: [
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          FlutterIcons.home_ant,
+                          size: 25,
+                        ),
+                        label: ""),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          FlutterIcons.file_document_box_multiple_outline_mco,
+                          size: 25,
+                        ),
+                        label: ""),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.leaderboard,
+                          size: 25,
+                        ),
+                        label: ""),
+                    if (isCustomer == false)
                       BottomNavigationBarItem(
-                      icon: Icon(
-                        FlutterIcons.person_mdi,
-                        size: 25,
-                      ),
-                      label: ""),
-                ],
-              );
-            }
-          ),
+                          icon: Icon(
+                            FlutterIcons.fish_mco,
+                            size: 25,
+                          ),
+                          label: ""),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          FlutterIcons.person_mdi,
+                          size: 25,
+                        ),
+                        label: ""),
+                  ],
+                );
+              }),
         );
       },
       viewModelBuilder: () => BottomBarViewModel(),
@@ -120,53 +114,32 @@ class _BottomBarViewState extends State<BottomBarView> {
   }
 
   Widget getViewForIndex(int index, bool isCustomer) {
-
-    if (isCustomer ==true){
-      if (index == 0){
+    if (isCustomer == true) {
+      if (index == 0) {
         return HomeScreenView();
-    }
-      else if (index == 1){
-         return RegistrationScreenView();
-      }
-
-      else if (index == 2){
+      } else if (index == 1) {
+        return RegistrationScreenView();
+      } else if (index == 2) {
         return LeaderboardScreenView();
-      }
-
-      else if (index == 3) {
+      } else if (index == 3) {
         return ProfileScreenView();
-      }
-      else {
-          return HomeScreenView();
-      }
-    }
-    else {
-
-       if (index == 0){
+      } else {
         return HomeScreenView();
-    }
-      else if (index == 1){
-         return RegistrationScreenView();
       }
-
-      else if (index == 2){
+    } else {
+      if (index == 0) {
+        return HomeScreenView();
+      } else if (index == 1) {
+        return RegistrationScreenView();
+      } else if (index == 2) {
         return LeaderboardScreenView();
+      } else if (index == 3) {
+        return FishFormScreenView();
+      } else if (index == 4) {
+        return ProfileScreenView();
+      } else {
+        return HomeScreenView();
       }
-
-      else if (index == 3) {
-       return FishFormScreenView();
-      }
-      else if (index == 4){
-            return ProfileScreenView(); 
-
-      }
-      else {
-          return HomeScreenView();
-      }
-
     }
-
-    
-    
   }
 }

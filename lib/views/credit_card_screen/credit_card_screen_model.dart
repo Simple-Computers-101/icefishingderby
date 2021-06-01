@@ -49,7 +49,7 @@ class CreditCardViewModel extends MultipleStreamViewModel {
     */
     await FirebaseFirestore.instance
         .collection('users')
-        .doc(AuthService.testUid)
+        .doc(AuthService.currUID.uid)
         .update({
       'cards': FieldValue.arrayUnion([thisCard])
     });
