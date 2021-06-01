@@ -8,7 +8,7 @@ TextStyle t1 = GoogleFonts.montserrat(
     textStyle: TextStyle(fontSize: 17, color: Colors.white));
 
 TextStyle t1small = GoogleFonts.montserrat(
-    textStyle: TextStyle(fontSize: 15, color: Colors.white));
+    textStyle: TextStyle(fontSize: 14, color: Colors.white));
 
 TextStyle t10 = GoogleFonts.montserrat(
     textStyle: TextStyle(fontSize: 17, color: Colors.black));

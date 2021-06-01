@@ -11,7 +11,7 @@ dependencies:
   auto_route: ^0.6.9
   awesome_loader: ^0.0.3
   flutter_custom_clippers: ^1.1.1
-  flutter_screenutil: ^1.0.2
+  flutter_screenutil: ^5.0.0+2
   google_fonts:
   get_it: ^6.0.0
   font_awesome_flutter: ^8.5.0
