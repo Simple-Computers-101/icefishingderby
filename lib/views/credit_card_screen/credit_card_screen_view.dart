@@ -89,7 +89,8 @@ class _CreditCardViewState extends State<CreditCardView> {
                     flex: 5,
                     child: model.fetchingCards
                         ? Center(child: CircularProgressIndicator())
-                        : _showCreditCards(model.fetchedCards['cards'], model),
+                          : _showCreditCards(
+                            model.fetchedCards['cards'], model, context),
                   ),
                 TextButton(
                   onPressed: () {
@@ -116,8 +117,8 @@ class _CreditCardViewState extends State<CreditCardView> {
     ));
   }
 
-  Widget _showCreditCards(cards, model) {
-    if (cards == null)
+    Widget _showCreditCards(cards, model, contenxt) {
+    if (cards == null) {
       return Container(
           alignment: Alignment.center,
           child: Column(
@@ -128,15 +129,18 @@ class _CreditCardViewState extends State<CreditCardView> {
                   style: GoogleFonts.montserrat(color: Colors.white)),
             ],
           ));
+    }
+    var args = ModalRoute.of(context).settings.arguments;
+    print(args);
     return ListView(
       children: [
         for (int i = 0; i < cards.length; i++)
-          _buildCreditCardsButton(cards[i], i, model),
+          _buildCreditCardsButton(cards[i], i, model, args),
       ],
     );
   }
 
-  _buildCreditCardsButton(Map card, index, model) {
+  _buildCreditCardsButton(Map card, index, model, args) {
     var cc = CreditCardWidget(
       cardNumber: card['card_number'],
       expiryDate: card['expiry'],
@@ -150,13 +154,13 @@ class _CreditCardViewState extends State<CreditCardView> {
     return FlatButton(
       onPressed: () {
         model.confirmPayment(
-          CreditCard(
-              cvc: cc.cvvCode,
-              number: cc.cardNumber,
-              name: cc.cardHolderName,
-              expMonth: int.parse(exp[0]),
-              expYear: int.parse(exp[1])),
-        );
+           CreditCard(
+                cvc: cc.cvvCode,
+                number: cc.cardNumber,
+                name: cc.cardHolderName,
+                expMonth: int.parse(exp[0]),
+                expYear: int.parse(exp[1])),
+            paymentDetails: args);
         //Send Card to Stripe.
       },
       child: Container(

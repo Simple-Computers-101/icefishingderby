@@ -18,6 +18,7 @@ class CreditCardViewModel extends MultipleStreamViewModel {
 
   final dialogService = locator<DialogService>();
   final snackService = locator<SnackbarService>();
+  final navService = locator<NavigationService>();
 
   CreditCardViewModel() {
     log = getLogger(this.runtimeType.toString());
@@ -81,20 +82,23 @@ class CreditCardViewModel extends MultipleStreamViewModel {
     });
   }
 
-  confirmPayment(card) async {
-    var amountInDollars = 25;
+ confirmPayment(card, {paymentDetails}) async {
+    var amountInDollars = double.parse(paymentDetails['fee']).toInt();
     var amountInCents = amountInDollars * 100;
+    print("Fee : ${amountInCents}");
 
     DialogResponse response = await dialogService.showDialog(
         title: 'Confirm Payment?',
         description:
-            "\$$amountInDollars will be charged on this Card.\n${card.number}\n${card.name}",
+            "\$$amountInDollars will be charged on this card.\n${card.number}\n${card.name}",
         buttonTitle: "OK",
         cancelTitle: 'Cancel');
     if (response.confirmed)
       StripeService.payViaExistingCard(
               amount: '$amountInCents', currency: 'USD', card: card)
           .then((value) {
+                    navService.back(result: value.success);
+
         snackService.showSnackbar(message: value.message);
         addTransactionHistory(
             card.number, "Test Transaction Log", "\$$amountInDollars");
