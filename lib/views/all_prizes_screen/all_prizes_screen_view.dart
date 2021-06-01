@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
-import 'package:icefishingderby/widgets/dumb_widgets/registration_card.dart';
 import 'package:stacked/stacked.dart';
 import 'all_prizes_screen_view_model.dart';
 
@@ -15,41 +13,57 @@ class AllPrizesScreenView extends StatelessWidget {
       builder:
           (BuildContext context, AllPrizesScreenViewModel viewModel, Widget _) {
         return Scaffold(
-            backgroundColor: backgroundcolor,
-            appBar: AppBar(
-              backgroundColor: widgetcolor,
-              title: Icon(
-                FontAwesome.trophy,
-                size: 35,
-              ),
-              elevation: 0,
+          backgroundColor: backgroundcolor,
+          appBar: AppBar(
+            backgroundColor: widgetcolor,
+            title: Icon(
+              FontAwesome.trophy,
+              size: 35,
             ),
-            body: Padding(
-                padding: const EdgeInsets.only(left: 5, right: 5),
-                child: StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance
-                        .collection('prizes')
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      return (snapshot.connectionState ==
-                              ConnectionState.waiting)
-                          ? Center(
-                              child: CircularProgressIndicator(
-                              backgroundColor: widgetcolor,
-                            ))
-                          : ListView.builder(
-                              itemCount: snapshot.data.docs.length,
-                              itemBuilder: (context, index) {
-                                DocumentSnapshot data =
-                                    snapshot.data.docs[index];
-
-                                return PrizeCard(
-                                  details: data['description'],
-                                  name: data['name'],
-                                  image: data['image'],
-                                );
-                              });
-                    })));
+            elevation: 0,
+          ),
+          body: ListView(
+            children: [
+              Stack(
+                children: [
+                  Center(
+                      child: Container(
+                          width: ScreenUtil().setWidth(double.infinity),
+                          height: ScreenUtil().setHeight(100),
+                          decoration: BoxDecoration(
+                              color: widgetcolor,
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(35),
+                                  bottomRight: Radius.circular(35))),
+                          child: Image.asset(
+                            'assets/trophy.png',
+                            height: ScreenUtil().setHeight(100),
+                          )))
+                ],
+              ),
+              PrizeCard(
+                image: Image.asset('assets/f1.png'),
+                name: 'Cash Prize',
+                details: '1000 \$ USD',
+              ),
+              PrizeCard(
+                image: Image.asset('assets/f1.png'),
+                name: 'Cash Prize',
+                details: '1000 \$ USD',
+              ),
+              PrizeCard(
+                image: Image.asset('assets/f1.png'),
+                name: 'Cash Prize',
+                details: '1000 \$ USD',
+              ),
+              PrizeCard(
+                image: Image.asset('assets/f1.png'),
+                name: 'Cash Prize',
+                details: '1000 \$ USD',
+              ),
+            ],
+          ),
+        );
       },
       viewModelBuilder: () => AllPrizesScreenViewModel(),
     );
@@ -59,77 +73,45 @@ class AllPrizesScreenView extends StatelessWidget {
 class PrizeCard extends StatelessWidget {
   final String name;
   final String details;
-  final String image;
-  final String type;
+  final Image image;
   const PrizeCard({
     Key key,
     this.name,
     this.details,
     this.image,
-    this.type,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(4),
+      padding: const EdgeInsets.all(8.0),
       child: Card(
-        
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(22.0),
+          borderRadius: BorderRadius.circular(15.0),
         ),
         elevation: 2,
         color: widgetcolor,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: Row(
             children: [
-              Center(
-                child:  Text(
+              Expanded(
+                child: Column(
+                  children: [
+                    Text(
                       name,
                       style: t1,
                     ),
-              ),
-              Column(
-                children: [
-                 
-                  SizedBox(
-                    height: ScreenUtil().setHeight(15),
-                  ),
-                  Text(
-                    details,
-                    style: t1small,
-                  ),
-                    SizedBox(
-                    height: ScreenUtil().setHeight(15),
-                  ),
-                  
-                ],
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(bottomRight: Radius.circular(22), topRight: Radius.circular(22))
+                    Text(
+                      details,
+                      style: t1,
+                    )
+                  ],
                 ),
-                
-                child: Image.network(image, fit: BoxFit.contain, height: ScreenUtil().setHeight(150),)),
-              Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: backgroundcolor,
-                                borderRadius: BorderRadius.circular(22)),
-                            child: TextButton.icon(
-                                onPressed: () {},
-                                icon: Icon(
-                                  FontAwesome.trophy,
-                                  color: Colors.white,
-                                ),
-                                label: Text(
-                                  "View Chances",
-                                  style: t1small,
-                                )),
-                          ),
-                        )
+              ),
+              Expanded(
+                child: image,
+              ),
             ],
           ),
         ),
