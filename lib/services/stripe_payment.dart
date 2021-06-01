@@ -19,6 +19,7 @@ class StripeService {
   };
 
   static init() {
+    // StripePayment.setStripeAccount(stripeAccount)
     StripePayment.setOptions(
       StripeOptions(
           publishableKey: 'pk_test_OjFc9qxUqZeQWbt2lmJHhAbk00UB0fS5VW',
