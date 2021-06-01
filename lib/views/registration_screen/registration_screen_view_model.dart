@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:icefishingderby/classes/time_date.dart';
 import 'package:icefishingderby/core/locator.dart';
-import 'package:icefishingderby/views/credit_card_screen/credit_card_screen_view.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:icefishingderby/core/logger.dart';
@@ -12,8 +11,6 @@ class RegistrationScreenViewModel extends BaseViewModel {
   Logger log;
   var user = FirebaseAuth.instance.currentUser;
   final _snackbarService = locator<SnackbarService>();
-  final _navService = locator<NavigationService>();
-
   String name;
   String email;
   String address;
@@ -43,21 +40,6 @@ class RegistrationScreenViewModel extends BaseViewModel {
           registrationDays != "" &&
           feeToBeCharged != "" &&
           dateOfBirth != "") {
-        var payment = await _navService.navigateToView(
-          CreditCardView(),
-          arguments: {
-            "days": registrationDays,
-            "ageGroup": ageGroup,
-            "fee": feeToBeCharged,
-          },
-        );
-        print("back args $payment");
-        if (payment == null || !payment) {
-          _snackbarService.showSnackbar(
-              message: "FAILURE: Issue with the card details.");
-          return;
-        }
-
         FirebaseFirestore.instance
             .collection('eventRegistration')
             .doc(documentReference.id)
