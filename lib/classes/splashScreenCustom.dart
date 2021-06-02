@@ -2,7 +2,11 @@
 
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:icefishingderby/views/bottom_bar/bottom_bar_view.dart';
+import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
+import 'package:icefishingderby/views/login_screen/login_screen_view.dart';
 
 class AdvancedSplashScreen extends StatefulWidget {
 
@@ -35,11 +39,18 @@ class _AdvancedSplashScreenState extends State<AdvancedSplashScreen> with Ticker
   AnimationController _animationController;
 
   List<double> stopList = [];
-
+  bool isLoggedIn = true;
   @override
   void initState() {
     super.initState();
-
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final usr = FirebaseAuth.instance.currentUser;
+      if (usr != null) {
+        isLoggedIn = true;
+      } else {
+        isLoggedIn = false;
+      }
+    });
     buildStopList();
 
     handleScreenReplacement();
@@ -69,7 +80,7 @@ class _AdvancedSplashScreenState extends State<AdvancedSplashScreen> with Ticker
 
   @override
   Widget build(BuildContext context) {
-
+ 
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
@@ -135,18 +146,28 @@ class _AdvancedSplashScreenState extends State<AdvancedSplashScreen> with Ticker
 
     Timer(Duration(seconds: widget.seconds, milliseconds: widget.milliseconds), (){
 
-      if(widget.child == null){
-
-        throw new ArgumentError(
-            'No child was passed. widget.child must not be null.'
-        );
-      }
-      else{
+     
+      
 
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-          return widget.child;
+          if (isLoggedIn){
+  //           Navigator.push(
+  //   context,
+  //   MaterialPageRoute(builder: (context) => BottomBarView()),
+  // );
+
+      return BottomBarView();
+          }
+          else {
+  //             Navigator.push(
+  //   context,
+  //   MaterialPageRoute(builder: (context) => LoginScreenView()),
+  // );
+      return LoginScreenView();
+          }
+         // return widget.child;
         }));
-      }
+      
     });
   }
 
