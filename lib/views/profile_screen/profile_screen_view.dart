@@ -116,6 +116,16 @@ class ProfileScreenView extends StatelessWidget {
                           subtitle: "View the prizes you won.\n",
                           onpressed: () {},
                         ),
+
+                            ProfileCard(
+                          icon: FlutterIcons.fish_mco,
+                          title: "My Fish",
+                          subtitle: "View your fish ranking.\n",
+                          onpressed: () {
+                              viewModel.navigateToMyRegistrationScreen();
+
+                          },
+                        ),
                         ProfileCard(
                             icon: Icons.credit_card,
                             title: "Payment Information",

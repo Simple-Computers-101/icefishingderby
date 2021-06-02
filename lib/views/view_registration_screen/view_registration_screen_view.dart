@@ -31,7 +31,7 @@ class _ViewRegistrationScreenViewState
                 ),
                 child: Center(
                     child: Text(
-                  'Events Registrations',
+                  'Select Registrations',
                   style: GoogleFonts.montserrat(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
