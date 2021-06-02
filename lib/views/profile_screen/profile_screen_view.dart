@@ -99,7 +99,9 @@ class ProfileScreenView extends StatelessWidget {
                           title: "My Information",
                           subtitle:
                               "Update your address, Email, Phone\nnumber, etc.",
-                          onpressed: () {},
+                          onpressed: () {
+                            viewModel.navigateToEditProfileScreen();
+                          },
                         ),
                         ProfileCard(
                           icon: Icons.file_copy_outlined,

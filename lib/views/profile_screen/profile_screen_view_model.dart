@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:icefishingderby/core/locator.dart';
+import 'package:icefishingderby/views/edit_profile_screen/edit_profile_screen_view.dart';
 import 'package:icefishingderby/views/login_screen/login_screen_view.dart';
 import 'package:icefishingderby/views/view_registration_screen/view_registration_screen_view.dart';
 import 'package:logger/logger.dart';
@@ -22,6 +23,10 @@ class ProfileScreenViewModel extends BaseViewModel {
 
   navigateToMyLoginScreen() {
     _navService.navigateToView(LoginScreenView());
+  }
+
+    navigateToEditProfileScreen() {
+    _navService.navigateToView(EditProfileScreenView());
   }
 
 
