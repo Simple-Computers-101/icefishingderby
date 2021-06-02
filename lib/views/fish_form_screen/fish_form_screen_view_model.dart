@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/core/locator.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
@@ -17,6 +18,7 @@ class FishFormScreenViewModel extends BaseViewModel {
   String weight;
   var putCmd;
   var downloadUrl;
+  var color =  widgetcolor;
 
   Future register(var image) async {
     var doc = await FirebaseFirestore.instance
