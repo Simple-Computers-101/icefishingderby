@@ -152,6 +152,15 @@ class ProfileScreenView extends StatelessWidget {
                           subtitle: "Manager your account.\n",
                           onpressed: () {},
                         ),
+                        ProfileCard(
+                          icon: FlutterIcons.logout_mco,
+                          title: "Logout",
+                          subtitle: "Sign out of your account.\n",
+                          onpressed: () async {
+                           await viewModel.auth.signOut();
+                           viewModel.navigateToMyLoginScreen();
+                          },
+                        ),
                       ]),
                     ),
                   ),

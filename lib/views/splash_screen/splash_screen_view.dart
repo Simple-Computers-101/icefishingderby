@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,6 +10,7 @@ import 'package:icefishingderby/views/credit_card_screen/credit_card_screen_view
 import 'package:icefishingderby/views/drawings_screen/drawings_view.dart';
 import 'package:icefishingderby/views/fish_form_screen/fish_form_screen_view.dart';
 import 'package:icefishingderby/views/forgot_password/forgot_password_view.dart';
+import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
 import 'package:icefishingderby/views/login_screen/login_screen_view.dart';
 import 'package:icefishingderby/views/my_fish_screen/my_fish_screen_view.dart';
 import 'package:icefishingderby/views/prize_details/prize_details_view.dart';
@@ -23,12 +25,28 @@ import 'package:stacked/stacked.dart';
 
 import 'splash_screen_view_model.dart';
 
-class SplashScreenView extends StatelessWidget {
+class SplashScreenView extends StatefulWidget {
+  @override
+  _SplashScreenViewState createState() => _SplashScreenViewState();
+}
+
+class _SplashScreenViewState extends State<SplashScreenView> {
+
+ 
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<SplashScreenViewModel>.reactive(
       builder:
           (BuildContext context, SplashScreenViewModel viewModel, Widget _) {
+var usr;
+              @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+       usr = FirebaseAuth.instance.currentUser;
+     
+    });
+  }
         ScreenUtil.init(context,
             allowFontScaling: true, height: 683, width: 411);
         return Scaffold(
@@ -44,7 +62,7 @@ class SplashScreenView extends StatelessWidget {
               backgroundcolor,
               widgetcolor,
             ],
-            child: LoginScreenView(),
+            child:  usr? LoginScreenView() : HomeScreenView() ,
           ),
         );
       },
