@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
+import 'package:icefishingderby/views/all_prizes_screen/all_prizes_screen_view.dart';
 import 'package:icefishingderby/views/credit_card_screen/credit_card_screen_view.dart';
 import 'package:icefishingderby/views/transaction_history/transaction_history_view.dart';
 import 'package:icefishingderby/views/view_fish_rank_screen/view_fish_rank_screen_view.dart';
@@ -114,7 +115,14 @@ class ProfileScreenView extends StatelessWidget {
                           icon: FlutterIcons.trophy_ent,
                           title: "My Prizes",
                           subtitle: "View the prizes you won.\n",
-                          onpressed: () {},
+                          onpressed: () { 
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return AllPrizesScreenView();
+                              }));
+
+
+                          },
                         ),
 
                             ProfileCard(
@@ -146,6 +154,13 @@ class ProfileScreenView extends StatelessWidget {
                                 return TransactionHistoryView();
                               }));
                             }),
+
+                              ProfileCard(
+                          icon: FontAwesome.google,
+                          title: "Sponsers",
+                          subtitle: "View the sponsers of the event.\n",
+                          onpressed: () {},
+                        ),
                         ProfileCard(
                           icon: FlutterIcons.setting_ant,
                           title: "Settings",

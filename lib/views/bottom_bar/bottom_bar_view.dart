@@ -57,6 +57,12 @@ class _BottomBarViewState extends State<BottomBarView> {
                   .doc(_auth.currentUser.uid)
                   .snapshots(),
               builder: (context, snapshot) {
+
+                if (snapshot.connectionState == ConnectionState.waiting){
+                    Future.delayed(Duration(seconds: 2));
+                }
+                else
+
                 if ((snapshot.data['type'] == 'customer')) {
                   isCustomer = true;
                 } else {

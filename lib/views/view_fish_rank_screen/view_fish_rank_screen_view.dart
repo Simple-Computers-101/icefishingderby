@@ -84,7 +84,7 @@ class ViewFishRankScreenView extends StatelessWidget {
                                                       size: 14),
                                                   Detail(
                                                       title: "Fish Weight",
-                                                      text: e['weight'] + " Kg",
+                                                      text: e['weight'] + " Lbs",
                                                       size: 14),
                                                   Detail(
                                                       title: "Fish Length",

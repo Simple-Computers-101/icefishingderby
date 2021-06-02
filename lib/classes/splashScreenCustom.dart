@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:icefishingderby/views/bottom_bar/bottom_bar_view.dart';
 import 'package:icefishingderby/views/home_screen/home_screen_view.dart';
 import 'package:icefishingderby/views/login_screen/login_screen_view.dart';
+import 'package:icefishingderby/views/prize_details/prize_details_view.dart';
 
 class AdvancedSplashScreen extends StatefulWidget {
   final Widget child;
