@@ -3,6 +3,7 @@ import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
+import 'package:icefishingderby/widgets/dumb_widgets/header_curved.dart';
 import 'package:stacked/stacked.dart';
 import 'all_prizes_screen_view_model.dart';
 
@@ -24,22 +25,22 @@ class AllPrizesScreenView extends StatelessWidget {
           ),
           body: ListView(
             children: [
-              Stack(
-                children: [
-                  Center(
-                      child: Container(
-                          width: ScreenUtil().setWidth(double.infinity),
-                          height: ScreenUtil().setHeight(100),
-                          decoration: BoxDecoration(
-                              color: widgetcolor,
-                              borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(35),
-                                  bottomRight: Radius.circular(35))),
-                          child: Image.asset(
-                            'assets/trophy.png',
-                            height: ScreenUtil().setHeight(100),
-                          )))
-                ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: HomeHeader(
+                  title: 'For Kids',
+                ),
+              ),
+              PrizeCard(
+                image: Image.asset('assets/f1.png'),
+                name: 'Cash Prize',
+                details: '1000 \$ USD',
+              ),
+               Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: HomeHeader(
+                  title: 'For Adults',
+                ),
               ),
               PrizeCard(
                 image: Image.asset('assets/f1.png'),
@@ -51,10 +52,12 @@ class AllPrizesScreenView extends StatelessWidget {
                 name: 'Cash Prize',
                 details: '1000 \$ USD',
               ),
-              PrizeCard(
-                image: Image.asset('assets/f1.png'),
-                name: 'Cash Prize',
-                details: '1000 \$ USD',
+
+               Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: HomeHeader(
+                  title: 'For Everyone',
+                ),
               ),
               PrizeCard(
                 image: Image.asset('assets/f1.png'),

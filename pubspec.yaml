@@ -28,6 +28,7 @@ dependencies:
   carousel_slider: ^3.0.0
   firebase_core:
   firebase_auth:
+  
 
   firebase_storage:
   google_sign_in: ^4.5.1
@@ -38,6 +39,7 @@ dependencies:
   image_picker: ^0.7.4
   qr_flutter: ^3.2.0
   multi_sort: ^3.0.0
+  flutter_launcher_icons: ^0.9.0  
 
   #for Android and iOS
   stripe_payment: ^1.0.7
@@ -47,6 +49,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+   
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/derby-logo.png"
+
 flutter:
   uses-material-design: true
   assets:
