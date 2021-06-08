@@ -93,7 +93,7 @@ class _PrizeDetailsViewState extends State<PrizeDetailsView> {
                         leading: Text('Your Tickets' , style: t1,),
                         trailing: Text('2', style: t1,),
                       //  title: Icon(FontAwesome.ticket, color: Colors.orange,),
-                      ),
+                      )
                     ),
 
                   ],

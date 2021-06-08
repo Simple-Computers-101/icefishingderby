@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:icefishingderby/constants/colors.dart';
@@ -23,49 +25,111 @@ class AllPrizesScreenView extends StatelessWidget {
             ),
             elevation: 0,
           ),
-          body: ListView(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: HomeHeader(
-                  title: 'For Kids',
-                ),
-              ),
-              PrizeCard(
-                image: Image.asset('assets/f1.png'),
-                name: 'Cash Prize',
-                details: '1000 \$ USD',
-              ),
-               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: HomeHeader(
-                  title: 'For Adults',
-                ),
-              ),
-              PrizeCard(
-                image: Image.asset('assets/f1.png'),
-                name: 'Cash Prize',
-                details: '1000 \$ USD',
-              ),
-              PrizeCard(
-                image: Image.asset('assets/f1.png'),
-                name: 'Cash Prize',
-                details: '1000 \$ USD',
-              ),
-
-               Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: HomeHeader(
-                  title: 'For Everyone',
-                ),
-              ),
-              PrizeCard(
-                image: Image.asset('assets/f1.png'),
-                name: 'Cash Prize',
-                details: '1000 \$ USD',
-              ),
-            ],
-          ),
+          body: StreamBuilder<QuerySnapshot>(
+              stream: viewModel.getPrizes(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+                if (!snapshot.hasData) {
+                  return Center(child: Text("No Prizes added yet"));
+                } else {
+                  return ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: HomeHeader(
+                          title: 'Door Prizes',
+                        ),
+                      ),
+                      Container(
+                        height: ScreenUtil().setHeight(280),
+                        width: ScreenUtil().setWidth(90),
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: ClampingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: snapshot.data.docs.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot data = snapshot.data.docs[index];
+                              if (data['type'] == 'Door') {
+                                return PrizeCard(
+                                  image: Image.network(
+                                    data['image'],
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                  name: data['name'],
+                                  details: data['description'],
+                                );
+                              } else {
+                                return Container();
+                              }
+                            }),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: HomeHeader(
+                          title: 'Ultimate Ice Fishing Package',
+                        ),
+                      ),
+                      Container(
+                        height: ScreenUtil().setHeight(280),
+                        width: ScreenUtil().setWidth(90),
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: ClampingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: snapshot.data.docs.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot data = snapshot.data.docs[index];
+                              if (data['type'] == 'Medium') {
+                                return PrizeCard(
+                                  image: Image.network(
+                                    data['image'],
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                  name: data['name'],
+                                  details: data['description'],
+                                );
+                              } else {
+                                return Container();
+                              }
+                            }),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: HomeHeader(
+                          title: 'Large Prizes (Bonus Drawing)',
+                        ),
+                      ),
+                      Container(
+                        height: ScreenUtil().setHeight(280),
+                        width: ScreenUtil().setWidth(90),
+                        child: ListView.builder(
+                            shrinkWrap: true,
+                            physics: ClampingScrollPhysics(),
+                            scrollDirection: Axis.horizontal,
+                            itemCount: snapshot.data.docs.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot data = snapshot.data.docs[index];
+                              if (data['type'] == 'Large') {
+                                return PrizeCard(
+                                  image: Image.network(
+                                    data['image'],
+                                    fit: BoxFit.fitWidth,
+                                  ),
+                                  name: data['name'],
+                                  details: data['description'],
+                                );
+                              } else {
+                                return Container();
+                              }
+                            }),
+                      ),
+                    ],
+                  );
+                }
+              }),
         );
       },
       viewModelBuilder: () => AllPrizesScreenViewModel(),
@@ -87,7 +151,7 @@ class PrizeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.symmetric(horizontal: 8),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
@@ -95,27 +159,43 @@ class PrizeCard extends StatelessWidget {
         elevation: 2,
         color: widgetcolor,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      name,
-                      style: t1,
+          padding: EdgeInsets.symmetric(horizontal: 8),
+          child: Container(
+            width: ScreenUtil().setWidth(370),
+            child: Column(
+              children: [
+                Center(
+                  child: ClipPath(
+                    clipper: MessageClipper(borderRadius: 20),
+                    child: Container(
+                      height: ScreenUtil().setHeight(55),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadiusDirectional.circular(8)),
+                      child: Center(
+                        child: Text(
+                          name,
+                          style: t10appColor,
+                        ),
+                      ),
                     ),
-                    Text(
-                      details,
-                      style: t1,
+                  ),
+                ),
+                Column(
+                  children: [
+                    Container(
+                        height: 180, width: double.infinity, child: image),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        details,
+                        style: t1,
+                      ),
                     )
                   ],
                 ),
-              ),
-              Expanded(
-                child: image,
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

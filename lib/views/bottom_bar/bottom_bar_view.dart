@@ -47,7 +47,7 @@ class _BottomBarViewState extends State<BottomBarView> {
                   } else {
                     isCustomer = false;
                   }
-                  
+
                   return getViewForIndex(viewModel.currentIndex, isCustomer);
                 }
               }), // new
@@ -57,17 +57,15 @@ class _BottomBarViewState extends State<BottomBarView> {
                   .doc(_auth.currentUser.uid)
                   .snapshots(),
               builder: (context, snapshot) {
-
-                if (snapshot.connectionState == ConnectionState.waiting){
-                    Future.delayed(Duration(seconds: 2));
-                }
-                else
-
-                if ((snapshot.data['type'] == 'customer')) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  
+                } else if ((snapshot.data['type'] == 'customer')) {
                   isCustomer = true;
                 } else {
                   isCustomer = false;
                 }
+
+                
                 return BottomNavigationBar(
                   type: BottomNavigationBarType.fixed,
                   selectedLabelStyle: GoogleFonts.rubik(),
@@ -120,7 +118,7 @@ class _BottomBarViewState extends State<BottomBarView> {
   }
 
   Widget getViewForIndex(int index, bool isCustomer) {
-    if (isCustomer == true) {
+    if (isCustomer) {
       if (index == 0) {
         return HomeScreenView();
       } else if (index == 1) {
