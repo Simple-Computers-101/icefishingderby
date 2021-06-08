@@ -24,14 +24,14 @@ class HomeHeader extends StatelessWidget {
           clipper: OvalBottomBorderClipper(),
           child: Container(
             decoration: BoxDecoration(
-                color: Colors.white,
+                color: widgetcolor,
                 borderRadius: BorderRadiusDirectional.circular(40)),
             height: SizeConfig.blockSizeVertical * 8,
             width: SizeConfig.screenWidth,
             child: Center(
               child: Text(
                 title,
-                style: t10appColor,
+                style: t10white,
               ),
             ),
           ),

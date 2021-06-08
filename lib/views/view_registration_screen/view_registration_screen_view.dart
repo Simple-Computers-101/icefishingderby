@@ -82,7 +82,8 @@ class _ViewRegistrationScreenViewState
                                     data['docId'].toString());
                               },
                             );
-                          });
+                          }
+                          );
                 }),
           ),
         );
