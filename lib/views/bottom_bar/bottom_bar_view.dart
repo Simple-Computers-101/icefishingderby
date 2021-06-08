@@ -12,22 +12,14 @@ import 'package:icefishingderby/views/registration_screen/registration_screen_vi
 import 'package:stacked/stacked.dart';
 import 'bottom_bar_view_model.dart';
 
-class BottomBarView extends StatefulWidget {
-  BottomBarView({this.type});
-  final type;
-
-  @override
-  _BottomBarViewState createState() => _BottomBarViewState();
-}
-
-class _BottomBarViewState extends State<BottomBarView> {
-  @override
-  Widget build(BuildContext context) {
+class BottomBarView extends StatelessWidget {
     var isCustomer = true;
     var _auth = FirebaseAuth.instance;
-
-    return ViewModelBuilder<BottomBarViewModel>.reactive(
+  @override
+  Widget build(BuildContext context) {
+      return ViewModelBuilder<BottomBarViewModel>.reactive(
       builder: (BuildContext context, BottomBarViewModel viewModel, Widget _) {
+
         return Scaffold(
           backgroundColor: Colors.white,
           body: StreamBuilder<DocumentSnapshot>(

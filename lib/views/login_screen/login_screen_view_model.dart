@@ -26,7 +26,6 @@ class LoginScreenViewModel extends BaseViewModel {
         var user = await AuthService().emailAuth(email, password);
         if (user.user.emailVerified) {
           _navService.navigateToView(BottomBarView(
-            type: false,
           ));
         } else
           _dialogService.showDialog(
@@ -47,7 +46,6 @@ class LoginScreenViewModel extends BaseViewModel {
       // _navService.navigateTo();
       print(uid);
       _navService.navigateToView(BottomBarView(
-        type: false,
       ));
     } on FirebaseAuthException catch (e) {
       _dialogService.showDialog(
@@ -63,7 +61,6 @@ class LoginScreenViewModel extends BaseViewModel {
       var uc = await AuthService().appleAuth();
       print(uc.user.uid);
       _navService.navigateToView(BottomBarView(
-        type: false,
       ));
     } on FirebaseAuthException catch (e) {
       return e.message;
