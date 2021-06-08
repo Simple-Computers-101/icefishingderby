@@ -104,13 +104,15 @@ class HomeScreenView extends StatelessWidget {
                           alignment: Alignment.centerRight,
                           child: GestureDetector(
                             child: Text(
-                              "See Past Events",
+                              "See More",
                               style: GoogleFonts.josefinSans(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 15,
                                   color: Colors.white),
                             ),
-                            onTap: () {},
+                            onTap: () {
+                               viewModel.navigateToEventsScreen(); 
+                            },
                           ),
                         ),
                       ),

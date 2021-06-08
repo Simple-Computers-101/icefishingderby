@@ -21,6 +21,7 @@ class LeaderboardScreenView extends StatelessWidget {
           child: Scaffold(
               backgroundColor: backgroundcolor,
               appBar: AppBar(
+                automaticallyImplyLeading: false,
                 backgroundColor: backgroundcolor,
                 bottom: TabBar(isScrollable: true, tabs: [
                   Tab(

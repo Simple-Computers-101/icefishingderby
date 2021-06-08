@@ -15,6 +15,8 @@ class FishFormScreenViewModel extends BaseViewModel {
   String fish;
   String length;
   String username;
+  String lbs;
+  String oz;
   String weight;
   var putCmd;
   var downloadUrl;
@@ -29,15 +31,17 @@ class FishFormScreenViewModel extends BaseViewModel {
     if (doc.docs[0]['eventId'] != null) {
       DocumentReference documentReference =
           FirebaseFirestore.instance.collection('eventRegistration').doc();
-      putCmd = await _firebaseStorage
+        print(oz);
+        print(lbs);
+      if (length != "" && uid != "" && lbs !="") {
+         weight = (double.parse(lbs) + (double.parse(oz)/16)).toString();
+           putCmd = await _firebaseStorage
           .ref()
           .child('fishRegistered')
           .child("/" + uid)
           .child("/" + documentReference.id)
           .putFile(image);
       var downloadUrl = await putCmd.ref.getDownloadURL();
-
-      if (length != "" && uid != "" && weight != "") {
         FirebaseFirestore.instance
             .collection('fishRegistration')
             .doc(fish)

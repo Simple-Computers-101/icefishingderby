@@ -21,6 +21,7 @@ class ProfileScreenView extends StatelessWidget {
           backgroundColor: backgroundcolor,
           appBar: AppBar(
             backgroundColor: widgetcolor,
+              automaticallyImplyLeading: false,
             title: Text("Profile", style: GoogleFonts.josefinSans()),
           ),
           body: SingleChildScrollView(
@@ -53,7 +54,7 @@ class ProfileScreenView extends StatelessWidget {
                                       color: Color(0xFF83A1E1), width: 4),
                                   image: DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: AssetImage('assets/profile.jpg'),
+                                    image: AssetImage('assets/default.jpeg'),
                                   ),
                                 ),
                               ),
@@ -95,15 +96,15 @@ class ProfileScreenView extends StatelessWidget {
                       padding: const EdgeInsets.only(
                           top: 15.0, bottom: 15.0, left: 5, right: 5),
                       child: Column(children: [
-                        ProfileCard(
-                          icon: Icons.person,
-                          title: "My Information",
-                          subtitle:
-                              "Update your address, Email, Phone\nnumber, etc.",
-                          onpressed: () {
-                            viewModel.navigateToEditProfileScreen();
-                          },
-                        ),
+                        // ProfileCard(
+                        //   icon: Icons.person,
+                        //   title: "My Information",
+                        //   subtitle:
+                        //       "Update your address, Email, Phone\nnumber, etc.",
+                        //   onpressed: () {
+                        //     viewModel.navigateToEditProfileScreen();
+                        //   },
+                        // ),
                         ProfileCard(
                           icon: Icons.file_copy_outlined,
                           title: "My Event Registrations",

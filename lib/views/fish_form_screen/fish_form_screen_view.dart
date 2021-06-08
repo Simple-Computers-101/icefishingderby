@@ -48,6 +48,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
           backgroundColor: backgroundcolor,
           appBar: AppBar(
             backgroundColor: backgroundcolor,
+              automaticallyImplyLeading: false,
             elevation: 0,
             title: Text(
               'Register Fish',
@@ -129,7 +130,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                                 DocumentSnapshot data =
                                     snapshot.data.docs[index];
                                 viewModel.uid = data['docId'];
-                                 viewModel.username = data['name'];
+                                viewModel.username = data['name'];
                                 return Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Card(
@@ -277,7 +278,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                   Expanded(
                     child: TextFields(
                       onChanged: (na) {
-                        viewModel.weight = na;
+                        viewModel.lbs = na;
                       },
                       icon: Tab(
                         child: Icon(
@@ -300,7 +301,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                   Expanded(
                     child: TextFields(
                       onChanged: (na) {
-                        viewModel.weight = na;
+                        viewModel.oz = na;
                       },
                       icon: Tab(
                         child: Icon(

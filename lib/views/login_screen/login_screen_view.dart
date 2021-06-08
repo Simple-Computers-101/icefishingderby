@@ -32,183 +32,186 @@ class _LoginScreenViewState extends State<LoginScreenView> {
     return ViewModelBuilder<LoginScreenViewModel>.reactive(
       builder:
           (BuildContext context, LoginScreenViewModel viewModel, Widget _) {
-        return Scaffold(
-          key: _key,
-          backgroundColor: Colors.transparent,
-          body: Container(
-            decoration: BoxDecoration(
-              gradient: new LinearGradient(
-                tileMode: TileMode.mirror,
-                colors: [
-                  backgroundcolor,
-                  backgroundcolor,
-                ],
+        return WillPopScope(
+          onWillPop: () async => false,
+                  child: Scaffold(
+            key: _key,
+            backgroundColor: Colors.transparent,
+            body: Container(
+              decoration: BoxDecoration(
+                gradient: new LinearGradient(
+                  tileMode: TileMode.mirror,
+                  colors: [
+                    backgroundcolor,
+                    backgroundcolor,
+                  ],
+                ),
               ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView(
-                children: [
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Center(
-                      child: Image.asset(
-                    'assets/derby-logo.png',
-                    height: 120,
-                  )),
-                  SizedBox(
-                    height: 45,
-                  ),
-                  TextFields(
-                    onChanged: (em) {
-                      setState(() {
-                        viewModel.email = em;
-                      });
-                    },
-                    icon: Tab(
-                      child: Icon(
-                        Icons.email_rounded,
-                        color: appColor,
-                      ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListView(
+                  children: [
+                    SizedBox(
+                      height: 20,
                     ),
-                    hintText: "Email",
-                    secureText: false,
-                    borderColor: appColor,
-                    focusColor: Colors.white,
-                    context: null,
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  TextFields(
-                    show: IconButton(
-                      icon: Icon(
-                        _passwordVisible
-                            ? Icons.visibility
-                            : Icons.visibility_off,
-                        color: Theme.of(context).primaryColorDark,
-                      ),
-                      onPressed: () {
+                    Center(
+                        child: Image.asset(
+                      'assets/derby-logo.png',
+                      height: 120,
+                    )),
+                    SizedBox(
+                      height: 45,
+                    ),
+                    TextFields(
+                      onChanged: (em) {
                         setState(() {
-                          _passwordVisible = !_passwordVisible;
+                          viewModel.email = em;
                         });
                       },
-                    ),
-                    icon: Tab(
-                      child: Icon(
-                        Icons.lock,
-                        color: appColor,
-                      ),
-                    ),
-                    hintText: "Password",
-                    onChanged: (pa) {
-                      setState(() {
-                        viewModel.password = pa;
-                      });
-                    },
-                    secureText: _passwordVisible,
-                    borderColor: appColor,
-                    focusColor: Colors.white,
-                    context: null,
-                  ),
-                  GestureDetector(
-                    child: Padding(
-                      padding: const EdgeInsets.only(right: 28.0, top: 5),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: Text('Forgot Your Password?',
-                            style: GoogleFonts.abel(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14)),
-                      ),
-                    ),
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgotPasswordView()));
-                    },
-                  ),
-                  SizedBox(
-                    height: 35,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                        child: Container(
-                      width: 180,
-                      height: 50,
-                      decoration: BoxDecoration(
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                              color: Colors.black45,
-                              blurRadius: 8,
-                              offset: Offset(4, 4),
-                            ),
-                          ],
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(25),
-                          border: Border.all(color: Colors.blueAccent)),
-                      child: GestureDetector(
-                          onTap: viewModel.provideEmailSign,
-                          child: Center(
-                            child: Text(
-                              "     Login     ",
-                              style: t10appColor,
-                            ),
-                          )),
-                    )),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Center(
-                    child: Text('Or create account using social media',
-                        style: GoogleFonts.abel(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18)),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SignInButton.mini(
-                        buttonType: ButtonType.google,
-                        onPressed: viewModel.provideGoogleSign,
-                      ),
-                      if (AuthService.appleSignInAvailable && Platform.isIOS)
-                        SignInButton.mini(
-                          buttonType: ButtonType.apple,
-                          onPressed: viewModel.provideAppleSign,
+                      icon: Tab(
+                        child: Icon(
+                          Icons.email_rounded,
+                          color: appColor,
                         ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: ScreenUtil().setHeight(10),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Center(
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignUpScreenView()));
+                      ),
+                      hintText: "Email",
+                      secureText: false,
+                      borderColor: appColor,
+                      focusColor: Colors.white,
+                      context: null,
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    TextFields(
+                      show: IconButton(
+                        icon: Icon(
+                          _passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Theme.of(context).primaryColorDark,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
                         },
-                        child: Text(
-                          'Sign Up',
-                          style: t1,
+                      ),
+                      icon: Tab(
+                        child: Icon(
+                          Icons.lock,
+                          color: appColor,
                         ),
                       ),
+                      hintText: "Password",
+                      onChanged: (pa) {
+                        setState(() {
+                          viewModel.password = pa;
+                        });
+                      },
+                      secureText: _passwordVisible,
+                      borderColor: appColor,
+                      focusColor: Colors.white,
+                      context: null,
                     ),
-                  )
-                ],
+                    GestureDetector(
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 28.0, top: 5),
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: Text('Forgot Your Password?',
+                              style: GoogleFonts.abel(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14)),
+                        ),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ForgotPasswordView()));
+                      },
+                    ),
+                    SizedBox(
+                      height: 35,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                          child: Container(
+                        width: 180,
+                        height: 50,
+                        decoration: BoxDecoration(
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                color: Colors.black45,
+                                blurRadius: 8,
+                                offset: Offset(4, 4),
+                              ),
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(color: Colors.blueAccent)),
+                        child: GestureDetector(
+                            onTap: viewModel.provideEmailSign,
+                            child: Center(
+                              child: Text(
+                                "     Login     ",
+                                style: t10appColor,
+                              ),
+                            )),
+                      )),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                      child: Text('Or create account using social media',
+                          style: GoogleFonts.abel(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18)),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        SignInButton.mini(
+                          buttonType: ButtonType.google,
+                          onPressed: viewModel.provideGoogleSign,
+                        ),
+                        if (AuthService.appleSignInAvailable && Platform.isIOS)
+                          SignInButton.mini(
+                            buttonType: ButtonType.apple,
+                            onPressed: viewModel.provideAppleSign,
+                          ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: ScreenUtil().setHeight(10),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => SignUpScreenView()));
+                          },
+                          child: Text(
+                            'Sign Up',
+                            style: t1,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ),

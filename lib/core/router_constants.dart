@@ -15,3 +15,4 @@ const String viewFishRankScreenViewRoute = 'viewFishRankScreenViewRoute';
 const String testMultiFutureViewRoute = 'testMultiFutureViewRoute';
 const String transactionHistoryViewRoute = 'transactionHistoryViewRoute';
 const String editProfileScreenViewRoute = 'editProfileScreenViewRoute';
+const String viewEventViewRoute = 'viewEventViewRoute';
