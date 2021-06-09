@@ -1,5 +1,5 @@
 {
-    "last_updated": "Tue, 08 Jun 2021 16:16:51 GMT",
+    "last_updated": "Wed, 09 Jun 2021 13:39:45 GMT",
     "routes": [
         {
             "file_path": "views/splash_screen/splash_screen_view.dart",
@@ -79,7 +79,12 @@
         {
             "file_path": "views/view_event/view_event_view.dart",
             "route_name": "view_eventViewRoute",
-            "view_name": "ViewEventView"
+            "view_name": "ViewEventScreen"
+        },
+        {
+            "file_path": "views/search_screen/search_screen_view.dart",
+            "route_name": "search_screenViewRoute",
+            "view_name": "SearchScreenView"
         }
     ]
 }

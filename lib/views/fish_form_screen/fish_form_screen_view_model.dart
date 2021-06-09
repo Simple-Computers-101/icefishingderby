@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/core/locator.dart';
+import 'package:icefishingderby/views/search_screen/search_screen_view.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:icefishingderby/core/logger.dart';
@@ -11,16 +12,24 @@ class FishFormScreenViewModel extends BaseViewModel {
   Logger log;
   final _firebaseStorage = FirebaseStorage.instance;
   final _snackbarService = locator<SnackbarService>();
+  final _navService = locator<NavigationService>();
   String uid = "";
+  String username;
   String fish;
   String length;
-  String username;
+
   String lbs;
   String oz;
   String weight;
   var putCmd;
   var downloadUrl;
-  var color =  widgetcolor;
+  var color = widgetcolor;
+
+  navigateToSearchScreen() {
+    var data = _navService.navigateToView(SearchScreenView());
+    Future<DocumentSnapshot> d = data;
+    print(d);
+  }
 
   Future register(var image) async {
     var doc = await FirebaseFirestore.instance
@@ -31,17 +40,17 @@ class FishFormScreenViewModel extends BaseViewModel {
     if (doc.docs[0]['eventId'] != null) {
       DocumentReference documentReference =
           FirebaseFirestore.instance.collection('eventRegistration').doc();
-        print(oz);
-        print(lbs);
-      if (length != "" && uid != "" && lbs !="") {
-         weight = (double.parse(lbs) + (double.parse(oz)/16)).toString();
-           putCmd = await _firebaseStorage
-          .ref()
-          .child('fishRegistered')
-          .child("/" + uid)
-          .child("/" + documentReference.id)
-          .putFile(image);
-      var downloadUrl = await putCmd.ref.getDownloadURL();
+      print(oz);
+      print(lbs);
+      if (length != "" && uid != "" && lbs != "") {
+        weight = (double.parse(lbs) + (double.parse(oz) / 16)).toString();
+        putCmd = await _firebaseStorage
+            .ref()
+            .child('fishRegistered')
+            .child("/" + uid)
+            .child("/" + documentReference.id)
+            .putFile(image);
+        var downloadUrl = await putCmd.ref.getDownloadURL();
         FirebaseFirestore.instance
             .collection('fishRegistration')
             .doc(fish)
@@ -51,7 +60,7 @@ class FishFormScreenViewModel extends BaseViewModel {
               "DateTime": DateTime.now().toString(),
               "image": downloadUrl,
               "type": fish,
-              "username":username,
+              "username": username,
               "length": length,
               "weight": weight,
               "registrationId": uid,

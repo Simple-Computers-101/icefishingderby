@@ -16,3 +16,4 @@ const String testMultiFutureViewRoute = 'testMultiFutureViewRoute';
 const String transactionHistoryViewRoute = 'transactionHistoryViewRoute';
 const String editProfileScreenViewRoute = 'editProfileScreenViewRoute';
 const String viewEventViewRoute = 'viewEventViewRoute';
+const String searchScreenViewRoute = 'searchScreenViewRoute';

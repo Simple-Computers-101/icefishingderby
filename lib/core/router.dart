@@ -19,6 +19,7 @@ import 'package:icefishingderby/views/test_multi_future/test_multi_future_view.d
 import 'package:icefishingderby/views/transaction_history/transaction_history_view.dart' as view13;
 import 'package:icefishingderby/views/edit_profile_screen/edit_profile_screen_view.dart' as view14;
 import 'package:icefishingderby/views/view_event/view_event_view.dart' as view15;
+import 'package:icefishingderby/views/search_screen/search_screen_view.dart' as view16;
 
 class Router {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -55,6 +56,8 @@ class Router {
         return MaterialPageRoute(builder: (_) => view14.EditProfileScreenView());
       case viewEventViewRoute:
         return MaterialPageRoute(builder: (_) => view15.ViewEventScreen());
+      case searchScreenViewRoute:
+        return MaterialPageRoute(builder: (_) => view16.SearchScreenView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

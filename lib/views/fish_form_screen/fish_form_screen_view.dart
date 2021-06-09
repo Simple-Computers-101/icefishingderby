@@ -8,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
+import 'package:icefishingderby/views/search_screen/search_screen_view.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/header_curved.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/textField.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,6 +25,7 @@ class FishFormScreenView extends StatefulWidget {
 
 class _FishFormScreenViewState extends State<FishFormScreenView> {
   File _image;
+  DocumentSnapshot data;
   final picker = ImagePicker();
   final db = FirebaseFirestore.instance;
 
@@ -48,7 +50,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
           backgroundColor: backgroundcolor,
           appBar: AppBar(
             backgroundColor: backgroundcolor,
-              automaticallyImplyLeading: false,
+            automaticallyImplyLeading: false,
             elevation: 0,
             title: Text(
               'Register Fish',
@@ -96,113 +98,108 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                   ),
                 ),
               ),
-              TextFields(
-                icon: Tab(
-                  child: Icon(FontAwesome5Solid.search),
+              Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: GestureDetector(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                      Text(
+                        "Search By Email",
+                        style: t1,
+                      ),
+                    ],
+                  ),
+                  onTap: () async {
+                    final result = await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => SearchScreenView()),
+                    );
+                    setState(() {
+                      data = result;
+                      viewModel.username = data['name'];
+                       viewModel.uid = data['uid'];
+                    });
+                    
+                  },
                 ),
-                hintText: 'Search User',
-                context: null,
-                secureText: false,
-                borderColor: Colors.white,
-                onChanged: (val) {
-                  setState(() {
-                    viewModel.uid = val;
-                  });
-                },
               ),
-              Container(
-                height: ScreenUtil().setHeight(150),
-                child: StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance
-                        .collection('eventRegistration')
-                        .where('email', isEqualTo: viewModel.uid)
-                        .snapshots(),
-                    builder: (context, snapshot) {
-                      return (snapshot.connectionState ==
-                              ConnectionState.waiting)
-                          ? Center(
-                              child: CircularProgressIndicator(
-                              backgroundColor: widgetcolor,
-                            ))
-                          : ListView.builder(
-                              itemCount: snapshot.data.docs.length,
-                              itemBuilder: (context, index) {
-                                DocumentSnapshot data =
-                                    snapshot.data.docs[index];
-                                viewModel.uid = data['docId'];
-                                viewModel.username = data['name'];
-                                return Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Card(
-                                    color: widgetcolor,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  data['name'],
-                                                  style: t1,
-                                                ),
-                                                Icon(
-                                                  FontAwesome5Solid
-                                                      .user_friends,
-                                                  color: Colors.white,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Text(
-                                                  data['docId'],
-                                                  style: t1,
-                                                ),
-                                                Icon(
-                                                  FontAwesome5Solid.id_card_alt,
-                                                  color: Colors.white,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Flexible(
-                                                    child: Text(
-                                                  data['address'],
-                                                  style: t1,
-                                                )),
-                                                Icon(
-                                                  FontAwesome5Solid.home,
-                                                  color: Colors.white,
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
+              (data != null)
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Card(
+                        color: widgetcolor,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      data['name'],
+                                      style: t1,
                                     ),
-                                  ),
-                                );
-                              });
-                    }),
-              ),
+                                    Icon(
+                                      FontAwesome5Solid.user_friends,
+                                      color: Colors.white,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      data['docId'],
+                                      style: t1,
+                                    ),
+                                    Icon(
+                                      FontAwesome5Solid.id_card_alt,
+                                      color: Colors.white,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Flexible(
+                                        child: Text(
+                                      data['address'],
+                                      style: t1,
+                                    )),
+                                    Icon(
+                                      FontAwesome5Solid.home,
+                                      color: Colors.white,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                  : Container(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: HomeHeader2(
