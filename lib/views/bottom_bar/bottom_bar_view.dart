@@ -13,13 +13,12 @@ import 'package:stacked/stacked.dart';
 import 'bottom_bar_view_model.dart';
 
 class BottomBarView extends StatelessWidget {
-    var isCustomer = true;
-    var _auth = FirebaseAuth.instance;
+  var isCustomer = true;
+  var _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-      return ViewModelBuilder<BottomBarViewModel>.reactive(
+    return ViewModelBuilder<BottomBarViewModel>.reactive(
       builder: (BuildContext context, BottomBarViewModel viewModel, Widget _) {
-
         return Scaffold(
           backgroundColor: Colors.white,
           body: StreamBuilder<DocumentSnapshot>(
@@ -34,7 +33,8 @@ class BottomBarView extends StatelessWidget {
                     width: 0,
                   );
                 } else {
-                  if ((snapshot.data['type'] == 'customer')) {
+
+                  if ((snapshot.data.get('type') == 'customer')) {
                     isCustomer = true;
                   } else {
                     isCustomer = false;
@@ -50,14 +50,12 @@ class BottomBarView extends StatelessWidget {
                   .snapshots(),
               builder: (context, snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  
-                } else if ((snapshot.data['type'] == 'customer')) {
+                } else if ((snapshot.data.get('type') == 'customer')) {
                   isCustomer = true;
                 } else {
                   isCustomer = false;
                 }
 
-                
                 return BottomNavigationBar(
                   type: BottomNavigationBarType.fixed,
                   selectedLabelStyle: GoogleFonts.rubik(),

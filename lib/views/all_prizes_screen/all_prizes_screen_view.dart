@@ -56,7 +56,7 @@ class AllPrizesScreenView extends StatelessWidget {
                                 return PrizeCard(
                                   image: Image.network(
                                     data['image'],
-                                    fit: BoxFit.fitWidth,
+                                    fit: BoxFit.fill,
                                   ),
                                   name: data['name'],
                                   details: data['description'],
@@ -164,35 +164,41 @@ class PrizeCard extends StatelessWidget {
             width: ScreenUtil().setWidth(370),
             child: Column(
               children: [
-                Center(
-                  child: ClipPath(
-                    clipper: MessageClipper(borderRadius: 20),
-                    child: Container(
-                      height: ScreenUtil().setHeight(55),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadiusDirectional.circular(8)),
-                      child: Center(
-                        child: Text(
-                          name,
-                          style: t10appColor,
+                Expanded(
+                  flex: 1,
+                                  child: Center(
+                    child: ClipPath(
+                      clipper: MessageClipper(borderRadius: 20),
+                      child: Container(
+                        height: ScreenUtil().setHeight(55),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadiusDirectional.circular(8)),
+                        child: Center(
+                          child: Text(
+                            name,
+                            style: t10appColor,
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-                Column(
-                  children: [
-                    Container(
-                        height: 180, width: double.infinity, child: image),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        details,
-                        style: t1,
+                Expanded(
+                  flex: 3,
+                                  child: Column(
+                    children: [
+                      Expanded(
+                        child: image,
                       ),
-                    )
-                  ],
+                      Expanded(
+                        child: Text(
+                          details,
+                          style: t1,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),
