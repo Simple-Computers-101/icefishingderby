@@ -119,9 +119,9 @@ class TabViewWidget extends StatelessWidget {
                 viewModel.sortingList = [];
                 for (int i = 0; i < snapshot.data.size; i++) {
                   viewModel.sortingList.add(Fish(
-                      username: data.docs[i].data()['username'],
-                      weight: double.parse(data.docs[i].data()['weight']),
-                      length: double.parse(data.docs[i].data()['length'])));
+                      username: data.docs[i].get('username'),
+                      weight: double.parse(data.docs[i].get('weight')),
+                      length: double.parse(data.docs[i].get('length'))));
                 }
                 viewModel.sortingList
                     .multisort(viewModel.criteria, viewModel.preferrence);

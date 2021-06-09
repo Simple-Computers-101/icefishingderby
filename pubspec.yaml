@@ -43,7 +43,7 @@ dependencies:
 
   #for Android and iOS
   stripe_payment: ^1.0.7
-  cloud_firestore:
+  cloud_firestore: ^2.2.1
   stripe_sdk:
 
 dev_dependencies:
