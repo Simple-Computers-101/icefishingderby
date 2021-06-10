@@ -54,13 +54,16 @@ class AllPrizesScreenView extends StatelessWidget {
                               DocumentSnapshot data = snapshot.data.docs[index];
                               if (data['type'] == 'Door') {
                                 return PrizeCard(
-                                  image: Image.network(
-                                    data['image'],
-                                    fit: BoxFit.fill,
-                                  ),
-                                  name: data['name'],
-                                  details: data['description'],
-                                );
+                                    image: Image.network(
+                                      data['image'],
+                                      fit: BoxFit.fill,
+                                    ),
+                                    name: data['name'],
+                                    details: data['description'],
+                                    onPressed: () {
+                                      viewModel.navigateToDetailsView(
+                                          data['type'], data);
+                                    });
                               } else {
                                 return Container();
                               }
@@ -84,13 +87,16 @@ class AllPrizesScreenView extends StatelessWidget {
                               DocumentSnapshot data = snapshot.data.docs[index];
                               if (data['type'] == 'Medium') {
                                 return PrizeCard(
-                                  image: Image.network(
-                                    data['image'],
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                  name: data['name'],
-                                  details: data['description'],
-                                );
+                                    image: Image.network(
+                                      data['image'],
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                    name: data['name'],
+                                    details: data['description'],
+                                    onPressed: () {
+                                      viewModel.navigateToDetailsView(
+                                          data['type'], data);
+                                    });
                               } else {
                                 return Container();
                               }
@@ -114,13 +120,16 @@ class AllPrizesScreenView extends StatelessWidget {
                               DocumentSnapshot data = snapshot.data.docs[index];
                               if (data['type'] == 'Large') {
                                 return PrizeCard(
-                                  image: Image.network(
-                                    data['image'],
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                  name: data['name'],
-                                  details: data['description'],
-                                );
+                                    image: Image.network(
+                                      data['image'],
+                                      fit: BoxFit.fitWidth,
+                                    ),
+                                    name: data['name'],
+                                    details: data['description'],
+                                    onPressed: () {
+                                      viewModel.navigateToDetailsView(
+                                          data['type'], data);
+                                    });
                               } else {
                                 return Container();
                               }
@@ -141,66 +150,72 @@ class PrizeCard extends StatelessWidget {
   final String name;
   final String details;
   final Image image;
+  final Function onPressed;
   const PrizeCard({
     Key key,
     this.name,
     this.details,
     this.image,
+    this.onPressed,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 8),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-        ),
-        elevation: 2,
-        color: widgetcolor,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          child: Container(
-            width: ScreenUtil().setWidth(370),
-            child: Column(
-              children: [
-                Expanded(
-                  flex: 1,
-                                  child: Center(
-                    child: ClipPath(
-                      clipper: MessageClipper(borderRadius: 20),
-                      child: Container(
-                        height: ScreenUtil().setHeight(55),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadiusDirectional.circular(8)),
-                        child: Center(
-                          child: Text(
-                            name,
-                            style: t10appColor,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          elevation: 2,
+          color: widgetcolor,
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: Container(
+              width: ScreenUtil().setWidth(370),
+              child: Column(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: Center(
+                      child: ClipPath(
+                        clipper: MessageClipper(borderRadius: 20),
+                        child: Container(
+                          height: ScreenUtil().setHeight(55),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius:
+                                  BorderRadiusDirectional.circular(8)),
+                          child: Center(
+                            child: Text(
+                              name,
+                              style: t10appColor,
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
-                ),
-                Expanded(
-                  flex: 3,
-                                  child: Column(
-                    children: [
-                      Expanded(
-                        child: image,
-                      ),
-                      Expanded(
-                        child: Text(
-                          details,
-                          style: t1,
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          child: image,
                         ),
-                      )
-                    ],
+                        Expanded(
+                          child: Text(
+                            details,
+                            style: t1,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

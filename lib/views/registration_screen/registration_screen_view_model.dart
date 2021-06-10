@@ -12,7 +12,7 @@ class RegistrationScreenViewModel extends BaseViewModel {
   Logger log;
   var user = FirebaseAuth.instance.currentUser;
   final _snackbarService = locator<SnackbarService>();
-    final _navService = locator<NavigationService>();
+  final _navService = locator<NavigationService>();
 
   String name;
   String email;
@@ -43,11 +43,10 @@ class RegistrationScreenViewModel extends BaseViewModel {
           registrationDays != "" &&
           feeToBeCharged != "" &&
           dateOfBirth != "") {
-             var payment = await _navService.navigateToView(
+        var payment = await _navService.navigateToView(
           CreditCardView(),
           arguments: {
-            "days": registrationDays,
-            "ageGroup": ageGroup,
+            "reason": "Event Registeration.",
             "fee": feeToBeCharged,
           },
         );

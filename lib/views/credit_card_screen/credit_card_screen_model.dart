@@ -82,7 +82,7 @@ class CreditCardViewModel extends MultipleStreamViewModel {
     });
   }
 
- confirmPayment(card, {paymentDetails}) async {
+  confirmPayment(card, {paymentDetails}) async {
     var amountInDollars = double.parse(paymentDetails['fee']).toInt();
     var amountInCents = amountInDollars * 100;
     print("Fee : ${amountInCents}");
@@ -97,11 +97,11 @@ class CreditCardViewModel extends MultipleStreamViewModel {
       StripeService.payViaExistingCard(
               amount: '$amountInCents', currency: 'USD', card: card)
           .then((value) {
-                    navService.back(result: value.success);
+        navService.back(result: value.success);
 
         snackService.showSnackbar(message: value.message);
         addTransactionHistory(
-            card.number, "Test Transaction Log", "\$$amountInDollars");
+            card.number, paymentDetails['reason'], "\$$amountInDollars");
       });
 
     //Send Card to Stripe.

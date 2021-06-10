@@ -42,7 +42,8 @@ class _CreditCardViewState extends State<CreditCardView> {
           backgroundColor: backgroundcolor,
           appBar: AppBar(
             backgroundColor: widgetcolor,
-            title: Text("Payment Information", style: GoogleFonts.josefinSans()),
+            title:
+                Text("Payment Information", style: GoogleFonts.josefinSans()),
           ),
           key: _scaffKey,
           body: SafeArea(
@@ -89,15 +90,15 @@ class _CreditCardViewState extends State<CreditCardView> {
                     flex: 5,
                     child: model.fetchingCards
                         ? Center(child: CircularProgressIndicator())
-                          : _showCreditCards(
+                        : _showCreditCards(
                             model.fetchedCards['cards'], model, context),
                   ),
-                TextButton(
-                  onPressed: () {
-                    _addNewCard1(context);
-                  },
-                  child: Text('Pay with new Card'),
-                )
+                // TextButton(
+                //   onPressed: () {
+                //     _addNewCard1(context);
+                //   },
+                //   child: Text('Pay with new Card'),
+                // )
               ],
             ),
           )),
@@ -117,7 +118,7 @@ class _CreditCardViewState extends State<CreditCardView> {
     ));
   }
 
-    Widget _showCreditCards(cards, model, contenxt) {
+  Widget _showCreditCards(cards, model, contenxt) {
     if (cards == null) {
       return Container(
           alignment: Alignment.center,
@@ -154,7 +155,7 @@ class _CreditCardViewState extends State<CreditCardView> {
     return FlatButton(
       onPressed: () {
         model.confirmPayment(
-           CreditCard(
+            CreditCard(
                 cvc: cc.cvvCode,
                 number: cc.cardNumber,
                 name: cc.cardHolderName,

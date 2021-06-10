@@ -27,8 +27,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-          scaffoldBackgroundColor: backgroundcolor,
-          appBarTheme: AppBarTheme(backgroundColor: widgetcolor)),
+        canvasColor: backgroundcolor,
+        scaffoldBackgroundColor: backgroundcolor,
+        appBarTheme: AppBarTheme(backgroundColor: widgetcolor),
+      ),
       debugShowCheckedModeBanner: false,
       navigatorKey: locator<NavigationService>().navigatorKey,
       onGenerateRoute: router.Router.generateRoute,
