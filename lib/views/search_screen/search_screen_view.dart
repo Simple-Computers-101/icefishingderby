@@ -27,7 +27,7 @@ class _SearchScreenViewState extends State<SearchScreenView> {
               style: t1,
             ),
           ),
-          body: Column(
+          body: ListView(
             children: [
               SizedBox(
                 height: 10,
