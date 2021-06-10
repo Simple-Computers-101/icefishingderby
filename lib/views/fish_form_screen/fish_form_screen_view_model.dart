@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/core/locator.dart';
 import 'package:icefishingderby/views/search_screen/search_screen_view.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
 import 'package:icefishingderby/core/logger.dart';
@@ -25,13 +28,26 @@ class FishFormScreenViewModel extends BaseViewModel {
   var downloadUrl;
   var color = widgetcolor;
 
+  final picker = ImagePicker();
+  File img;
+
+  Future getImageFromCamera() async {
+    final pickedFile = await picker.getImage(source: ImageSource.camera);
+    if (pickedFile != null) {
+      img = File(pickedFile.path);
+      notifyListeners();
+    } else {
+      print('No image selected.');
+    }
+  }
+
   navigateToSearchScreen() {
     var data = _navService.navigateToView(SearchScreenView());
     Future<DocumentSnapshot> d = data;
     print(d);
   }
 
-  Future register(var image) async {
+  Future register() async {
     var doc = await FirebaseFirestore.instance
         .collection('events')
         .where('status', isEqualTo: 'Ongoing')
@@ -49,7 +65,7 @@ class FishFormScreenViewModel extends BaseViewModel {
             .child('fishRegistered')
             .child("/" + uid)
             .child("/" + documentReference.id)
-            .putFile(image);
+            .putFile(img);
         var downloadUrl = await putCmd.ref.getDownloadURL();
         FirebaseFirestore.instance
             .collection('fishRegistration')

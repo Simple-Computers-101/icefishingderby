@@ -24,22 +24,9 @@ class FishFormScreenView extends StatefulWidget {
 }
 
 class _FishFormScreenViewState extends State<FishFormScreenView> {
-  File _image;
   DocumentSnapshot data;
-  final picker = ImagePicker();
+
   final db = FirebaseFirestore.instance;
-
-  Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.camera);
-
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-      } else {
-        print('No image selected.');
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,9 +114,8 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                     setState(() {
                       data = result;
                       viewModel.username = data['name'];
-                       viewModel.uid = data['uid'];
+                      viewModel.uid = data['uid'];
                     });
-                    
                   },
                 ),
               ),
@@ -323,7 +309,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: _image == null
+                  child: viewModel.img == null
                       ? Text(
                           'No image selected.',
                           style: t1,
@@ -335,14 +321,16 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                               width: ScreenUtil().setWidth(350),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(12)),
-                              child: Image.file(_image)),
+                              child: Image.file(viewModel.img)),
                         ),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: FlatButton.icon(
-                  onPressed: getImage,
+                  onPressed: () {
+                    viewModel.getImageFromCamera();
+                  },
                   icon: Icon(
                     FontAwesome5Solid.camera,
                     color: Colors.white,
@@ -359,7 +347,7 @@ class _FishFormScreenViewState extends State<FishFormScreenView> {
                 child: FlatButton(
                     color: Colors.white,
                     onPressed: () {
-                      viewModel.register(_image);
+                      viewModel.register();
                     },
                     child: Text(
                       'SUBMIT',
