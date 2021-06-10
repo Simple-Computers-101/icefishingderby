@@ -35,16 +35,17 @@ dependencies:
   sign_in_with_apple: ^2.5.2
   crypto:
   flutter_credit_card: ^0.1.4
-  flutter_barcode_scanner: ^2.0.0
-  image_picker: ^0.7.4
+  flutter_barcode_scanner: 
+  image_picker: 0.7.4
   qr_flutter: ^3.2.0
   multi_sort: ^3.0.0
   flutter_launcher_icons: ^0.9.0  
 
   #for Android and iOS
   stripe_payment: ^1.0.7
-  cloud_firestore: ^2.2.1
+  cloud_firestore: 
   stripe_sdk:
+  firebase_core: 
 
 dev_dependencies:
   flutter_test:
