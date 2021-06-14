@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/constants/fonts.dart';
 import 'package:icefishingderby/widgets/dumb_widgets/header_curved.dart';
@@ -19,9 +20,18 @@ class AllPrizesScreenView extends StatelessWidget {
           backgroundColor: backgroundcolor,
           appBar: AppBar(
             backgroundColor: widgetcolor,
-            title: Icon(
-              FontAwesome.trophy,
-              size: 35,
+            title: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Icon(
+                  FontAwesome.trophy,
+                  size: 35,
+                ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("Prizes", style: GoogleFonts.josefinSans()),
+                  ),
+              ],
             ),
             elevation: 0,
           ),

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/core/locator.dart';
+import 'package:icefishingderby/views/detail_screen/detail_screen_view.dart';
 import 'package:icefishingderby/views/my_fish_screen/my_fish_screen_view.dart';
 import 'package:icefishingderby/views/show_qr_code/show_qr_code_view.dart';
 import 'package:logger/logger.dart';
@@ -18,6 +19,9 @@ class ViewRegistrationScreenViewModel extends BaseViewModel {
 
   ViewRegistrationScreenViewModel() {
     this.log = getLogger(this.runtimeType.toString());
+  }
+  navigateToDetailScreen(String registrationId) {
+    _navService.navigateToView(DetailScreenView(), arguments: {"registrationId": registrationId});
   }
 
   navigateToFishScreen(String registrationId) {

@@ -1,4 +1,5 @@
 import 'package:icefishingderby/core/locator.dart';
+import 'package:icefishingderby/views/all_prizes_screen/all_prizes_screen_view.dart';
 import 'package:icefishingderby/views/view_event/view_event_view.dart';
 import 'package:logger/logger.dart';
 import 'package:stacked/stacked.dart';
@@ -18,6 +19,10 @@ class HomeScreenViewModel extends BaseViewModel {
 
     navigateToEventsScreen() {
     _navService.navigateToView(ViewEventScreen());
+  }
+
+      navigateToPrizeScreen() {
+    _navService.navigateToView(AllPrizesScreenView());
   }
 
   HomeScreenViewModel() {

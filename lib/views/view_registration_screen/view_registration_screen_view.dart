@@ -78,7 +78,7 @@ class _ViewRegistrationScreenViewState
                               dob: data['dob'],
                               docId: data['docId'],
                               ontap: () {
-                                viewModel.navigateToFishScreen(
+                                viewModel.navigateToDetailScreen(
                                     data['docId'].toString());
                               },
                             );
