@@ -15,7 +15,7 @@ class DetailScreenViewModel extends MultipleFutureViewModel {
   Future<QuerySnapshot> getPrizes() async {
     var prizes = await FirebaseFirestore.instance
         .collection('prizes')
-        // .where('winner', isEqualTo: AuthService.currUID.uid)
+        .where('winner', isEqualTo: AuthService.currUID.uid)
         .get();
     return prizes;
   }
