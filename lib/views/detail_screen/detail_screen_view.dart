@@ -1,15 +1,18 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icefishingderby/constants/colors.dart';
 import 'package:icefishingderby/views/leaderboard_screen/leaderboard_screen_view.dart';
+import 'package:icefishingderby/views/my_fish_screen/my_fish_screen_view.dart';
 import 'package:stacked/stacked.dart';
 import 'detail_screen_view_model.dart';
-          
+
 class DetailScreenView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<DetailScreenViewModel>.reactive(
-      builder: (BuildContext context, DetailScreenViewModel viewModel, Widget _) {
+      builder:
+          (BuildContext context, DetailScreenViewModel viewModel, Widget _) {
         return DefaultTabController(
           length: 3,
           child: Scaffold(
@@ -33,13 +36,9 @@ class DetailScreenView extends StatelessWidget {
                 ),
               ),
               body: TabBarView(children: [
+                MyFishScreenView(),
+                buildMyPrizes(viewModel),
                 TabViewWidget(
-                  status: 'fish',
-                ),
-                TabViewWidget(
-                  status: 'prizes',
-                ),
-                 TabViewWidget(
                   status: 'chances',
                 ),
               ])),
@@ -47,6 +46,32 @@ class DetailScreenView extends StatelessWidget {
       },
       viewModelBuilder: () => DetailScreenViewModel(),
     );
+  }
+
+  buildMyPrizes(viewModel) {
+    if (viewModel.isFetchingPrizes) return CircularProgressIndicator.adaptive();
+    QuerySnapshot data = viewModel.prizes;
+    return Column(children: [
+      ...data.docs.map(
+        (e) => Container(
+          margin: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.black,
+          ),
+          child: ListTile(
+            leading: Image.network(e['image']),
+            title: Text(
+              e['name'],
+              style: GoogleFonts.montserrat(color: Colors.white),
+            ),
+            subtitle: Text(
+              e['description'],
+              style: GoogleFonts.montserrat(color: Colors.grey),
+            ),
+          ),
+        ),
+      )
+    ]);
   }
 }
 

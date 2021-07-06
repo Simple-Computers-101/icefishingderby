@@ -14,13 +14,6 @@ class MyFishScreenView extends StatelessWidget {
           (BuildContext context, MyFishScreenViewModel viewModel, Widget _) {
         return Scaffold(
           backgroundColor: backgroundcolor,
-          appBar: AppBar(
-            backgroundColor: backgroundcolor,
-            title: Text(
-              "Select Fish",
-              style: GoogleFonts.montserrat(),
-            ),
-          ),
           body: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
